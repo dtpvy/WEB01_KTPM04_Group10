@@ -1,15 +1,13 @@
-# Webanhang Project
+## Install dependencies
 
-## docs
+```bash
+npm install
+```
 
-Tài liệu về project
+## Start project
 
-## pa
+```bash
+npm start
 
-các bài PA
-
-## src
-
-fe: source code front-end
-
-be: source code back-end
+open: http://localhost:3000/
+```
