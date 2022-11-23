@@ -1,8 +1,8 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  background-color: #f1f5f7;
 }
 
-a {
-  color: #00B7FF;
+.text-sm {
+  font-size: 14px;
 }
