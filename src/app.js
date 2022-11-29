@@ -18,6 +18,7 @@ app.engine(
   handlebars.engine({
     extname: 'hbs',
     layoutsDir: path.join(__dirname, './views/layouts'),
+    partialsDir: path.join(__dirname, './views/components'),
     helpers: require(path.join(__dirname, './helpers/handlebars')),
   })
 );
