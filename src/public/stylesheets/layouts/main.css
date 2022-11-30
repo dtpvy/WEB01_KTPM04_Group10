@@ -1,0 +1,29 @@
+.main__header {
+  position: relative;
+}
+
+.main__menu {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  color: var(--bs-white);
+  transform: translateY(-50%);
+  width: 90%;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+.main__account {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  color: var(--bs-white);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.main__menu__item {
+  font-size: 20px;
+}
