@@ -6,8 +6,9 @@ router.get('/', function (req, res, next) {
   res.render('./login/login', { layout: 'login_form' });
 });
 
-router.get('/register', function (req, res, next) {
-  res.render('./login/register', { layout: 'login_form' });
+router.get('/coach', function (req, res, next) {
+  res.render('./login/login_Coach', { layout: 'login_form', });
 });
+
 
 module.exports = router;
