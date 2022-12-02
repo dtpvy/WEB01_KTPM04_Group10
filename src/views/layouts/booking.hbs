@@ -50,25 +50,26 @@
             class='ticket-detail--header mt-3 mb-1 py-2 ps-5 rounded text-start'
           >Chi tiết vé</h4>
           <div class='bg-white d-flex justify-content-around py-2 my-2 rounded'>
-            <span class='d-inline-block'>
-              <i class='far fa-check-circle p-1 text-info'></i>Chọn chỗ
-            </span>
-            <span class='d-inline-block'>
-              <i class='far fa-check-circle p-1'></i>Thông tin chi tiết
-            </span>
-            <span class='d-inline-block'>
-              <i class='far fa-check-circle p-1'></i>Thanh toán
-            </span>
+            {{#each onPage}}
+              <span class='d-inline-block'>
+                {{#if this.condition}}
+                  <i class='far fa-check-circle p-1 text-info'></i>
+                {{else}}
+                  <i class='far fa-check-circle p-1'></i>
+                {{/if}}
+                {{this.name}}</span>
+            {{/each}}
           </div>
           <div class='bg-white text-start ps-5 pt-4 pb-3 mb-3 rounded'>
             {{{body}}}
           </div>
         </div>
+
         <div class='right-box-width rounded bg-white my-3 h-100'><h4
             class='ticket-detail--header py-2 m-0'
           >Thông tin xe</h4>
           <div class='text-start px-3 fs-6'>
-            <img src='images/car.png' class='w-75' alt='' srcset='' />
+            <img src='/images/car.png' class='w-75' alt='' srcset='' />
             <P class='fw-bold fs-5'>Yellow Jaguar XF 2 Bus</P>
             <P class='fw-light'><i class='fa fa-map-marker text-info'></i>
               780 đường San Fran Xích Long, Fu Nhuan</P>
@@ -140,5 +141,8 @@
       integrity='sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V'
       crossorigin='anonymous'
     ></script>
+    <script>
+      function chooseSeat(){ console.log('helo'); event.target.classList.add('seat-choose'); }
+    </script>
   </body>
 </html>

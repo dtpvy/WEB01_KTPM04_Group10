@@ -11,4 +11,16 @@ router.get('/step_2', function (req, res, next) {
   controller.showStep2(req, res);
 });
 
+router.get('/step_3', function (req, res, next) {
+  controller.showStep3(req, res);
+});
+
+router.get('/booked_ticket', function (req, res, next) {
+  controller.showBookedTicket(req, res);
+});
+
+router.get('/cancel_ticket', function (req, res, next) {
+  controller.showCancelTicket(req, res);
+});
+
 module.exports = router;
