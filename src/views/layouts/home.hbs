@@ -21,36 +21,52 @@
       <div class='home__search'>
         <h1 class='home__title'>VESIRE</h1>
         <div class='bg-white rounded py-3 px-5 d-flex gap-3 align-items-end'>
-          <div class='home__select__container'>
+          <div class='home__select__container dropdown'>
             <div class='ps-3 text-black-50 mb-2 text-sm fw-bold'>LOẠI XE</div>
-            <div class='home__select rounded-pill'>
+            <div class='home__select rounded-pill' data-bs-toggle='dropdown' aria-expanded='false'>
               <div>Limousine 20 chỗ</div>
               <i class='fa-sharp fa-solid fa-chevron-down'></i>
             </div>
+            <ul class='dropdown-menu w-100'>
+              <li><a class='dropdown-item' href='#'>Limousine 20 chỗ</a></li>
+              <li><a class='dropdown-item' href='#'>Limousine 16 chỗ</a></li>
+              <li><a class='dropdown-item' href='#'>Limousine 34 chỗ</a></li>
+            </ul>
           </div>
 
-          <div class='home__select__container'>
+          <div class='home__select__container dropdown'>
             <div class='ps-3 text-black-50 mb-2 text-sm fw-bold'>ĐIỂM ĐI</div>
-            <div class='home__select rounded-pill'>
-              <div>Limousine 20 chỗ</div>
+            <div class='home__select rounded-pill' data-bs-toggle='dropdown' aria-expanded='false'>
+              <div>TP Hồ Chí Minh</div>
               <i class='fa-sharp fa-solid fa-chevron-down'></i>
             </div>
+            <ul class='dropdown-menu w-100'>
+              <li><a class='dropdown-item' href='#'>TP Hồ Chí Minh</a></li>
+              <li><a class='dropdown-item' href='#'>Hà Nội</a></li>
+              <li><a class='dropdown-item' href='#'>Cần Thơ</a></li>
+            </ul>
           </div>
 
-          <div class='home__select__container'>
+          <div class='home__select__container dropdown'>
             <div class='ps-3 text-black-50 mb-2 text-sm fw-bold'>ĐIỂM ĐẾN</div>
-            <div class='home__select rounded-pill'>
-              <div>Limousine 20 chỗ</div>
+            <div class='home__select rounded-pill' data-bs-toggle='dropdown' aria-expanded='false'>
+              <div>TP Hồ Chí Minh</div>
               <i class='fa-sharp fa-solid fa-chevron-down'></i>
             </div>
+            <ul class='dropdown-menu w-100'>
+              <li><a class='dropdown-item' href='#'>TP Hồ Chí Minh</a></li>
+              <li><a class='dropdown-item' href='#'>Hà Nội</a></li>
+              <li><a class='dropdown-item' href='#'>Cần Thơ</a></li>
+            </ul>
           </div>
 
           <div class='home__select__container'>
             <div class='ps-3 text-black-50 mb-2 text-sm fw-bold'>NGÀY ĐI</div>
-            <div class='home__select rounded-pill'>
+            <input class='home__select rounded-pill border-0' style='outline: none;' type='date' />
+            {{! <div class='home__select rounded-pill'>
               <div>Limousine 20 chỗ</div>
               <i class='fa-sharp fa-solid fa-chevron-down'></i>
-            </div>
+            </div> }}
           </div>
 
           <button class='btn btn-primary rounded-pill ms-auto px-5'>Tìm xe</button>
