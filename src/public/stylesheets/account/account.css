@@ -1,0 +1,53 @@
+.account-body {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.profile-user, .Information-User{
+    text-align: center;
+}
+
+.Username{
+    font-size:20px;
+}
+
+.Email-User{
+    font-size: 16px;  
+}
+
+button {
+    background-color: #084298;
+    color: white;   
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.Birthday-Component {
+    width: 211px;
+    height: 40px;
+}
+
+.Birthday-Block {
+    background-color:#ced4da;
+    width: 211px;
+    height: 40px;
+    border-radius: 8px; 
+    font-size: 20px;
+    
+}
+
+.imgCalendar {
+    width: 24px; 
+    height:24px;
+}
+
+.Information-User-No2 {
+    display: flex;
+    justify-content: center;
+}
+
