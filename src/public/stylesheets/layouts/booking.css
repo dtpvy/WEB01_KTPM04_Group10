@@ -11,8 +11,8 @@
 {
   width: 100%;
  height: 800px;
- background-color: #979797;
-  
+ background-color: #e1e1e1;
+  border-radius: 9px;
   
 }
 
@@ -20,8 +20,9 @@
 {
   font-weight: 700;
   font-size: 2em;
-  background-color: #979797;
+  background-color: #e1e1e1;
   padding :1em;
+  border-radius: 9px;
 }
 
 .search .filter-price
