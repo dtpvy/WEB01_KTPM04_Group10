@@ -14,9 +14,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/layouts/home.css' />
     <link rel='stylesheet' href='/stylesheets/layouts/main.css' />
-    <link rel="stylesheet" href="/stylesheets/account/account.css">
-    <link rel="stylesheet" href="/stylesheets/account/edit-profile.css">
-    <link rel='stylesheet' href='/stylesheets/layouts/booking.css' />
+    <link rel='stylesheet' href='/stylesheets/booking.css' />
     <title>Document</title>
   </head>
   <body>
@@ -45,10 +43,55 @@
         </div>
       </div>
     </header>
-
+    {{! booking content }}
     <div class='container' style='min-height: 100vh;'>
-      {{{body}}}
+      <div class='text-center d-flex justify-content-between mx-1'>
+        <div class='left-boxes-width ms-2 me-3'><h4
+            class='ticket-detail--header mt-3 mb-1 py-2 ps-5 rounded text-start'
+          >Chi tiết vé</h4>
+          <div class='bg-white d-flex justify-content-around py-2 my-2 rounded'>
+            {{#each onPage}}
+              <span class='d-inline-block'>
+                {{#if this.condition}}
+                  <i class='far fa-check-circle p-1 text-info'></i>
+                {{else}}
+                  <i class='far fa-check-circle p-1'></i>
+                {{/if}}
+                {{this.name}}</span>
+            {{/each}}
+          </div>
+          <div class='bg-white text-start ps-5 pt-4 pb-3 mb-3 rounded'>
+            {{{body}}}
+          </div>
+        </div>
+
+        <div class='right-box-width rounded bg-white my-3 h-100'><h4
+            class='ticket-detail--header py-2 m-0'
+          >Thông tin xe</h4>
+          <div class='text-start px-3 fs-6'>
+            <img src='/images/car.png' class='w-75' alt='' srcset='' />
+            <P class='fw-bold fs-5'>Yellow Jaguar XF 2 Bus</P>
+            <P class='fw-light'><i class='fa fa-map-marker text-info'></i>
+              780 đường San Fran Xích Long, Fu Nhuan</P>
+            <P class='my-1'>Nhà xe: <span class='fw-semibold'>ABC</span> </P>
+            <P class='my-1'>Loại xe: <span class='fw-semibold'>Limousine - 20 chỗ</span></P>
+            <P class='my-1'>Mã chuyến xe: <span class='fw-semibold'>ABC123</span></P>
+            <p class='my-1'><span class='fw-semibold'>Quảng Ninh - Ninh Bình</span></p>
+            <P class='my-1'>Ngày đi: <span class='fw-semibold'>5/11/2022</span></P>
+            <P class='my-1'>Giờ khởi hành: <span class='fw-semibold'>18:30</span></P>
+            <P class='my-1'>Giờ tới (dự kiến): <span class='fw-semibold'>05:30</span></P>
+            <P class='my-1'>Tổng thời gian (dự kiến): <span class='fw-semibold'>12h</span></P>
+            <P class='mt-5 mb-0'>Đơn giá</P>
+            <div class='d-flex justify-content-between border border-secondary rounded my-2'><p
+                class='m-2'
+              >Số ghế đặt x Giá vé</p><p class='m-2 fw-semibold'>2x300</p></div>
+            <p class='text-end fw-semibold fs-5'>600.000 <span class='fs-6 fw-light'>VNĐ</span></p>
+          </div>
+        </div>
+      </div>
+
     </div>
+    {{!end of booking content }}
 
     <footer class='home__footer'>
       <div class='home__footer__content'>
@@ -98,5 +141,6 @@
       integrity='sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V'
       crossorigin='anonymous'
     ></script>
+    <script src='/event handlers/booking.js'></script>
   </body>
 </html>

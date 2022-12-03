@@ -1,0 +1,31 @@
+.ticket-detail--header {
+  background-color: #f7f9fb;
+}
+
+.left-boxes-width {
+  width: 862px;
+}
+
+.right-box-width {
+  width: 289px;
+}
+
+.seat-contain-bg--image {
+  background-image: url(../images/seat-container.png);
+  height: 90%;
+  width: 100%;
+}
+
+.seat-container {
+  width: 20.5%;
+}
+
+.seat--padding {
+  margin-top: 0.05em;
+  margin-left: 0.8em;
+  margin-right: 0.8em;
+}
+
+.seat-choose {
+  background-color: cyan;
+}
