@@ -11,140 +11,123 @@
     />
     <script src='https://kit.fontawesome.com/8d62a64fa1.js' crossorigin='anonymous'></script>
     <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link rel='stylesheet' href='stylesheets/style.css' />
-    <link rel='stylesheet' href='stylesheets/layouts/home.css' />
-    <link rel='stylesheet' href='stylesheets/layouts/search.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/layouts/home.css' />
+    <link rel='stylesheet' href='/stylesheets/layouts/main.css' />
+    <link rel='stylesheet' href='/stylesheets/layouts/booking.css' />
+    <script></script>
     <title>Document</title>
   </head>
   <body>
-    <header class='home__header'>
-      <img src='images/bg_home.png' alt='' width='100%' height='300px' />
-      <div class='home__search'>
-        <h1 class='home__title'>VESIRE</h1>
-        <div class='bg-white rounded py-3 px-5 d-flex gap-3 align-items-end'>
-          <div class='home__select__container'>
-            <div class='ps-3 text-black-50 mb-2 text-sm fw-bold'>LOẠI XE</div>
-            <div class='home__select rounded-pill'>
-              <div>Limousine 20 chỗ</div>
-              <i class='fa-sharp fa-solid fa-chevron-down'></i>
-            </div>
-          </div>
-
-          <div class='home__select__container'>
-            <div class='ps-3 text-black-50 mb-2 text-sm fw-bold'>ĐIỂM ĐI</div>
-            <div class='home__select rounded-pill'>
-              <div>Limousine 20 chỗ</div>
-              <i class='fa-sharp fa-solid fa-chevron-down'></i>
-            </div>
-          </div>
-
-          <div class='home__select__container'>
-            <div class='ps-3 text-black-50 mb-2 text-sm fw-bold'>ĐIỂM ĐẾN</div>
-            <div class='home__select rounded-pill'>
-              <div>Limousine 20 chỗ</div>
-              <i class='fa-sharp fa-solid fa-chevron-down'></i>
-            </div>
-          </div>
-
-          <div class='home__select__container'>
-            <div class='ps-3 text-black-50 mb-2 text-sm fw-bold'>NGÀY ĐI</div>
-            <div class='home__select rounded-pill'>
-              <div>Limousine 20 chỗ</div>
-              <i class='fa-sharp fa-solid fa-chevron-down'></i>
-            </div>
-          </div>
-
-          <button class='btn btn-primary rounded-pill ms-auto px-5'>Tìm xe</button>
+    <header class='main__header'>
+      <img src='/images/bg_main.png' alt='' width='100%' />
+      <div class='main__menu'>
+        <h4 class='mb-0'>VESIRE</h4>
+        <div class='main__menu__item main__menu__item--active rounded-pill'>
+          <i class='fa-solid fa-house'></i>
         </div>
-      </div>
-
-      <div class='home__account rounded-pill'>
-        <img
-          src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
-          alt=''
-          width='30'
-          height='30'
-        />
-        <div class='fw-medium ms-2 me-3'>Cái Minh Chánh</div>
-        <i class='fa-solid fa-arrow-right-from-bracket fs-5'></i>
+        <div class='main__menu__item rounded-pill'>
+          <i class='fa-solid fa-car-tunnel'></i>
+        </div>
+        <div class='main__menu__item rounded-pill'>
+          <i class='fa-solid fa-circle-question'></i>
+        </div>
+        <div class='main__account rounded-pill ms-auto'>
+          <img
+            src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
+            alt=''
+            width='30'
+            height='30'
+          />
+          <div class='fw-medium ms-2 me-3'>Cái Minh Chánh</div>
+          <i class='fa-solid fa-arrow-right-from-bracket fs-5'></i>
+        </div>
       </div>
     </header>
 
-    <div class='d-flex p-5 gap-5' style='min-height: 100vh;'>
-      <div class='home__menu--large bg-primary rounded p-4'>
-        <div class='text-end text-white-50'>
-          <i class='fa-solid fa-bars-staggered ms-auto'></i>
-        </div>
-        <h3 class='my-2 text-center text-white'>VESIRE</h3>
-        <div class='text-white d-flex flex-column gap-2'>
-          <div class='home__menu__item home__menu__item--active rounded-pill'>
-            <i class='fa-solid fa-house'></i>
-            <div>Trang chủ</div>
+    <div class='container' style='min-height: 100vh;'>
+      <div class="search">
+      {{{body}}}
+      {{#each busTrips}}
+      {{! item mỗi chuyến xe }}
+      <div class='rounded bg-white text-center mt-3 mx-auto px-4 py-3'>
+        <div class='d-flex'>
+          <div>
+            <div class='text-start'>
+              <span class='me-3 ps-1 pe-3'>Rẻ nhất</span>
+              <span>Đánh giá: <span class='text-warning'>{{this.rating}}</span></span>
+            </div>
+            <hr class='mt-1 mb-4' />
+            <div class='d-flex align-items-center'>
+              <img src='/images/logo nhà xe.png' alt='' class='px-1' />
+              <span class='fw-semibold ps-2 pe-5'>{{this.brandName}}</span>
+
+              <div class='d-inline-block'><p class='mb-1 fw-bolder fs-5'>{{this.goTime}}</p><span
+                >Quảng Ninh</span></div>
+              <img src='/images/thanh hành trình.png' alt='' class='px-1 pb-4' />
+              <div class='d-inline-block'><p
+                  class='mb-1 fw-bolder fs-5'
+                >{{this.arriveTime}}</p><span>Quảng Ninh</span></div>
+              <span class='px-4 fw-bolder'>{{this.totalHours}}</span>
+              <span class='bg-secondary bg-opacity-25 rounded-pill px-4 py-1'>Chi tiết</span>
+            </div>
           </div>
-          <div class='home__menu__item rounded-pill'>
-            <i class='fa-solid fa-car-tunnel'></i>
-            <div>Đặt xe</div>
-          </div>
-          <div class='home__menu__item rounded-pill'>
-            <i class='fa-solid fa-circle-question'></i>
-            <div>Hỗ trợ</div>
-          </div>
-          <div class='home__menu__item'>
-            <i class='fa-solid fa-address-card'></i>
-            <div>Tài khoản</div>
+          <div class='d-flex flex-column justify-content-center ps-5 ms-5'>
+            <p class='fs-4 fw-bold py-0 mb-0'>{{this.price}}<span
+                class='text-secondary fs-6 fw-lighter'
+              >VNĐ</span></p>
+            <span class='d-block ps-3 mb-3'>Có voucher</span>
+            <a href='/booking' class='btn btn-primary d-block px-4'>
+              ĐẶT NGAY
+            </a>
           </div>
         </div>
       </div>
-      <div class='home__menu--small bg-primary rounded py-3 px-2'>
-        <div class='text-center text-white-50 mb-3'>
-          <i class='fa-solid fa-bars-staggered ms-auto'></i>
-        </div>
-        <div class='text-white d-flex flex-column gap-2'>
-          <div class='home__menu__item home__menu__item--active rounded-pill'>
-            <i class='fa-solid fa-house'></i>
+    {{/each}}
+      <div class = "filter">
+        <h3>Bộ lọc</h3>
+        <div class="filter-body">
+          <div class = "filter-price">
+            <div>Price</div>
+              <div>+795</div>
           </div>
-          <div class='home__menu__item rounded-pill'>
-            <i class='fa-solid fa-car-tunnel'></i>
-          </div>
-          <div class='home__menu__item rounded-pill'>
-            <i class='fa-solid fa-circle-question'></i>
-          </div>
-          <div class='home__menu__item'>
-            <i class='fa-solid fa-address-card'></i>
+          <div class ="filter-chart">Biểu đồ</div>
+          <label class ="hangxelabel"for="Hãng xe">Hãng xe</label>
+          <select name="Hãng xe" id="Hãng xe">
+            <option value="Mai Linh">Mai Linh</option>
+            <option value="Mai Linh">Mai Linh</option>
+            <option value="Mai Linh">Mai Linh</option>
+            <option value="Mai Linh">Mai Linh</option>
+          </select>
+          <div class="rating-label">Rating</div>
+          <div class="rating">
+            <div class="ratingcheckbox">
+              <input type="checkbox" id="rating1" name="rating1" value="1">
+              <label for="rating1"> 1 sao</label><br>
+            </div>
+            <div class="ratingcheckbox">
+              <input type="checkbox" id="rating2" name="rating2" value="2">
+              <label for="rating2"> 2 sao</label><br>
+            </div>
+            <div class="ratingcheckbox">
+              <input type="checkbox" id="rating3" name="rating3" value="3">
+              <label for="rating3"> 3 sao</label><br>
+            </div>
+            <div class="ratingcheckbox">
+              <input type="checkbox" id="rating4" name="rating4" value="4">
+              <label for="rating4"> 4 sao</label><br>
+            </div>
+            <div class="ratingcheckbox">
+              <input type="checkbox" id="rating5" name="rating5" value="5">
+              <label for="rating5"> 5 sao</label><br>
+            </div>
+              
           </div>
         </div>
       </div>
-      <div>
-        <div class ="search">
-        <div class="search-header">
-            <div>
-                <h3>Các chuyến</h3>
-            </div>
-            <div class = "search-header-button">
-                <input type="button" value="Rẻ nhất">
-                <input type="submit" value="Tốt nhất">
-                <input type="submit" value="Gần đây nhất">
-            </div>
-        </div>
-        <div class="search-body">
-            <div class=>
-                <div class="box">
-                    <div class="box-header">
-                        <p>Rẻ nhất</p>
-                        <p>Đánh giá: 4.5</p>
-                    </div>
-                    <div class="box-body">
-                        <div class="logo">
-                            <img src="/images/search/logo.jpeg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
     </div>
 
+  </div>
     <footer class='home__footer'>
       <div class='home__footer__content'>
         <div class='home__footer__section'>

@@ -1,0 +1,80 @@
+
+.search
+{
+  display: grid;
+  grid-template-columns: 0.7fr 0.3fr;
+  background-color: white;
+  column-gap: 1em;
+}
+
+.search .filter
+{
+  width: 100%;
+ height: 800px;
+ background-color: #979797;
+  
+  
+}
+
+.search .filter h3
+{
+  font-weight: 700;
+  font-size: 2em;
+  background-color: #979797;
+  padding :1em;
+}
+
+.search .filter-price
+{
+  display:flex;
+  justify-content: space-between;
+  
+}
+
+.search .filter-body
+{
+  padding: 1em;
+  font-size:1.5em;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+
+.search .filter-chart
+{
+  background-color: red;
+  height: 100px;
+}
+
+.search .filter-body .hangxelabel
+{
+  display:block;
+}
+
+.search .filter-body select
+{
+  width: 100%;
+  padding: 0.6em 0.5em;
+  border-radius: 9px;
+  font-weight: 700;
+
+}
+
+.search .filter-body option{
+  color:red;
+}
+
+.search .filter-body .ratingcheckbox
+{
+  display:flex;
+  column-gap: 1em;
+}
+
+.search .filter-body .rating
+{
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+
