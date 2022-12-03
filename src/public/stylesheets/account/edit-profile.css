@@ -1,0 +1,70 @@
+.background-zone {
+    background-color: white;
+    height:100%;
+}
+
+.Box-Title {
+    padding:10px 40px 10px 40px;
+}
+
+.Box-Header {
+    font-size: 20px;
+    background-color: #f7f9fb; 
+    padding-left:10px;
+}
+
+#Edit-Information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.Column-1 {
+    margin-top: 40px;
+}
+
+.Column-2 {
+    margin-top: 40px;
+}
+
+.form {
+    font-size:20px;
+}
+
+.form-control { 
+    border-radius:5px; 
+    margin-top: 4px;
+    margin-bottom: 8px;
+    
+    width:400px; 
+}  
+
+#btn-Save {
+    background-color: #084298;
+    color: white;   
+    padding: 5px;
+    margin: 8px 0;
+    display: block;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+.Change-Avatar {
+    text-align: center;
+    font-size: 16px;
+    background-color: #adb5bd;
+    border-radius: 50px; 
+    padding: 5%;   
+    text-align:left;
+}
+
+#imgEditAva {
+    padding-right: 15%;
+}
+
+.Edit-Information-User {
+    padding:2%  10% 5% 10%;
+}
