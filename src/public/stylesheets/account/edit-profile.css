@@ -31,21 +31,13 @@
     font-size:20px;
 }
 
-#fullName, #birthday, #email, #numb, #Address { 
-    border-radius:5px;
-    border-style: ridge;
+.form-control { 
+    border-radius:5px; 
     margin-top: 4px;
     margin-bottom: 8px;
-    padding: 4px 4px 4px 4px;
-    width:400px;
-    background-color: #f7f9fb;
-} 
-
-.ipt {
-    margin: 10px 20px 0px 20px;
-}
-
- 
+    
+    width:400px; 
+}  
 
 #btn-Save {
     background-color: #084298;
