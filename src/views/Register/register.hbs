@@ -1,24 +1,9 @@
-<div>
-    {{!--Google btn --}}
-  <div class="Alt-Login-btn" style="padding: 140px 0px 5px 0px;">
-    <div class="Google-btn">
-      <a class="btn btn-outline-dark" role="button" style="width: 165px; text-transform:none">
-        <img width="23px" style="margin-bottom:3px; margin-right:5px;" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-        Google
-      </a>
-    </div>
-    {{!--Facebook btn --}}
-    <div class="Facebook-btn" style="background-color: rgb(25,119,242); border-radius: 5px;">
-      <a class="btn btn-outline-dark" role="button" style="width: 165px; text-transform:none; ">
-        <img width="23px" style="margin-bottom:3px; margin-right:5px;" alt="Facebook sign-in" src="/images/facebook-icon.png" />
-        <span style = "font-weight:bold;color:white; "> Facebook  </span>
-      </a>
-    </div>
-  </div>
-  <div style="text-align:center;font-size:20px;"><p style="margin:0px;font-size:16px;">Hoặc</p></div>
-  <h1 id="register_H1">ĐĂNG KÝ</h1>   
+<div class='w-75 mx-auto pt-5'>
+  {{> social_login}}
+  <div style='text-align:center; font-size:20px; padding: 16px'>Hoặc</div>
+  <h1 class='login__header'>ĐĂNG KÝ</h1>   
   <form class="Login-form"> 
-    <div class="container" id="register_user">
+    <div>
       <label class="labelForm" for="uname"><b>Tài Khoản:</b></label>
       <input id="username" type="text" placeholder="Tên tài khoản" name="uname" required>
 
@@ -28,13 +13,13 @@
       <label for="phone"><b>Số điện thoại:</b></label>
       <input id="password" type="number" placeholder="Số điện thoại" name="phone" required>
       <div class="btn-Submit-Login">
-        <button id="login-btn"type="submit">Đăng Ký</button>
+        <button onclick="onNavigateTo('/')" id="login-btn"type="submit">Đăng Ký</button>
       </div>
     </div>
  
     <div class="You-Know-To-Web">
       <i>Bạn đã có tài khoản?</i>
-      <a href="#">Đăng nhập</a>
+      <a href="login">Đăng nhập</a>
     </div>
   </form>
 </div>

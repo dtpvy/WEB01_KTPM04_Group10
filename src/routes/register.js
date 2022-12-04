@@ -7,6 +7,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/coach/', function (req, res, next) {
-  res.render('./register/register_Coach', { layout: 'login_form' });
+  res.render('./register/register_coach', { layout: 'login_form' });
 });
 module.exports = router;

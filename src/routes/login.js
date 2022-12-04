@@ -7,8 +7,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/coach', function (req, res, next) {
-  res.render('./login/login_Coach', { layout: 'login_form', });
+  res.render('./login/login_coach', { layout: 'login_form' });
 });
-
 
 module.exports = router;

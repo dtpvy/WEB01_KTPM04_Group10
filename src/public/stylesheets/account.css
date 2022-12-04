@@ -1,0 +1,96 @@
+.account-body {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+}
+
+.bus-trips-is-booked {
+  flex-grow: 3;
+}
+
+.profile-user {
+  flex-grow: 1;
+}
+
+.Box-Header {
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f7f9fb;
+  border-radius: 5px;
+}
+
+#Result {
+  color: #187cfb;
+}
+
+.space {
+  background-color: #f7f8f8;
+  height: 4px;
+}
+
+.account-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-user {
+  margin: 10px 0px 0px 0px;
+  padding: 0px;
+}
+
+.profile-user,
+.Information-User {
+  text-align: center;
+}
+
+.Username {
+  font-size: 20px;
+}
+
+.Email-User {
+  font-size: 16px;
+}
+
+#btn-X {
+  background-color: #084298;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.btn-next-page-element {
+  color: rgb(10, 88, 201);
+  background-color: rgb(255, 255, 255);
+  border-style: ridge;
+}
+#btn-to-page-here {
+  color: rgb(255, 255, 255);
+  background-color: rgb(10, 88, 201);
+}
+
+.Component {
+  width: 211px;
+  height: 40px;
+  margin: 40px;
+}
+
+.Block {
+  background-color: #ced4da;
+  width: 211px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+.imgCalendar {
+  width: 24px;
+  height: 24px;
+}
+
+.Information-User-No2 {
+  display: flex;
+  justify-content: center;
+}

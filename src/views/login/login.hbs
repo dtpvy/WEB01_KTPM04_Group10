@@ -1,44 +1,27 @@
-<div>
-  <div> 
-    <div class="Alt-Login-btn">
-      {{!-- Google btn --}}
-      <div class="Google-btn">
-        <a class="btn btn-outline-dark" role="button" style="width: 165px; text-transform:none">
-          <img width="23px" style="margin-bottom:3px; margin-right:5px;" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-          Google
-        </a>
-      </div>
-      {{!--Facebook btn --}}
-      <div class="Facebook-btn" style="background-color: rgb(25,119,242); border-radius: 5px;">
-        <a class="btn btn-outline-dark" role="button" style="width: 165px; text-transform:none; ">
-          <img width="23px" style="margin-bottom:3px; margin-right:5px;" alt="Facebook sign-in" src="/images/facebook-icon.png" />
-          <span style = "font-weight:bold;color:white; "> Facebook  </span>
-        </a>
-      </div>
-    </div> 
-    <div style="text-align:center;font-size:20px;"><p style="margin:0px;font-size:16px;">Hoặc</p></div>
-    <h1>ĐĂNG NHẬP</h1>   
-    <form class="Login-form"> 
-      <div class="container">
-        <label class="labelForm" for="uname"><b>Tài Khoản:</b></label>
-        <input id="username" type="text" placeholder="Tên tài khoản" name="uname" required>
+<div class='w-75 mx-auto pt-5'>
+  {{> social_login}}
+  <div style='text-align:center; font-size:20px; padding: 16px'>Hoặc</div>
+  <h1 class='login__header'>ĐĂNG NHẬP</h1>
+  <form>
+    <div>
+      <label class='labelForm' for='uname'><b>Tài Khoản:</b></label>
+      <input id='username' type='text' placeholder='Tên tài khoản' name='uname' required />
 
-        <label for="psw"><b>Mật khẩu:</b></label>
-        <input id="password" type="password" placeholder="Mật khẩu" name="psw" required>
-        <div class="remember-Information"> 
-          <label>
-            <input type="checkbox" checked="checked" name="remember">Lưu thông tin đăng nhập
-          </label> 
-          <span id="Forgot-Password"><a href="#">Quên mật khẩu?</a></span>
-        </div>    
-          <div class="btn-Submit-Login" >
-            <button id="login-btn"type="submit">Đăng nhập</button>
-          </div>
-      </div> 
-      <div class="You-Know-To-Web">
-        <i>Bạn mới biết đến Vesire?</i>
-        <a href="#">Đăng ký</a>
+      <label for='psw'><b>Mật khẩu:</b></label>
+      <input id='password' type='password' placeholder='Mật khẩu' name='psw' required />
+      <div class='remember-Information'>
+        <label>
+          <input type='checkbox' checked='checked' name='remember' />Lưu thông tin đăng nhập
+        </label>
+        <span id='Forgot-Password'><a href='#'>Quên mật khẩu?</a></span>
       </div>
-    </form>
-  </div>
+      <div class='btn-Submit-Login'>
+        <button onclick="onNavigateTo('/')" id='login-btn' type='submit'>Đăng nhập</button>
+      </div>
+    </div>
+    <div class='You-Know-To-Web'>
+      <i>Bạn mới biết đến Vesire?</i>
+      <a href='register'>Đăng ký</a>
+    </div>
+  </form>
 </div>
