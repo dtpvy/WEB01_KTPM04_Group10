@@ -40,11 +40,11 @@ controller.showStep3 = (req, res) => {
 };
 
 controller.showBookedTicket = (req, res) => {
-  res.render('booking/booked_ticket', { layout: 'booking' });
+  res.render('booking/booked_ticket', { layout: 'main' });
 };
 
 controller.showCancelTicket = (req, res) => {
-  res.render('booking/cancel_ticket', { layout: 'booking' });
+  res.render('booking/cancel_ticket', { layout: 'main' });
 };
 
 module.exports = controller;
