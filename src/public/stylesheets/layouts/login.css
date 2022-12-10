@@ -1,117 +1,113 @@
-.layout-login{
-    position: relative;
+.layout-login {
+  position: relative;
+  flex: 4;
 }
 
-#nameBrand{
-    position: absolute;
-    top:5%;
-    bottom:0%;
-    left: 30%;
-    color: white;
-    font-weight: bold;
+#name-brand {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 60px;
 }
 
-#logo{
-    position: absolute;
-    top:10%;
-    bottom:0%;
+#logo {
+  position: absolute;
+  width: 100%;
+  left: 3%;
+  bottom: 0%;
 }
 h1 {
-    color: rgb(10,88,201);
-    text-align: center;
-    font-weight: bold;
-    font-size:20px;
+  color: rgb(10, 88, 201);
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
 }
 
-#register_H1{
-    margin-bottom: 0px;
+#register_H1 {
+  margin-bottom: 0px;
 }
 
-#username, #password, #PresidentName, #date-establishment,
-#numberPhone, #check-password {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 0 0 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box; 
-    border-radius: 8px;
+#h1-register-coach {
+  margin-top: 60px;
+}
+
+#username,
+#password,
+#PresidentName,
+#date-establishment,
+#numberPhone,
+#check-password {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 0 0 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
 
 button {
-    background-color:rgb(7,66,152);
-    color: white;   
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 8px;
+  background-color: rgb(7, 66, 152);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
 }
 
 button:hover {
-    opacity: 0.8;
-}
- 
-.btn-Submit-Login, .You-Know-To-Web{
-    display:flex;   
-    justify-content: center;
+  opacity: 0.8;
 }
 
-.You-Know-To-Web > i{
-    padding-right: 5px;
+.btn-Submit-Login,
+.You-Know-To-Web {
+  display: flex;
+  justify-content: center;
 }
- 
+
+.You-Know-To-Web > i {
+  padding-right: 5px;
+}
+
 .container {
-    padding: 16px 150px 0px; 
+  padding: 16px 150px 0px;
 }
 
 #register_user {
-    padding:0px 150px;
+  padding: 0px 150px;
 }
 
 /* remember-Information */
-.remember-Information{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    //padding: 0px 16px;
+.remember-Information {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 16px;
 }
 
-#Forgot-password{
-    float: right;
+#Forgot-password {
+  float: right;
 }
 
-.Alt-Login-btn{
-    display:flex;
-    flex-direction:row;
-    justify-content: space-around;
-    padding: 40px 0px 5px 0px;
+.login-coach-block {
+  margin-top: 160px;
+  margin-bottom: 160px;
+}
+#register_coach {
+  margin-top: 10px;
 }
 
-/* form login coach_h1 */
-#login_coach_h1{
-    margin-top:40px;
+.line-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-#register_coach{
-    margin-top: 10px;
-}
-
-.line-1{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.register-coach{
-    padding: 0px 20px 0px 35px;
-}
-
-.Login-form{
-    position: relative;
-    margin-bottom: 0px;
-}
-
-#register-btn{
-    position: absolute;
-    bottom: 0px;
+.register-coach {
+  padding: 0px 20px 0px 35px;
 }

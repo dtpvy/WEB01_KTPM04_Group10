@@ -1,3 +1,12 @@
+@import 'booking.css';
+@import 'detail.css';
+@import 'rating.css';
+@import 'search.css';
+@import 'support.css';
+@import 'body.css';
+@import 'account.css';
+@import 'edit-profile.css';
+
 body {
   font-size: 14px;
   background-color: #f1f5f7;

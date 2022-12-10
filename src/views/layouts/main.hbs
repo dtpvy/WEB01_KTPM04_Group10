@@ -14,7 +14,6 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/layouts/home.css' />
     <link rel='stylesheet' href='/stylesheets/layouts/main.css' />
-    <link rel='stylesheet' href='/stylesheets/layouts/booking.css' />
     <title>Document</title>
   </head>
   <body>
@@ -22,16 +21,19 @@
       <img src='/images/bg_main.png' alt='' width='100%' />
       <div class='main__menu'>
         <h4 class='mb-0'>VESIRE</h4>
-        <div class='main__menu__item main__menu__item--active rounded-pill'>
+        <div
+          onclick="onNavigateTo('/')"
+          class='main__menu__item main__menu__item--active rounded-pill'
+        >
           <i class='fa-solid fa-house'></i>
         </div>
-        <div class='main__menu__item rounded-pill'>
+        <div onclick="onNavigateTo('search')" class='main__menu__item rounded-pill'>
           <i class='fa-solid fa-car-tunnel'></i>
         </div>
-        <div class='main__menu__item rounded-pill'>
+        <div onclick="onNavigateTo('support')" class='main__menu__item rounded-pill'>
           <i class='fa-solid fa-circle-question'></i>
         </div>
-        <div class='main__account rounded-pill ms-auto'>
+        <div onclick="onNavigateTo('../account')" class='main__account rounded-pill ms-auto'>
           <img
             src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
             alt=''
@@ -96,5 +98,7 @@
       integrity='sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V'
       crossorigin='anonymous'
     ></script>
+    <script src='/javascripts/navigation.js'></script>
+    <script src='/event handlers/booking.js'></script>
   </body>
 </html>

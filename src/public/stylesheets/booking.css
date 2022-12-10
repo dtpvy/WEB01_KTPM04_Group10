@@ -21,12 +21,17 @@
 }
 
 .seat--padding {
-  padding-left: 0.9em;
-  padding-right: 1.1em;
+  margin-top: 0.05em;
+  margin-left: 0.8em;
+  margin-right: 0.8em;
 }
 
 .seat-choose {
-  filter: opacity(70%);
+  background-color: cyan;
+}
+
+.bus-img-width {
+  width: 80%;
 }
 
 
