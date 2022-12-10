@@ -18,7 +18,7 @@
   justify-content: center;
 }
 
-input[type='button'] {
+.rating .rating-header .rating-header-button .rating-header-button-info {
   background-color: white;
   border-radius: 20px;
   border: #f1f5f7;
@@ -28,7 +28,7 @@ input[type='button'] {
   margin: 2px 2px;
   cursor: pointer;
 }
-input[type='submit'] {
+.rating .rating-header .rating-header-button .rating-header-button-rating{
   background-color: #163668;
   border-radius: 20px;
   border: #f1f5f7;
