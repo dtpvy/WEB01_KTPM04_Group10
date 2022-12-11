@@ -40,9 +40,13 @@
 }
 
 .detail-body {
-  height: 100%;
+  
+  height: 50%;
   width: 100%;
   display: flex;
+  flex-direction: row;
+  column-gap:5px;
+  padding: 5px;
 }
 .detail-body-img img {
   width: 550px;
@@ -123,6 +127,7 @@
   display: flex;
   flex-direction: row;
   column-gap: 100px;
+  padding: 5px;
 }
 .detail-body-footer #at {
   display: flex;
