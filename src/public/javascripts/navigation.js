@@ -1,4 +1,5 @@
+const BASE_URL = `${window.location.protocol}//${window.location.host}`;
+
 const onNavigateTo = (path) => {
-  console.log(path);
-  window.location.href = path;
+  window.location.href = path === '/' ? BASE_URL : `${BASE_URL}/${path}`;
 };

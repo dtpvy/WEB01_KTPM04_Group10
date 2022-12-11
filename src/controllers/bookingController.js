@@ -1,23 +1,22 @@
 const controller = {};
+const onPage = [
+  { name: 'Chọn chỗ', condition: true },
+  { name: 'Thông tin chi tiết', condition: false },
+  { name: 'Thanh toán', condition: false },
+];
 
-controller.showSearchingPage = (req, res) => {
-  const busTrips = [
-    {
-      brandName: 'ABC',
-      rating: 4,
-      goTime: '10:20',
-      arriveTime: '10:30',
-      totalHours: '10h',
-      price: '300',
-    },
-    {
-      brandName: 'ABC',
-      rating: 4,
-      goTime: '10:20',
-      arriveTime: '10:30',
-      totalHours: '10h',
-      price: '300',
-    },
+controller.default = (req, res) => {
+  const busSeat = [
+    { booked: 1, seatNum: 1 },
+    { booked: 1, seatNum: 2 },
+    { booked: 0, seatNum: 3 },
+    { booked: 0, seatNum: 4 },
+    { booked: 1, seatNum: 5 },
+    { booked: 0, seatNum: 6 },
+    { booked: 0, seatNum: 7 },
+    { booked: 1, seatNum: 8 },
+    { booked: 0, seatNum: 9 },
+    { booked: 1, seatNum: 10 },
   ];
   onPage[0].condition = true;
   onPage[1].condition = onPage[2].condition = false;

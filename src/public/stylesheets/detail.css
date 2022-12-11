@@ -28,7 +28,7 @@
   margin: 2px 2px;
   cursor: pointer;
 }
-.detail-header .detail-header-button .detail-header-button-rating{
+.detail-header .detail-header-button .detail-header-button-rating {
   background-color: white;
   border-radius: 20px;
   border: #f1f5f7;
@@ -40,12 +40,11 @@
 }
 
 .detail-body {
-  
   height: 50%;
   width: 100%;
   display: flex;
   flex-direction: row;
-  column-gap:5px;
+  column-gap: 5px;
   padding: 5px;
 }
 .detail-body-img img {
