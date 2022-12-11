@@ -23,4 +23,8 @@ router.get('/cancel_ticket', function (req, res, next) {
   controller.showCancelTicket(req, res);
 });
 
+router.get('/search', function (req, res, next) {
+  controller.showSearchingPage(req, res);
+});
+
 module.exports = router;

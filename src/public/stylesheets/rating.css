@@ -13,6 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 30%;
 }
 .rating-header input {
   justify-content: center;
@@ -37,13 +38,21 @@
   text-decoration: none;
   margin: 2px 2px;
   cursor: pointer;
+  width: 40%;
 }
 
 .rating-body {
   display: flex;
   flex-direction: row;
 }
+
+.rating-body-img  {
+  padding: 5px;
+  background-color: white;
+  width: auto;
+}
 .rating-body-img img {
+  padding: 5px;
   width: 550px;
   height: 400px;
 
@@ -54,7 +63,12 @@
   order: 0;
   flex-grow: 0;
 }
-
+.rating-body-sideimg
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 .rating-body-sideimg img {
   width: 80px;
   height: 60px;
@@ -62,6 +76,85 @@
   flex-direction: row;
 }
 
+.rating-comment
+{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+.rating-comment .rating-comment-button
+{
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  padding: 10px;
+}
+
+.rating-comment .rating-comment-button button
+{
+  width: 100px;
+  background-color: white;
+  border-radius: 5px;
+  opacity: 40%;
+  
+}
+
+.rating-comment .rating-comment-button button:hover
+{
+  opacity: 100%;
+  
+  border-color: blue-700;
+}
+.rating-comment-detail .rating-comment-detail-img
+{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rating-comment-detail .rating-comment-detail-img img
+{
+  width: 70x;
+  height: 70px;
+  border-radius: 50%;
+
+}
+.rating-comment-detail .rating-comment-detail-text
+{
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  font-size: large;
+  padding: 7px;
+}
+
+.rating-comment-detail .rating-comment-detail-text #rating
+{
+  color:yellow;
+  opacity: 90%;
+}
+.rating-comment
+{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.rating-comment-detail .rating-comment-detail-text #name
+{
+  font-weight: bold;
+  font-size: larger;
+}
+.rating-comment-detail
+{
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+/* Phần này chưa biết làm nên đang đi copy hic hic  */
 .ratingstar-icon {
   position: relative;
   flex-shrink: 0;
