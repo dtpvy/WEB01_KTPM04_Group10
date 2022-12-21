@@ -1,11 +1,12 @@
-.layout-login {
+.login-form__layout {
   position: relative;
   flex: 4;
 }
 
-#name-brand {
+.login-form__name-brand {
   position: absolute;
-  top: 50px;
+  top: 25%;
+  transform: translateY(-100%);
   left: 0;
   right: 0;
   text-align: center;
@@ -14,7 +15,7 @@
   font-size: 60px;
 }
 
-#logo {
+.login-form__logo {
   position: absolute;
   width: 100%;
   left: 3%;
@@ -84,21 +85,18 @@ button:hover {
 }
 
 /* remember-Information */
-.remember-Information {
+.remember-information {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0px 16px;
-}
-
-#Forgot-password {
-  float: right;
+  align-items: center;
 }
 
 .login-coach-block {
   margin-top: 160px;
   margin-bottom: 160px;
 }
+
 #register_coach {
   margin-top: 10px;
 }
@@ -110,4 +108,19 @@ button:hover {
 }
 .register-coach {
   padding: 0px 20px 0px 35px;
+}
+
+.login-form__body {
+  flex: 6;
+  background: rgb(255, 255, 255);
+  border-radius: 120px 0 0 120px;
+}
+
+@media (max-width: 768px) {
+  .login-form__layout {
+    display: none;
+  }
+  .login-form__body {
+    border-radius: 120px;
+  }
 }
