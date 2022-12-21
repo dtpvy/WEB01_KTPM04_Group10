@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -25,6 +26,9 @@ app.engine(
     layoutsDir: path.join(__dirname, './views/layouts'),
     partialsDir: path.join(__dirname, './views/components'),
     helpers: require(path.join(__dirname, './helpers/handlebars')),
+    runtimeOptions: {
+      allowProtoPropertiesByDefault: true,
+    },
   })
 );
 
@@ -43,6 +47,12 @@ app.use('/account', accountRouter);
 app.use('/garage', detailRouter);
 app.use('/support', supportRouter);
 
+app.get('/create_table', (req, res) => {
+  const models = require('./models');
+  models.sequelize.sync().then(() => {
+    res.send('create table successfully');
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
