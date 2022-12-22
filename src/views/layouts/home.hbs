@@ -10,7 +10,6 @@
       crossorigin='anonymous'
     />
     <script src='https://kit.fontawesome.com/8d62a64fa1.js' crossorigin='anonymous'></script>
-    <script src='/javascripts/navigation.js'></script>
     <link rel='preconnect' href='https://fonts.googleapis.com' />
     <link rel='stylesheet' href='stylesheets/style.css' />
     <link rel='stylesheet' href='stylesheets/layouts/home.css' />
@@ -23,15 +22,31 @@
         <h1 class='home__title'>VESIRE</h1>
         {{> search}}
       </div>
-
-      <div
-        onclick="onNavigateTo('login')"
-        style='cursor: pointer;'
-        class='home__account rounded-pill'
-      >
-        <div class='fw-medium ms-2 me-3'>Đăng nhập</div>
-        <i class='fa-solid fa-arrow-right-from-bracket fs-5'></i>
-      </div>
+      {{#if user}}
+        <div 
+          onclick="onSignout()" 
+          style='cursor: pointer;' 
+          class='home__account rounded-pill ms-auto'
+        >
+          <img
+            src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
+            alt=''
+            width='30'
+            height='30'
+          />
+          <div class='fw-medium ms-2 me-3'>{{user.fullname}}</div>
+          <i class='fa-solid fa-arrow-right-from-bracket fs-5'></i>
+        </div>
+      {{else}}
+        <div
+          onclick="onNavigateTo('login')"
+          style='cursor: pointer;'
+          class='home__account rounded-pill'
+        >
+          <div class='fw-medium ms-2 me-3'>Đăng nhập</div>
+          <i class='fa-solid fa-arrow-right-from-bracket fs-5'></i>
+        </div>
+      {{/if}}
     </header>
 
     <div class='d-flex p-5 justify-content-between' style='min-height: 100vh;'>
@@ -197,5 +212,7 @@
       integrity='sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V'
       crossorigin='anonymous'
     ></script>
+    <script src='/javascripts/event.js'></script>
+    <script src='/javascripts/navigation.js'></script>
   </body>
 </html>

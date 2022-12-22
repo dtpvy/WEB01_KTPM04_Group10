@@ -18,10 +18,10 @@
       <div>TP Hồ Chí Minh</div>
       <i class='fa-sharp fa-solid fa-chevron-down'></i>
     </div>
-    <ul class='dropdown-menu w-100'>
-      <li><a class='dropdown-item' href='#'>TP Hồ Chí Minh</a></li>
-      <li><a class='dropdown-item' href='#'>Hà Nội</a></li>
-      <li><a class='dropdown-item' href='#'>Cần Thơ</a></li>
+    <ul class='dropdown-menu' style='max-height: 300px; overflow-y: auto;'>
+      {{#each city}}
+        <li><a class='dropdown-item' href='#'>{{this}}</a></li>
+      {{/each}}
     </ul>
   </div>
 
@@ -31,10 +31,10 @@
       <div>TP Hồ Chí Minh</div>
       <i class='fa-sharp fa-solid fa-chevron-down'></i>
     </div>
-    <ul class='dropdown-menu w-100'>
-      <li><a class='dropdown-item' href='#'>TP Hồ Chí Minh</a></li>
-      <li><a class='dropdown-item' href='#'>Hà Nội</a></li>
-      <li><a class='dropdown-item' href='#'>Cần Thơ</a></li>
+    <ul class='dropdown-menu' style='max-height: 300px; overflow-y: auto;'>
+      {{#each city}}
+        <li><a class='dropdown-item' href='#'>{{this}}</a></li>
+      {{/each}}
     </ul>
   </div>
 

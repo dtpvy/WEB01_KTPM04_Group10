@@ -10,18 +10,16 @@
       crossorigin='anonymous'
     />
     <link rel='stylesheet' href='/stylesheets/layouts/login.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Document</title>
   </head>
   <body>
     <div style='display: flex; background: rgb(7,66,152); width: 100%; height: 100%;'>
-      <div class='layout-login'>
-        <div id='name-brand'>VESIRE</div>
-        <img id='logo' src='/images/car.png' width='50%' />
+      <div class='login-form__layout'>
+        <div class='login-form__name-brand'>VESIRE</div>
+        <img class='login-form__logo' src='/images/car.png' width='50%' />
       </div>
-      <div
-        class='background-white'
-        style='flex:6; background: rgb(255,255,255); border-radius: 120px 0 0 120px;'
-      >
+      <div class='background-white d-flex align-items-center login-form__body'>
         {{{body}}}
       </div>
     </div>
@@ -36,5 +34,6 @@
       crossorigin='anonymous'
     ></script>
     <script src='/javascripts/navigation.js'></script>
+    <script src='/javascripts/event.js'></script>
   </body>
 </html>
