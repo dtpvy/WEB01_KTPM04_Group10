@@ -1,0 +1,8 @@
+{{#if toastMessage}}
+  <div class='toast-message toast-message--{{toastMessage.type}}'>
+    <div>{{toastMessage.message}}</div>
+    <div onclick='onCloseToast()' class='toast-message__button'><i
+        class='fa-regular fa-circle-xmark'
+      ></i></div>
+  </div>
+{{/if}}

@@ -1,7 +1,11 @@
 <div class='bg-white py-3 px-5'>
   <div class='shadow-sm box-header__section body__header-section d-flex justify-content-between rounded'>
     <div class='d-flex gap-2 align-items-center'>
-      <div class='body__header__title'>Chỉnh sửa trang cá nhân</div>
+      {{#if isEdit}}
+        <div class='body__header__title'>Chỉnh sửa nhân sự</div>
+      {{else}}
+        <div class='body__header__title'>Thêm nhân sự</div>
+      {{/if}}
     </div>
   </div>
   <form method='post' id='edit_profile_form'>
@@ -87,9 +91,8 @@
               name='image'
             />
           </div>
-          <div class="d-flex flex-column gap-2">
-            <button class="btn btn-primary w-100">Lưu</button>
-            <button onclick="onNavigateTo('account')" type="button" class="btn btn-outline-primary w-100">Quay lại</button>
+          <div>
+            <button id='btn-Save'>Lưu</button>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { verifyAuth } = require('../middlewares/verifyAuth');
 const loginController = require('../controllers/loginController');
 
 /* GET home page. */
@@ -12,5 +13,6 @@ router.get('/coach', function (req, res, next) {
 });
 
 router.post('/', loginController.userLogin);
+router.post('/coach', verifyAuth, loginController.coachLogin);
 
 module.exports = router;
