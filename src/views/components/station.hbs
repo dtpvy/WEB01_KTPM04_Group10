@@ -1,0 +1,25 @@
+<div class='bg-white p-3 shadow-sm rounded border'>
+  <div class='py-2 d-flex gap-4'>
+    <div class='d-flex flex-column justify-content-between'>
+      <div class='fw-bold fs-6 mb-2'>{{name}}</div>
+      <div class='d-flex gap-5'>
+        <div class='fw-bold'>
+          <div>Địa chỉ:</div>
+          <div>Liên lạc:</div>
+        </div>
+        <div>
+          <div>{{getAddress this}}</div>
+          <div>{{or phone 'Chưa có phương thức liên lạc'}}</div>
+        </div>
+      </div>
+    </div>
+    <div class='d-flex gap-2 align-items-center ml-auto'>
+      <button class='btn btn-danger'>
+        Xoá
+      </button>
+      <button class='btn btn-secondary'>
+        Sửa
+      </button>
+    </div>
+  </div>
+</div>

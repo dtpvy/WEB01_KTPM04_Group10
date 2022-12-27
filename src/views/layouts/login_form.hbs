@@ -9,6 +9,7 @@
       integrity='sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65'
       crossorigin='anonymous'
     />
+    <script src='https://kit.fontawesome.com/8d62a64fa1.js' crossorigin='anonymous'></script>
     <link rel='stylesheet' href='/stylesheets/layouts/login.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Document</title>
@@ -23,6 +24,19 @@
         {{{body}}}
       </div>
     </div>
+
+    <div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>
+      <div class='toast-header'>
+        <img src='...' class='rounded me-2' alt='...' />
+        <strong class='me-auto'>Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type='button' class='btn-close' data-bs-dismiss='toast' aria-label='Close'></button>
+      </div>
+      <div class='toast-body'>
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+    {{> toast}}
     <script
       src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js'
       integrity='sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3'

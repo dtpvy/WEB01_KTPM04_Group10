@@ -5,19 +5,16 @@
 }
 
 .bus-trips-is-booked {
-  flex-grow: 3;
+  width: 70%;
 }
 
 .profile-user {
   flex-grow: 1;
 }
 
-.Box-Header {
-  margin: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.box-header__section {
   background-color: #f7f9fb;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 #Result {
