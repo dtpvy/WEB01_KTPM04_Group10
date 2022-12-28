@@ -34,4 +34,6 @@
   width: 80%;
 }
 
-
+#pills-tab button.active > i {
+  color: blue;
+}

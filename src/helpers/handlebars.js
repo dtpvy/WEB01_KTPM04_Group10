@@ -25,7 +25,7 @@ module.exports = {
     return a - b;
   },
   slice: (arr, s, e) => {
-    return arr.slice(s, e);
+    return (arr || []).slice(s, e);
   },
   getTitle: (a) => {
     const titles = {
