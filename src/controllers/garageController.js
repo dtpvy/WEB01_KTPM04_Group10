@@ -1,6 +1,6 @@
 const models = require('../models/index');
 const jwt = require('jsonwebtoken');
-const { getLocation } = require('../services/location');
+const { getLocation, getLocationDetail } = require('../services/location');
 
 async function getGarage(req, res) {
   const garage = await models.Garage.findOne({
@@ -36,26 +36,90 @@ async function getGarage(req, res) {
   res.render('./garage/index', { layout: 'main', garage, user });
 }
 
+const ROLE = ['employee', 'admin', 'owner'];
 async function addSection(req, res) {
   const section = req.params.section;
   if (section === 'station') {
-    const location = (await getLocation(1)).sort();
-    res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false, location });
+    const cities = (await getLocation()).sort();
+    res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false, cities });
+    return;
+  } else if (section === 'employee') {
+    const user = (
+      await models.Garage.findOne({
+        where: { id: req.garageId },
+        include: { model: models.User, where: { id: req.userId } },
+      })
+    ).Users[0];
+    const role = user.AccountGarages.role;
+    const roles = ROLE.slice(
+      0,
+      ROLE.findIndex((item) => item === role)
+    );
+    res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false, roles });
     return;
   }
   res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false });
 }
 
-async function editSection(req, res) {
-  const { section, id } = req.params;
-  if (section === 'station') {
-    const location = (await getLocation(1)).sort();
-    const station = await models.Station.findOne({ where: { id, garageId: req.garageId } });
-    if (!station) throw Error();
-    res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false, location });
+async function editStationSection(req, res) {
+  const { id } = req.params;
+  const location = await getLocationDetail(3);
+  const station = await models.Station.findOne({ where: { id, garageId: req.garageId } });
+  if (!station) throw Error();
+  const cities = location.map((item) => item.name).sort();
+  const districts = location
+    .find((item) => item.name === station.city)
+    .districts.map((item) => item.name)
+    .sort();
+  const wards = location
+    .find((item) => item.name === station.city)
+    .districts.find((item) => item.name === station.district)
+    .wards.map((item) => item.name)
+    .sort();
+  res.render(`./garage/edit-station`, {
+    layout: 'main',
+    isEdit: true,
+    cities,
+    districts,
+    wards,
+    station,
+  });
+}
+
+async function editEmployeeSection(req, res) {
+  const { id } = req.params;
+  const [user, employee] = await Promise.all([
+    (
+      await models.Garage.findOne({
+        where: { id: req.garageId },
+        include: { model: models.User, where: { id: req.userId } },
+      })
+    ).Users[0],
+    (
+      await models.Garage.findOne({
+        where: { id: req.garageId },
+        include: { model: models.User, where: { id } },
+      })
+    ).Users[0],
+  ]);
+  const role = user.AccountGarages.role;
+  if (
+    ROLE.findIndex((item) => item === role) <=
+    ROLE.findIndex((item) => item === employee.AccountGarages.role)
+  ) {
+    res.redirect('/garage');
     return;
   }
-  res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false });
+  const roles = ROLE.slice(
+    0,
+    ROLE.findIndex((item) => item === role)
+  );
+  res.render(`./garage/edit-employee`, {
+    layout: 'main',
+    isEdit: true,
+    roles,
+    employee,
+  });
 }
 
 async function handleAddSection(req, res) {
@@ -85,5 +149,6 @@ module.exports = {
   getGarage,
   addSection,
   handleAddSection,
-  editSection,
+  editStationSection,
+  editEmployeeSection,
 };

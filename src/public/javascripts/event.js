@@ -65,6 +65,7 @@ try {
   const selectorWard = document.getElementById('selector_ward');
   selectorCity.addEventListener('change', (e) => {
     selectorDistrict.innerHTML = '<option value="">Chọn quận huyện</option>';
+    selectorWard.innerHTML = '<option value="">Chọn phường</option>';
     if (selectorCity.value) {
       fetch('https://provinces.open-api.vn/api/?depth=2')
         .then((response) => response.json())
@@ -84,7 +85,7 @@ try {
   });
 
   selectorDistrict.addEventListener('change', (e) => {
-    selectorWard.innerHTML = '<option value="">Chọns phường</option>';
+    selectorWard.innerHTML = '<option value="">Chọn phường</option>';
     if (selectorDistrict.value) {
       fetch('https://provinces.open-api.vn/api/?depth=3')
         .then((response) => response.json())
