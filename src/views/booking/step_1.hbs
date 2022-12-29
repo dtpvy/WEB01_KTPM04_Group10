@@ -1,5 +1,5 @@
 <div class='container' style='min-height: 100vh;'>
-  <div class='text-center d-flex justify-content-between mx-1'>
+  <form class='text-center d-flex justify-content-between mx-1' id="booking_form">
     
     <div class='left-boxes-width ms-2 me-3'>
       {{!-- heading chi tiết vé --}}
@@ -14,10 +14,12 @@
         <li class="nav-item" role="presentation">
           <button class=" btn btn-link text-decoration-none text-dark" id="booking_choose_payment-tab" data-bs-toggle="pill" data-bs-target="#booking_choose_payment" type="button" role="tab" aria-controls="booking_choose_payment" aria-selected="false"><i class='far fa-check-circle p-1'></i>Thanh toán</button>
         </li>
+        
       </ul>
       {{!-- nội dung chính  --}}
       
-      <div class="tab-content" id="pills-tabContent">      
+      <div  class="tab-content" id="pills-tabContent">
+        
         {{!-- step 1 --}}
         <div class="tab-pane fade show active" id="booking_choose_seat" role="tabpanel" aria-labelledby="booking_choose_seat-tab">
           <div class='bg-white text-start ps-5 pt-4 pb-3 mb-3 rounded'>
@@ -91,13 +93,13 @@
               <div class='d-flex flex-content-around w-75 fs-6 pt-4'>
                 <div class='w-100'><label for=''>Họ</label><input
                     type='text'
-                    id=''
+                    id='booking_user_last_name'
                     placeholder='Nhập họ của bạn'
                     class='form-control bg-secondary bg-opacity-10 w-75 d-block'
                   /></div>
                 <div class='w-100'><label for=''>Tên</label><input
                     type='text'
-                    id=''
+                    id='booking_user_first_name'
                     placeholder='Nhập tên của bạn'
                     class='form-control bg-secondary bg-opacity-10 w-75 d-block'
                   /></div>
@@ -105,7 +107,7 @@
               <div class='fs-6 pt-4'>
                 <label for=''>Email</label><input
                   type='text'
-                  id=''
+                  id='booking_user_email'
                   placeholder='mailcuaban@gmail.com'
                   class='form-control bg-secondary bg-opacity-10 w-75 d-block'
                 />
@@ -113,7 +115,7 @@
               <div class='fs-6 mt-4 mb-5'>
                 <label for=''>Số điện thoại</label><input
                   type='text'
-                  id=''
+                  id='booking_user_phone_number'
                   placeholder='+8801 2345 '
                   class='form-control bg-secondary bg-opacity-10 w-75 d-block'
                 />
@@ -132,8 +134,9 @@
             <h3>Thanh toán</h3>
             <p>Chọn hình thức thanh toán.</p>
             <div class='m-4'>
-              <p class='mb-1'><i class='fa fa-check-circle text-info'></i>
-                Thanh toán Momo
+              <p class='mb-1'>
+                <input type="radio" id="booking_momo_method" name="payment_method" value="booking_momo_method" required>
+<label for="booking_momo_method"> Thanh toán bằng momo</label>
                 <img src='/images/momo logo.png' alt='' srcset='' /></p>
               <ul>
                 <li class='py-2'>Vui lòng chuyển khoản vào số tài khoản
@@ -148,13 +151,14 @@
               </ul>
             </div>
             <div class='m-4 pb-2'>
-              <p class='mb-1'><i class='fa fa-check-circle'></i> Thanh toán trực tiếp</p>
+            <input type="radio" id="booking_directly_method" name="payment_method" value="booking_directly_method">
+<label for="booking_directly_method"> Thanh toán trực tiếp</label><br><br>
               <ul>
                 <li>Nhà xe sẽ xác nhận với quý khách chậm nhất 10 phút sau khi thanh toán</li>
               </ul>
             </div>
             <div class='fs-6 my-4 py-3 w-75 bg-info bg-opacity-10 rounded'>
-              <label class='fw-bolder fs-5 ms-4 mb-3' for=''><i class='fa fa-check-square text-info'></i>
+              <label class='fw-bolder fs-5 ms-4 mb-3' for=''>
                 Sử dụng voucher</label><input
                 type='text'
                 id=''
@@ -165,15 +169,17 @@
             <div class='d-flex flex-content-evenly pt-3 mb-4 d-block'>
                 {{!-- <button class='btn btn-primary d-inline-block px-4' id="booking_step_2_to_1" onclick="switchBetweenBookingSteps()">QUAY LẠI</button> --}}
               <div class='w-75'></div>
-              <a href='/booking/booked_ticket' class='btn btn-primary d-inline-block px-3 me-4 my-3'>TIẾP THEO</a>
+              <a href='/booking/booked_ticket' class='btn btn-primary d-inline-block p-0 me-4 my-3'onclick="createNewOrder">
+              <input type="submit" class=" py-1 px-3 bg-transparent" value="TIẾP THEO" >
+              </a>
             </div>
           </div> 
         </div>
       </div>      
       {{!-- hết step 3 --}}       
-    </div>
+    </div> 
     {{> booking_bus_box}}
-  </div>
+  </form>
 
 </div>
 

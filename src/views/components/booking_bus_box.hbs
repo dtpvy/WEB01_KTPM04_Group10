@@ -2,29 +2,44 @@
     class='ticket-detail--header py-2 m-0'
   >Thông tin xe</h4>
   <div class='text-start px-3 fs-6'>
-    <img src='/images/car.png' class='bus-img-width' alt='' srcset='' />
-    <P class='fw-bold fs-5'>Yellow Jaguar XF 2 Bus</P>
-    <P class='fw-light'><i class='fa fa-map-marker text-info'></i>
-      780 đường San Fran Xích Long, Fu Nhuan</P>
-    <P class='my-1'>Nhà xe:
-      <span class='fw-semibold'>ABC</span>
-      <span class='text-info'>(5)</span><i class='fa fa-star text-warning'></i><i
-        class='fa fa-star text-warning'
-      ></i><i class='fa fa-star text-warning'></i><i class='fa fa-star text-warning'></i><i
-        class='fa fa-star text-warning'
-      ></i>
-    </P>
-    <P class='my-1'>Loại xe: <span class='fw-semibold'>Limousine - 20 chỗ</span></P>
-    <P class='my-1'>Mã chuyến xe: <span class='fw-semibold'>ABC123</span></P>
-    <p class='my-1'><span class='fw-semibold'>Quảng Ninh - Ninh Bình</span></p>
-    <P class='my-1'>Ngày đi: <span class='fw-semibold'>5/11/2022</span></P>
-    <P class='my-1'>Giờ khởi hành: <span class='fw-semibold'>18:30</span></P>
-    <P class='my-1'>Giờ tới (dự kiến): <span class='fw-semibold'>05:30</span></P>
-    <P class='my-1'>Tổng thời gian (dự kiến): <span class='fw-semibold'>12h</span></P>
-    <P class='mt-5 mb-0'>Đơn giá</P>
-    <div class='d-flex justify-content-between border border-secondary rounded my-2'><p
-        class='m-2'
-      >Số ghế đặt x Giá vé</p><p class='m-2 fw-semibold'>2x300</p></div>
-    <p class='text-end fw-semibold fs-5'>600.000 <span class='fs-6 fw-light'>VNĐ</span></p>
+    {{#with coach}}
+      <div class='text-center'>
+        <img src={{imgUrls}} class='bus-img-width' alt='' srcset='' />
+      </div>
+      <P class='fw-bold fs-5'>{{name}}</P>
+      <input type='text' value={{name}} class='d-none' />
+      <P class='fw-light'><i class='fa fa-map-marker text-info'></i>
+        780 đường San Fran Xích Long, Fu Nhuan</P>
+      <input type='text' value='' class='d-none' />
+      <P class='my-1'>Nhà xe:
+        <span class='fw-semibold'>ABC</span>
+        <span class='text-info'>(5)</span><i class='fa fa-star text-warning'></i><i
+          class='fa fa-star text-warning'
+        ></i><i class='fa fa-star text-warning'></i><i class='fa fa-star text-warning'></i><i
+          class='fa fa-star text-warning'
+        ></i>
+      </P>
+      <P class='my-1'>Loại xe: <span class='fw-semibold'>Limousine - {{seatAmount}} chỗ</span></P>
+      <input type='text' value={{seatAmount}} id='booking_seat_amount' class='d-none' />
+      <P class='my-1'>Mã chuyến xe: <span class='fw-semibold'>ABC123</span></P>
+      <input type='text' value='mã chuyến xe' id='booking_coach_id' class='d-none' />
+      <p class='my-1'><span class='fw-semibold'>Quảng Ninh - Ninh Bình</span></p>
+      <input type='text' value='tuyến xe' id='booking_routes' class='d-none' />
+      <P class='my-1'>Ngày đi: <span class='fw-semibold'>5/11/2022</span></P>
+      <input type='text' value='ngày đi' id='booking_coach_leave_day' class='d-none' />
+      <P class='my-1'>Giờ khởi hành: <span class='fw-semibold'>18:30</span></P>
+      <input type='text' value='giờ đi' id='booking_coach_leave_hour' class='d-none' />
+      <P class='my-1'>Giờ tới (dự kiến): <span class='fw-semibold'>05:30</span></P>
+      <input type='text' value='giờ đi' id='booking_coach_arrive_hour' class='d-none' />
+      <P class='my-1'>Tổng thời gian (dự kiến): <span class='fw-semibold'>12h</span></P>
+      <input type='text' value='total hours' id='booking_total_hours' class='d-none' />
+      <P class='mt-5 mb-0'>Đơn giá</P>
+      <div class='d-flex justify-content-between border border-secondary rounded my-2'><p
+          class='m-2'
+        >Số ghế đặt x Giá vé</p><p class='m-2 fw-semibold'>2x300</p></div>
+      <input type='text' value='total' id='booking_ticket_price' class='d-none' />
+      <p class='text-end fw-semibold fs-5'>600.000 <span class='fs-6 fw-light'>VNĐ</span></p>
+      <input type='text' value='total' id='booking_total_bill' class='d-none' />
+    {{/with}}
   </div>
 </div>

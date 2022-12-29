@@ -7,12 +7,8 @@ router.get('/', function (req, res, next) {
   controller.default(req, res);
 });
 
-router.get('/step_2', function (req, res, next) {
-  controller.showStep2(req, res);
-});
-
-router.get('/step_3', function (req, res, next) {
-  controller.showStep3(req, res);
+router.get('/create_order/:id', function (req, res, next) {
+  controller.showBookingPage(req, res);
 });
 
 router.get('/booked_ticket', function (req, res, next) {
