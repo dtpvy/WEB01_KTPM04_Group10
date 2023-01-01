@@ -7,9 +7,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'coachId',
       });
       Route.belongsTo(models.Station, {
+        as: 'startStation',
         foreignKey: 'startStationId',
       });
       Route.belongsTo(models.Station, {
+        as: 'endStation',
         foreignKey: 'endStationId',
       });
     }

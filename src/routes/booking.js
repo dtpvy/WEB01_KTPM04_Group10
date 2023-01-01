@@ -11,7 +11,7 @@ router.get('/create_order/:id', function (req, res, next) {
   controller.showBookingPage(req, res);
 });
 
-router.get('/booked_ticket', function (req, res, next) {
+router.get('/booked_ticket/:id', function (req, res, next) {
   controller.showBookedTicket(req, res);
 });
 

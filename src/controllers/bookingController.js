@@ -1,6 +1,6 @@
 const controller = {};
 const models = require('../models');
-
+const sequelize = require('sequelize');
 controller.default = (req, res) => {
   const busSeat = [
     { booked: 1, seatNum: 1 },
@@ -22,6 +22,8 @@ controller.default = (req, res) => {
 
 controller.showBookingPage = async (req, res) => {
   let id = req.params.id;
+  const user = await models.User.findByPk(req.userId);
+
   const busSeat = [
     { booked: 1, seatNum: 1 },
     { booked: 1, seatNum: 2 },
@@ -35,24 +37,76 @@ controller.showBookingPage = async (req, res) => {
     { booked: 1, seatNum: 10 },
   ];
   res.locals.coach = await models.Coach.findOne({
-    // include: [
-    //   {
-    // model: Coach,
-    // required: true,
-    // attributes: [],
     where: {
       id: id,
     },
-    // include: [
-    //   {
-    //     model: Seats,
-    //     required: true,
-    //   },
-    // ],
-    // },
-    // ],
+    include: [
+      {
+        model: models.Garage,
+        //     include: [
+        //       {
+        //         model: models.Station,
+        //         required: true,
+        //       },
+        //     ],
+        //   },
+        //   {
+        //     model: models.Route,
+        //     required: true,
+      },
+    ],
   });
-  res.render('booking/step_1', { layout: 'main', busSeat: busSeat });
+  // res.locals.seat = await models.Seat.findOne({
+  //   where: {
+  //     coachId: id,
+  //   },
+  //   include: [
+  //     {
+  //       model: models.Coach,
+  //       required: true,
+  //     },
+  //   ],
+  // });
+  res.locals.route = await models.Route.findOne({
+    where: {
+      coachId: id,
+    },
+    include: [
+      {
+        model: models.Station,
+        as: 'startStation',
+        required: true,
+      },
+      {
+        model: models.Station,
+        as: 'endStation',
+        required: true,
+      },
+    ],
+  });
+  let day = new Date(res.locals.route.createdAt);
+  day.getHours();
+
+  models.Order.create({
+    routeId: res.locals.route.id,
+  });
+  res.locals.order = await models.Order.findOne({
+    where: {
+      routeId: res.locals.route.id,
+    },
+    include: [
+      {
+        model: models.Route,
+        required: true,
+      },
+    ],
+  });
+  res.render('booking/step_1', {
+    layout: 'main',
+    busSeat: busSeat,
+    user: user,
+    day: day,
+  });
 };
 
 controller.showBookedTicket = (req, res) => {
