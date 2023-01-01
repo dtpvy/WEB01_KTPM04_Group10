@@ -1,4 +1,6 @@
-<div class='bg-light d-flex justify-content-between rounded mt-3'><h4
+<div class='bg-light d-flex justify-content-between rounded mt-3'>
+  {{#with order}}
+  <h4
     class='ticket-detail--header ps-3 rounded mt-2 text-start d-inline-block'
   >Chi tiết vé đã đặt - Mã chuyến ABC123</h4>
   <p
@@ -11,9 +13,9 @@
     <div class='fs-6 w-50 text-start ps-5 ms-5'>
       <p class='fw-semibold'>Người đặt</p>
       <ul>
-        <li class='pt-2 text-secondary'>Họ tên: ABC</li>
-        <li class='pt-2 text-secondary'>Email: yourmail@gmail.com</li>
-        <li class='pt-2 text-secondary'>Số điện thoại: 0912 345 678</li>
+        <li class='pt-2 text-secondary'>Họ tên: {{User.fullname}}</li>
+        <li class='pt-2 text-secondary'>Email: {{User.email}}</li>
+        <li class='pt-2 text-secondary'>Số điện thoại: {{User.phone}}</li>
       </ul>
       <P class='fw-semibold'>Số ghế:</P>
       <ul>
@@ -22,6 +24,8 @@
     </div>
     <div class='w-50 text-start pe-4'>
       <P class='my-1 fw-semibold'>Thanh toán:</P>
+      
+      <p></p>
       <ul>
         <li class='pt-2 text-secondary'>Số tiền thanh toán: 600.000vnd (đã khấu trừ voucher)</li>
         <li class='pt-2 text-secondary'>Hình thức thanh toán: chuyển khoản momo</li>
@@ -42,23 +46,21 @@
     <div class='text-start w-50 ps-5 ms-5'>
       <p class=''><span class='fs-6 fw-semibold'>Ngày đặt: </span>04/11/2022</p>
       <img src='/images/car.png' class='w-50' alt='' srcset='' />
-      <P class='fw-bold fs-5'>Yellow Jaguar XF 2 Bus</P>
+      <P class='fw-bold fs-5'>{{Route.Coach.name}}</P>
       <P class='fw-light'><i class='fa fa-map-marker text-info'></i>
         780 đường San Fran Xích Long, Fu Nhuan</P>
     </div>
     <div class='w-50 text-start'>
       <P class='my-1'>Nhà xe: <span class='fw-semibold'>ABC</span> </P>
-      <P class='my-1'>Số điện thoại nhà xe: <span class='fw-semibold'>012 555 555</span> </P>
+      <P class='my-1'>Số điện thoại nhà xe: <span class='fw-semibold'></span> </P>
       <P class='my-1'>Đánh giá:
-        <span class='text-info'>(5)</span><i class='fa fa-star text-warning'></i><i
-          class='fa fa-star text-warning'
-        ></i><i class='fa fa-star text-warning'></i><i class='fa fa-star text-warning'></i><i
+        <span class='text-info'>(5)</span><i
           class='fa fa-star text-warning'
         ></i>
       </P>
-      <P class='my-1'>Loại xe: <span class='fw-semibold'>Limousine - 20 chỗ</span></P>
-      <P class='my-1'>Mã chuyến xe: <span class='fw-semibold'>ABC123</span></P>
-      <p class='my-1'><span class='fw-semibold'>Quảng Ninh - Ninh Bình</span></p>
+      <P class='my-1'>Loại xe: <span class='fw-semibold'>Limousine - {{Route.Coach.seatAmount}} chỗ</span></P>
+      <P class='my-1'>Mã chuyến xe: <span class='fw-semibold'>{{Route.Coach.id}}</span></P>
+      <p class='my-1'><span class='fw-semibold'>{{Route.startStation.city}} - {{Route.endStation.city}}</span></p>
       <P class='my-1'>Ngày đi: <span class='fw-semibold'>5/11/2022</span></P>
       <P class='my-1'>Giờ khởi hành: <span class='fw-semibold'>18:30</span></P>
       <P class='my-1'>Giờ tới (dự kiến): <span class='fw-semibold'>05:30</span></P>
@@ -66,11 +68,12 @@
       <div class='d-flex flex-content-around my-4 d-block'>
         <a href='/booking/cancel_ticket' class='btn btn-danger px-4 me-3' value=''>HỦY VÉ</a>
         <a href='/' class='btn btn-primary px-4 me-3' value=''>IN VÉ PDF</a>
-        <a href='/booking' class='btn btn-primary px-4 me-3' value=''>SỬA THÔNG TIN</a>
+        <a href='/booking/edit_order/{{id}}' class='btn btn-primary px-4 me-3' value=''>SỬA THÔNG TIN</a>
 
       </div>
     </div>
   </div>
   <hr class='w-75 mx-auto' />
+      {{/with}}
 
 </div>

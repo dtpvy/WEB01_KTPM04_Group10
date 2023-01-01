@@ -1,34 +1,71 @@
 <div class='container' style='min-height: 100vh;'>
-  <form class='text-center d-flex justify-content-between mx-1' id="booking_form">
-    
+  <form class='text-center d-flex justify-content-between mx-1' id='booking_form'>
+
     <div class='left-boxes-width ms-2 me-3'>
-      {{!-- heading chi tiết vé --}}
+      {{! heading chi tiết vé }}
       <h4 class='ticket-detail--header mt-3 mb-1 py-2 ps-5 rounded text-start'>Chi tiết vé</h4>
-      <ul class="nav nav-pills mb-3 bg-white d-flex justify-content-around py-2 my-2 rounded" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class=" active btn btn-link text-decoration-none text-dark" id="booking_choose_seat-tab" data-bs-toggle="pill" data-bs-target="#booking_choose_seat" type="button" role="tab" aria-controls="booking_choose_seat" aria-selected="true"><i class='far fa-check-circle p-1'></i>Chọn chỗ</button>
+      <ul
+        class='nav nav-pills mb-3 bg-white d-flex justify-content-around py-2 my-2 rounded'
+        id='pills-tab'
+        role='tablist'
+      >
+        <li class='nav-item' role='presentation'>
+          <button
+            class='active btn btn-link text-decoration-none text-dark'
+            id='booking_choose_seat-tab'
+            data-bs-toggle='pill'
+            data-bs-target='#booking_choose_seat'
+            type='button'
+            role='tab'
+            aria-controls='booking_choose_seat'
+            aria-selected='true'
+          ><i class='far fa-check-circle p-1'></i>Chọn chỗ</button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button class=" btn btn-link text-decoration-none text-dark" id="booking_input_infor-tab" data-bs-toggle="pill" data-bs-target="#booking_input_infor" type="button" role="tab" aria-controls="booking_input_infor" aria-selected="false"><i class='far fa-check-circle p-1'></i>Thông tin chi tiết</button>
+        <li class='nav-item' role='presentation'>
+          <button
+            class='btn btn-link text-decoration-none text-dark'
+            id='booking_input_infor-tab'
+            data-bs-toggle='pill'
+            data-bs-target='#booking_input_infor'
+            type='button'
+            role='tab'
+            aria-controls='booking_input_infor'
+            aria-selected='false'
+          ><i class='far fa-check-circle p-1'></i>Thông tin chi tiết</button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button class=" btn btn-link text-decoration-none text-dark" id="booking_choose_payment-tab" data-bs-toggle="pill" data-bs-target="#booking_choose_payment" type="button" role="tab" aria-controls="booking_choose_payment" aria-selected="false"><i class='far fa-check-circle p-1'></i>Thanh toán</button>
+        <li class='nav-item' role='presentation'>
+          <button
+            class='btn btn-link text-decoration-none text-dark'
+            id='booking_choose_payment-tab'
+            data-bs-toggle='pill'
+            data-bs-target='#booking_choose_payment'
+            type='button'
+            role='tab'
+            aria-controls='booking_choose_payment'
+            aria-selected='false'
+          ><i class='far fa-check-circle p-1'></i>Thanh toán</button>
         </li>
-        
+
       </ul>
-      {{!-- nội dung chính  --}}
-      
-      <div  class="tab-content" id="pills-tabContent">
-        
-        {{!-- step 1 --}}
-        <div class="tab-pane fade show active" id="booking_choose_seat" role="tabpanel" aria-labelledby="booking_choose_seat-tab">
+      {{! nội dung chính  }}
+
+      <div class='tab-content' id='pills-tabContent'>
+
+        {{! step 1 }}
+        <div
+          class='tab-pane fade show active'
+          id='booking_choose_seat'
+          role='tabpanel'
+          aria-labelledby='booking_choose_seat-tab'
+        >
           <div class='bg-white text-start ps-5 pt-4 pb-3 mb-3 rounded'>
             <h3>Chọn chỗ ngồi</h3>
             <p>Vui lòng chọn chỗ ngồi mong muốn.</p>
             <div class='d-flex justify-content-around my-5 pb-3 fw-semibold fs-6'>
               <div class='position-relative'>
                 <div class='pt-5 mt-5'><img src='/images/ghế chưa đặt.png' alt='' /> Ghế trống</div>
-                <div class='pt-3'><img src='/images/ghế đã đặt.png' alt='' srcset='' /> Ghế đã đặt</div>
+                <div class='pt-3'><img src='/images/ghế đã đặt.png' alt='' srcset='' />
+                  Ghế đã đặt</div>
               </div>
 
               <div class='seat-container text-center'>
@@ -79,13 +116,18 @@
               </div>
               <div class='d-flex flex-column flex-end'>
                 <div class='h-75'></div>
-                {{!-- <button class='btn btn-primary d-inline-block px-4' id="booking_step_1_to_2">TIẾP THEO</button> --}}
+                {{! <button class='btn btn-primary d-inline-block px-4' id="booking_step_1_to_2">TIẾP THEO</button> }}
               </div>
-            </div>            
+            </div>
           </div>
         </div>
-        {{!-- step 2 --}}
-        <div class="tab-pane fade" id="booking_input_infor" role="tabpanel" aria-labelledby="booking_input_infor-tab">
+        {{! step 2 }}
+        <div
+          class='tab-pane fade'
+          id='booking_input_infor'
+          role='tabpanel'
+          aria-labelledby='booking_input_infor-tab'
+        >
           <div class='bg-white text-start ps-5 pt-4 pb-3 mb-3 rounded'>
             <h3>Thông tin chi tiết</h3>
             <p>Vui lòng nhập thông tin của bạn.</p>
@@ -121,38 +163,58 @@
                 />
               </div>
               <div class='d-flex flex-content-around pt-5 mt-5'>
-                {{!-- <button class='btn btn-primary d-inline-block px-4' id="booking_step_2_to_1" onclick="switchBetweenBookingSteps()">QUAY LẠI</button> --}}
+                {{! <button class='btn btn-primary d-inline-block px-4' id="booking_step_2_to_1" onclick="switchBetweenBookingSteps()">QUAY LẠI</button> }}
                 <div class='w-50'></div>
-                {{!-- <button class='btn btn-primary d-inline-block px-4' id="booking_step_2_to_3" onclick="switchBetweenBookingSteps()">TIẾP THEO</button> --}}
+                {{! <button class='btn btn-primary d-inline-block px-4' id="booking_step_2_to_3" onclick="switchBetweenBookingSteps()">TIẾP THEO</button> }}
               </div>
             </div>
           </div>
         </div>
-        {{!-- step 3 --}}
-        <div class="tab-pane fade" id="booking_choose_payment" role="tabpanel" aria-labelledby="booking_choose_payment-tab">
+        {{! step 3 }}
+        <div
+          class='tab-pane fade'
+          id='booking_choose_payment'
+          role='tabpanel'
+          aria-labelledby='booking_choose_payment-tab'
+        >
           <div class='bg-white text-start ps-5 pt-4 pb-3 mb-3 rounded'>
             <h3>Thanh toán</h3>
             <p>Chọn hình thức thanh toán.</p>
             <div class='m-4'>
               <p class='mb-1'>
-                <input type="radio" id="booking_momo_method" name="payment_method" value="booking_momo_method" required>
-<label for="booking_momo_method"> Thanh toán bằng momo</label>
+                <input
+                  type='radio'
+                  id='booking_momo_method'
+                  name='payment_method'
+                  value='booking_momo_method'
+                  required
+                />
+                <label for='booking_momo_method'> Thanh toán bằng momo</label>
                 <img src='/images/momo logo.png' alt='' srcset='' /></p>
               <ul>
                 <li class='py-2'>Vui lòng chuyển khoản vào số tài khoản
-                  <span class='fw-semibold px-3 py-1 bg-secondary bg-opacity-10 rounded'>0123 456 789
+                  <span class='fw-semibold px-3 py-1 bg-secondary bg-opacity-10 rounded'>0123 456
+                    789
                     <span class='text-secondary fw-normal'>- Nha xe ABC</span></span>
                 </li>
-                <li>Nội dung gồm mã chuyến đi + số ghế, VD: <span class='fw-light'> XEABCD - A01 </span></li>
-                <li>Nếu đặt nhiều ghế, quý khách ghi cách ra bằng dấu phẩy, VD:<span class='fw-light'>
+                <li>Nội dung gồm mã chuyến đi + số ghế, VD:
+                  <span class='fw-light'> XEABCD - A01 </span></li>
+                <li>Nếu đặt nhiều ghế, quý khách ghi cách ra bằng dấu phẩy, VD:<span
+                    class='fw-light'
+                  >
                     XEABCD - A01, A02
                   </span></li>
                 <li>Nhà xe sẽ xác nhận với quý khách chậm nhất 10 phút sau khi thanh toán</li>
               </ul>
             </div>
             <div class='m-4 pb-2'>
-            <input type="radio" id="booking_directly_method" name="payment_method" value="booking_directly_method">
-<label for="booking_directly_method"> Thanh toán trực tiếp</label><br><br>
+              <input
+                type='radio'
+                id='booking_directly_method'
+                name='payment_method'
+                value='booking_directly_method'
+              />
+              <label for='booking_directly_method'> Thanh toán trực tiếp</label><br /><br />
               <ul>
                 <li>Nhà xe sẽ xác nhận với quý khách chậm nhất 10 phút sau khi thanh toán</li>
               </ul>
@@ -167,23 +229,26 @@
               />
             </div>
             <div class='d-flex flex-content-evenly pt-3 mb-4 d-block'>
-                {{!-- <button class='btn btn-primary d-inline-block px-4' id="booking_step_2_to_1" onclick="switchBetweenBookingSteps()">QUAY LẠI</button> --}}
+              {{! <button class='btn btn-primary d-inline-block px-4' id="booking_step_2_to_1" onclick="switchBetweenBookingSteps()">QUAY LẠI</button> }}
               <div class='w-75'></div>
               {{#with order}}
-                <a href='../booked_ticket/{{id}}' class='btn btn-primary d-inline-block p-3 me-4 my-3'>
-                {{!-- <input type="submit" class=" py-1 px-3 bg-transparent" value="TIẾP THEO" onclick="onNavigateTo('./booking/booked_ticket/{{id}}'))"> --}}
-TIẾP THEO
+                <a
+                  href='../booked_ticket/{{id}}'
+                  class='btn btn-primary d-inline-block p-3 me-4 my-3'
+                >
+                  {{!-- <input type="submit" class=" py-1 px-3 bg-transparent" value="TIẾP THEO" onclick="onNavigateTo('./booking/booked_ticket/{{id}}'))"> --}}
+                  TIẾP THEO
                 </a>
+                {{id}}
               {{/with}}
-              
+
             </div>
-          </div> 
+          </div>
         </div>
-      </div>      
-      {{!-- hết step 3 --}}       
-    </div> 
-    {{> booking_bus_box}}
+      </div>
+      {{! hết step 3 }}
+    </div>
+    {{!-- {{> booking_bus_box}} --}}
   </form>
 
 </div>
-
