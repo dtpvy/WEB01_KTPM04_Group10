@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Seat.init(
     {
-      status: DataTypes.ENUM('disable', 'booked', 'able'),
-      code: DataTypes.STRING,
+      status: DataTypes.ENUM('disable', 'booked', 'enable', 'driver'),
+      floor: DataTypes.STRING,
       extraPercent: DataTypes.INTEGER,
       column: DataTypes.INTEGER,
       row: DataTypes.INTEGER,

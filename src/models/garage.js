@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       );
       Garage.belongsToMany(models.User, {
         through: AccountGarages,
-        foreignKey: 'garageId',
+        foreignKey: 'GarageId',
       });
     }
   }
