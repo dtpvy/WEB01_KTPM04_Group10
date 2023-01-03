@@ -1,9 +1,9 @@
 <div class='container' style='min-height: 100vh;'>
-  <form class='text-center d-flex justify-content-between mx-1' id="booking_form">
+  <form class='text-center d-flex justify-content-between mx-1' id="booking_form" >
     
     <div class='left-boxes-width ms-2 me-3'>
       {{!-- heading chi tiết vé --}}
-      <h4 class='ticket-detail--header mt-3 mb-1 py-2 ps-5 rounded text-start'>Chi tiết vé</h4>
+      <h4 class='ticket-detail--header mt-3 mb-1 py-2 ps-5 rounded text-start' onclick="test({{route.id}})">Chi tiết vé</h4>
       <ul class="nav nav-pills mb-3 bg-white d-flex justify-content-around py-2 my-2 rounded" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class=" active btn btn-link text-decoration-none text-dark" id="booking_choose_seat-tab" data-bs-toggle="pill" data-bs-target="#booking_choose_seat" type="button" role="tab" aria-controls="booking_choose_seat" aria-selected="true"><i class='far fa-check-circle p-1'></i>Chọn chỗ</button>
@@ -44,7 +44,6 @@
                             src='/images/ghế chưa đặt.png'
                             alt=''
                             class='seat--padding'
-                            onclick='chooseSeat()'
                           />
                         {{/if}}
                         <p class='mb-1'>A{{this.seatNum}}</p>
@@ -67,7 +66,7 @@
                             src='/images/ghế chưa đặt.png'
                             alt=''
                             class='seat--padding'
-                            onclick='chooseSeat()'
+
                           />
                         {{/if}}
                         <p class='mb-1'>B{{this.seatNum}}</p>
@@ -88,19 +87,13 @@
         <div class="tab-pane fade" id="booking_input_infor" role="tabpanel" aria-labelledby="booking_input_infor-tab">
           <div class='bg-white text-start ps-5 pt-4 pb-3 mb-3 rounded'>
             <h3>Thông tin chi tiết</h3>
-            <p>Vui lòng nhập thông tin của bạn.</p>
+            <p>Vui lòng kiểm tra thông tin của bạn.</p>
             <div class='mt-3 pb-5'>
               <div class='d-flex flex-content-around w-75 fs-6 pt-4'>
-                <div class='w-100'><label for=''>Họ</label><input
+                <div class='w-100'><label for=''>Họ Tên:</label><input
                     type='text'
-                    id='booking_user_last_name'
-                    placeholder='Nhập họ của bạn'
-                    class='form-control bg-secondary bg-opacity-10 w-75 d-block'
-                  /></div>
-                <div class='w-100'><label for=''>Tên</label><input
-                    type='text'
-                    id='booking_user_first_name'
-                    placeholder='Nhập tên của bạn'
+                    id='booking_user_full_name'
+                    placeholder='{{user.fullname}}'
                     class='form-control bg-secondary bg-opacity-10 w-75 d-block'
                   /></div>
               </div>
@@ -169,12 +162,10 @@
             <div class='d-flex flex-content-evenly pt-3 mb-4 d-block'>
                 {{!-- <button class='btn btn-primary d-inline-block px-4' id="booking_step_2_to_1" onclick="switchBetweenBookingSteps()">QUAY LẠI</button> --}}
               <div class='w-75'></div>
-              {{#with order}}
-                <a href='../booked_ticket/{{id}}' class='btn btn-primary d-inline-block p-3 me-4 my-3'>
-                {{!-- <input type="submit" class=" py-1 px-3 bg-transparent" value="TIẾP THEO" onclick="onNavigateTo('./booking/booked_ticket/{{id}}'))"> --}}
+                {{!-- <a href='../booked_ticket/{{order.id}}' class='btn btn-primary d-inline-block p-3 me-4 my-3'> --}}
+                <input type="submit" class=" py-1 px-3 " value="TIẾP THEO" >
 TIẾP THEO
-                </a>
-              {{/with}}
+                {{!-- </a> --}}
               
             </div>
           </div> 
