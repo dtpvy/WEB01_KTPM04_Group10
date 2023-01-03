@@ -1,107 +1,137 @@
-.menu-support {
-  background-color: #f1f5f7;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-rows: 10% 90%;
-}
-.menu-body {
-  background-color: white;
-  padding: 2em;
-}
-.menu_body_main_title {
-  display: flex;
-  justify-content: center;
+.support
+{
+  padding: 0px 250px 0px 30px;
+  margin: 5px;
 }
 
-.menu_body_question {
-  display: flex;
+.support-header h1 {
+  font-family: 'Open Sans', sans-serif;
+  color: #032357;
+}
+.support-header p
+{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.support-body
+{
+  display:flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 15px;
 }
-.menu_body_question input {
-  padding: 1em;
-  border-radius: 9px;
-  border-color: antiquewhite;
-}
-.menu_body_question label {
-  font-size: 20px;
-  opacity: 60%;
-}
-
-.menu_body_detail {
-  display: flex;
+.support-email
+{
+  display:flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 5px;
+}
+.support-phone
+{
+  display:flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.support-title
+{
+  display:flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.support-attach
+{
+  display:flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.support-email input
+{
+  width:100%;
+  box-sizing:border-box;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  opacity: 100%;
+}
+.support-email input ::placeholder
+{
+  opacity: 50%;
 }
 
-.menu_body_detail input {
-  padding: 1em;
-  border-radius: 9px;
-  border-color: antiquewhite;
-  height: 350px;
+.support-phone input
+{
+  width:100%;
+  box-sizing:border-box;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  opacity: 100%;
 }
-.menu_body_detail label {
-  font-size: 20px;
-  opacity: 60%;
+.support-phone input ::placeholder
+{
+  opacity: 50%;
+}
+.support-title input
+{
+  width:100%;
+  box-sizing:border-box;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  opacity: 100%;
+}
+.support-title input ::placeholder
+{
+  opacity: 50%;
 }
 
-.menu_body_image {
-  background: #e0eafc;
-  background: -webkit-linear-gradient(to right, #cfdef3, #e0eafc);
-  background: linear-gradient(to right, #cfdef3, #e0eafc);
-  border-radius: 20px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+.support-description textarea
+{
+  width:100%;
+  box-sizing:border-box;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  opacity: 100%  ;
 }
-
-.drag-area {
-  height: 100px;
-  border: 30px #e0eafc;
+.support-description textarea::placeholder
+{
+  opacity: 50%;
+}
+.support-attach #button
+{
+  position: relative;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 4px;
+  height: 47px;
+  padding: 6px 12px;
+  line-height: 34px;
+  outline: none;
   display: flex;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
-  flex-direction: column;
-  margin: 10px auto;
+  background-color: white;
+}
+.upload-text
+{
+  color: rgb(102, 102, 102);
+  line-height: 24px;
+  font-size: 12px;
+}
+.support-attach input
+{
+  position: absolute;
+  opacity: 0;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  background-color: black;
 }
 
-.drag-area .icon {
-  color: #1683ff;
-  opacity: 60%;
-}
-.drag-area .header {
-  font-size: 20px;
-  color: #34495e;
-  font-weight: 500;
-}
-.drag-area .support {
-  color: gray;
-}
-.drag-area .button {
-  font-weight: 500;
-  color: 1683ff;
-}
-
-.menu_button {
+.menu_button 
+{
   display: flex;
   justify-content: flex-end;
-}
-input[type='submit'] {
-  background-color: #1683ff;
-  border-radius: 20px;
-  border: #f1f5f7;
-  color: white;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-input[type='button'] {
-  background-color: white;
-  border-radius: 20px;
-  border: white;
-  color: #1683ff;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
+  flex-direction: row;
+  column-gap: 5px;
 }
