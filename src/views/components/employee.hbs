@@ -1,0 +1,29 @@
+<div class='bg-white p-3 shadow-sm rounded border'>
+  <div class='py-2 d-flex gap-5'>
+    <div class='d-flex align-items-center gap-2'>
+      <img src='{{imgUrl}}' width='50px' alt='' class='rounded-pill shadow' />
+    </div>
+    <div class='d-flex gap-5'>
+      <div class='fw-bold'>
+        <div>Họ và tên:</div>
+        <div>Chức vụ:</div>
+        <div>Email:</div>
+        <div>Số điện thoại:</div>
+      </div>
+      <div>
+        <div>{{fullname}}</div>
+        <div>{{getTitle AccountGarages.role}}</div>
+        <div>{{email}}</div>
+        <div>{{phone}}</div>
+      </div>
+    </div>
+    <div class='d-flex gap-2 align-items-center ml-auto'>
+      <button class='btn btn-danger'>
+        Xoá
+      </button>
+      <button onclick="onNavigateTo('garage/employee/edit/{{id}}')" class='btn btn-secondary'>
+        Sửa
+      </button>
+    </div>
+  </div>
+</div>

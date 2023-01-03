@@ -1,0 +1,96 @@
+<div class='bg-white py-3 px-5'>
+  <div class='shadow-sm box-header__section body__header-section d-flex
+    justify-content-between rounded'>
+    <div class='d-flex gap-2 align-items-center'>
+      {{#if isEdit}}
+      <div class='body__header__title'>Chỉnh sửa bến xe</div>
+      {{else}}
+      <div class='body__header__title'>Thêm bến xe</div>
+      {{/if}}
+    </div>
+  </div>
+  <form method='post' id='edit_profile_form'>
+    <div style='display:flex; flex-direction:column;'>
+      <label for='name'><b>Tên bến xe:</b></label>
+      <input
+        class='form-control w-100'
+        type='text'
+        name='name'
+        value='{{station.name}}'
+        placeholder='Tên bến xe'
+        required
+        />
+    </div>
+    <div style='display:flex; flex-direction:column;'>
+      <label for='city'><b>Thành phố/ Tỉnh:</b></label>
+      <select id="selector_city" d name="city" class="form-select"
+        aria-placeholder="Chọn thành phố, tỉnh" required>
+        <option value="">Chọn thành phố, tỉnh</option>
+        {{#each cities}}
+        {{#if (and ../station (equal ../station.city this))}}
+        <option value="{{this}}" selected>{{this}}</option>
+        {{else}}
+        <option value="{{this}}">{{this}}</option>
+        {{/if}}
+        {{/each}}
+      </select>
+    </div>
+    <div style='display:flex; flex-direction:column;'>
+      <label for='district'><b>Quận / Huyện:</b></label>
+      <select id="selector_district" name="district" class="form-select"
+        aria-placeholder="Chọn quận huyện" required>
+        <option value="">Chọn quận huyện</option>
+        {{#each districts}}
+        {{#if (and ../station (equal ../station.district this))}}
+        <option value="{{this}}" selected>{{this}}</option>
+        {{else}}
+        <option value="{{this}}">{{this}}</option>
+        {{/if}}
+        {{/each}}
+      </select>
+    </div>
+    <div style='display:flex; flex-direction:column;'>
+      <label for='city'><b>Phường:</b></label>
+      <select id="selector_ward" name="ward" class="form-select"
+        aria-placeholder="Chọn phường" required>
+        <option value="">Chọn phường</option>
+        {{#each wards}}
+        {{#if (and ../station (equal ../station.ward this))}}
+        <option value="{{this}}" selected>{{this}}</option>
+        {{else}}
+        <option value="{{this}}">{{this}}</option>
+        {{/if}}
+        {{/each}}
+      </select>
+    </div>
+    <div style='display:flex; flex-direction:column;'>
+      <label for='street'><b>Đường:</b></label>
+      <input
+        class='form-control w-100'
+        type='text'
+        name='street'
+        value='{{station.street}}'
+        placeholder='227 Nguyễn Văn Cừ'
+        />
+    </div>
+    <div style='display:flex; flex-direction:column;'>
+      <label for='phone'><b>Số điện thoại</b></label>
+      <input
+        class='form-control w-100'
+        type='text'
+        name='phone'
+        value='{{station.phone}}'
+        placeholder='Số điện thoại'
+        />
+    </div>
+    <div class="d-flex gap-2 mt-3">
+      {{#if isEdit}}
+      <button class="btn btn-primary w-100">Cập nhật</button>
+      {{else}}
+      <button class="btn btn-primary w-100">Tạo</button>
+      {{/if}}
+      <button onclick="onNavigateTo('garage')" type="button" class="btn
+        btn-outline-primary w-100">Quay lại</button>
+    </div>
+  </form>
+</div>

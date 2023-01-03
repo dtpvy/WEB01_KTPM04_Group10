@@ -10,4 +10,28 @@ const checkAuth = async (req, res, next) => {
   next();
 };
 
-module.exports = checkAuth;
+const checkLogin = async (req, res, next) => {
+  const token = req.cookies['access-token'];
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    req.userId = decoded.userId;
+    if (!req.userId) throw new Error('UserId is empty');
+    res.redirect('/');
+  } catch (error) {
+    next();
+  }
+};
+
+const checkGarageLogin = async (req, res, next) => {
+  const token = req.cookies['access-token-garage'];
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    req.garageId = decoded.garageId;
+    if (!req.garageId) throw new Error('GarageId is empty');
+    res.redirect('/');
+  } catch (error) {
+    next();
+  }
+};
+
+module.exports = { checkAuth, checkLogin, checkGarageLogin };

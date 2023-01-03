@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       );
       User.belongsToMany(models.Garage, {
         through: AccountGarages,
-        foreignKey: 'userId',
+        foreignKey: 'UserId',
       });
     }
   }

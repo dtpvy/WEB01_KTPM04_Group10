@@ -19,3 +19,53 @@ body {
 .no-wrap {
   white-space: nowrap;
 }
+
+.flex-1 {
+  flex: 1;
+}
+
+.toast-message {
+  position: absolute;
+  top: 10px;
+  left: 10%;
+  right: 10%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  border-radius: 8px;
+  animation-name: toast;
+  animation-duration: 0.5s;
+}
+
+.toast-message--success {
+  background-color: green;
+  color: white;
+}
+
+.toast-message--fail {
+  background-color: red;
+  color: white;
+}
+
+.toast-message__button {
+  font-size: 20px;
+}
+
+@keyframes toast {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.control-garage__section--hide {
+  display: none !important;
+}

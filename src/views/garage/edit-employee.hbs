@@ -1,0 +1,49 @@
+<div class='bg-white py-3 px-5'>
+  <div
+    class='shadow-sm box-header__section body__header-section d-flex justify-content-between rounded'
+  >
+    <div class='d-flex gap-2 align-items-center'>
+      {{#if isEdit}}
+        <div class='body__header__title'>Chỉnh sửa nhân sự</div>
+      {{else}}
+        <div class='body__header__title'>Thêm nhân sự</div>
+      {{/if}}
+    </div>
+  </div>
+  <form method='post' id='edit_profile_form'>
+    <div class='d-flex align-items-center w-full gap-2'>
+      <div style='flex:1' >
+        <label for='email'><b>Email:</b></label>
+        <input
+          class='form-control w-100 my-2'
+          type='email'
+          name='email'
+          value='{{employee.email}}'
+          placeholder='Email'
+        />
+      </div>
+      <div style='flex:1'>
+        <label for='role'><b>Chức vụ:</b></label>
+        <select
+          name='role'
+          class='form-select my-2'
+          aria-placeholder='Chọn chức vụ'
+          required
+        >
+          <option value=''>Chọn chức vụ</option>
+          {{#each roles}}
+            {{#if (and ../employee (equal ../employee.AccountGarages.role this))}}
+              <option value="{{this}}" selected>{{getTitle this}}</option>
+            {{else}}
+              <option value="{{this}}">{{getTitle this}}</option>
+            {{/if}}
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="d-flex gap-2 mt-3">
+      <button class="btn btn-primary w-100">Tạo</button>
+      <button onclick="onNavigateTo('garage')" type="button" class="btn btn-outline-primary w-100">Quay lại</button>
+    </div>
+  </form>
+</div>

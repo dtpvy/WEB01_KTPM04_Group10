@@ -4,19 +4,28 @@
     <div>
       <label for='email'><b>Email:</b></label>
       <input
-        id='username'
+        id='email'
+        class='form-control w-100'
         type='email'
         placeholder='Email'
         name='email'
+        value='{{email}}'
         pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
         required
       />
 
       <label for='password'><b>Mật khẩu:</b></label>
-      <input id='password' type='password' placeholder='Mật khẩu' name='password' required />
+      <input
+        id='password'
+        class='form-control w-100'
+        type='password'
+        placeholder='Mật khẩu'
+        name='password'
+        required
+      />
       <div class='remember-information mb-3'>
         <div class='d-flex align-items-center gap-2'>
-          <input type='checkbox' checked='checked' name='remember' />
+          <input type='checkbox' name='remember' />
           <label class='no-wrap'>
             Lưu thông tin đăng nhập
           </label>

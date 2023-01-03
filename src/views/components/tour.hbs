@@ -1,0 +1,61 @@
+<div class='bg-white p-3 shadow-sm rounded border'>
+  <div class='py-2 d-flex gap-4'>
+    <div class='d-flex align-items-center gap-2'>
+      <img src='{{coach.imgUrls.[0]}}' width='150px' alt='' class='shadow' />
+    </div>
+    <div class="flex-1">
+      <div class='fw-bold fs-5 mb-2'>Thông tin chuyến xe</div>
+      <div class='d-flex flex-column'>
+        <div class='d-flex'>
+          <div style="flex: 0.5;" class="no-wrap fw-bold">Điểm đến:</div>
+          <div class="flex-1">{{getAddress startStation}}</div>
+        </div>
+        <div class='d-flex'>
+          <div style="flex: 0.5;" class="no-wrap fw-bold">Điểm đi:</div>
+          <div class="flex-1">{{getAddress endStation}}</div>
+        </div>
+        <div class='d-flex'>
+          <div style="flex: 0.5;" class="no-wrap fw-bold">Giờ xuất phát:</div>
+          <div class="flex-1">{{route.startTime}}</div>
+        </div>
+        <div class='d-flex'>
+          <div style="flex: 0.5;" class="no-wrap fw-bold">Thời gian hành trình:</div>
+          <div class="flex-1">6 tiếng</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1">
+      <div class='fw-bold fs-5 mb-2'>Thông tin xe</div>
+      <div class='d-flex flex-column'>
+        <div class='d-flex'>
+          <div class="flex-1 no-wrap fw-bold">Tên xe:</div>
+          <div class="flex-1">{{coach.name}}</div>
+        </div>
+        <div class='d-flex'>
+          <div class="flex-1 no-wrap fw-bold">Biển số xe:</div>
+          <div class="flex-1">{{coach.code}}</div>
+        </div>
+        <div class='d-flex'>
+          <div class="flex-1 no-wrap fw-bold">Giá vé:</div>
+          <div class="flex-1">{{formatNumber route.fare ' VNĐ'}} / 1 người</div>
+        </div>
+        <div class='d-flex'>
+          <div class="flex-1 no-wrap fw-bold">Số ghế:</div>
+          <div class="flex-1">{{coach.seatAmount}}</div>
+        </div>
+        <div class='d-flex'>
+          <div class="flex-1 no-wrap fw-bold">Số ghế đã đặt:</div>
+          <div class="flex-1">6 tiếng</div>
+        </div>
+      </div>
+    </div>
+    <div class='d-flex gap-2 align-items-center ml-auto'>
+      <button class='btn btn-danger'>
+        Xoá
+      </button>
+      <button class='btn btn-secondary'>
+        Sửa
+      </button>
+    </div>
+  </div>
+</div>

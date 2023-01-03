@@ -111,3 +111,26 @@
 .home__menu--small .home__menu__item {
   padding: 8px;
 }
+
+header.home__header + div {
+  padding: 50px;
+}
+
+.home__body {
+  width: calc(100% - 220px);
+}
+
+@media (max-width: 768px) {
+  .home__menu--large {
+    display: none;
+  }
+  .home__menu--small {
+    display: block;
+  }
+  header.home__header + div {
+    padding: 20px;
+  }
+  .home__body {
+    width: calc(100% - 60px);
+  }
+}

@@ -1,0 +1,197 @@
+<div class='bg-white p-3'>
+  <div
+    class='box-header__section body__header-section d-flex justify-content-between rounded shadow-sm'
+  >
+    <div class='body__header__title'>Tài khoản nhà xe</div>
+  </div>
+  <div class='d-flex gap-3 shadow-sm p-3 mb-3'>
+    <div class='w-75 d-flex flex-column justify-content-between'>
+      <div class='d-flex gap-2 fs-3'>
+        <div class='flex-1 fw-bold'>
+          {{or user.fullname user.email}}
+        </div>
+        <div class='flex-1'>
+          {{getTitle user.AccountGarages.role}}
+        </div>
+      </div>
+      <div class='flex-1 fs-6'>
+        <div class='d-flex gap-2'>
+          <div class='flex-1 fw-bold'>
+            Tên nhà xe:
+          </div>
+          <div class='flex-1'>
+            {{garage.name}}
+          </div>
+        </div>
+        <div class='d-flex gap-2'>
+          <div class='flex-1 fw-bold'>
+            Đánh giá:
+          </div>
+          <div class='flex-1'>
+            4.5
+          </div>
+        </div>
+        <div class='d-flex gap-2'>
+          <div class='flex-1 fw-bold'>
+            Mã nhà xe:
+          </div>
+          <div class='flex-1'>
+            {{garage.code}}
+          </div>
+        </div>
+        <div class='d-flex gap-2'>
+          <div class='flex-1 fw-bold no-wrap'>
+            Chi nhánh
+          </div>
+          <div class='flex-1'>
+            5
+          </div>
+        </div>
+      </div>
+      <div class='d-flex gap-2 mt-2' s>
+        <button class='menu-control-garage__btn btn btn-sm btn-outline-primary'>
+          <i class='fa-solid fa-map-location-dot'></i>
+          Quản lý nhà xe
+        </button>
+        <button class='menu-control-garage__btn btn btn-sm btn-outline-primary'>
+          <i class='fa-solid fa-road'></i>
+          Quản lý chuyến xe
+        </button>
+        <button class='menu-control-garage__btn btn btn-sm btn-outline-primary'>
+          <i class='fa-solid fa-van-shuttle'></i>
+          Quản lý xe
+        </button>
+        <button class='menu-control-garage__btn btn btn-sm btn-outline-primary'>
+          <i class='fa-solid fa-address-card'></i>
+          Quản lý nhân sự
+        </button>
+        <button class='menu-control-garage__btn btn btn-sm btn-outline-primary'>
+          <i class='fa-solid fa-file-invoice'></i>
+          Quản lý đơn
+        </button>
+        <button class='menu-control-garage__btn--add btn btn-sm btn-primary' style='display: none;'>
+          <i class='fa-solid fa-circle-plus'></i>
+          Thêm
+        </button>
+      </div>
+    </div>
+    <div class='w-25 d-flex align-items-center'>
+      <img src='{{or garage.imgUrls.[0] 'https://ik.imagekit.io/0o9nfg6a3/istockphoto-528066116-612x612.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1671854117599'}}' width='100%' />
+    </div>
+  </div>
+  <form method='post' class='mt-3 shadow-sm p-3 control-garage__section'>
+    <div class='d-flex justify-content-between gap-5'>
+      <div class='w-75 d-flex'>
+        <div class='w-100'>
+          <div style='display:flex; flex-direction:column;'>
+            <label for='code'><b>Mã nhà xe</b></label>
+            <input
+              class='form-control w-100'
+              type='text'
+              name='code'
+              value='{{garage.code}}'
+              disabled
+            />
+          </div>
+          <div style='display:flex; flex-direction:column;'>
+            <label for='name'><b>Tên nhà xe</b></label>
+            {{#if (equal user.AccountGarages.role 'employee')}}
+              <input
+                class='form-control w-100'
+                type='text'
+                name='name'
+                value='{{garage.name}}'
+                placeholder='Tên nhà xe'
+                disabled
+              />
+            {{else}}
+              <input
+                class='form-control w-100'
+                type='text'
+                name='name'
+                value='{{garage.name}}'
+                placeholder='Tên nhà xe'
+                required
+              />
+            {{/if}}
+          </div>
+          <div style='display:flex; flex-direction:column;'>
+            <label for='newpassword'><b>Mật khẩu mới</b></label>
+            <input
+              class='form-control w-100'
+              type='password'
+              name='newpassword'
+              placeholder='Mật khẩu mới'
+            />
+          </div>
+          <div style='display:flex; flex-direction:column;'>
+            <label for='password'><b>Mật khẩu hiện tại</b></label>
+            <input
+              class='form-control w-100'
+              type='password'
+              name='password'
+              placeholder='Mật khẩu hiện tại'
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class='d-flex flex-column w-25'>
+        <div class='d-flex align-items-center gap-2'>
+          {{#each (slice garage.imgUrls 0 2)}}
+            <div class='flex-1 p-1 shadow-sm' style="position: relative;">
+              <img
+                src='{{this}}'
+                width='100%'
+              />
+              {{#if (and (equal @index 1) (sub ../garage.imgUrls.length 2))}}
+                <div class="d-flex align-items-center justify-content-center" 
+                  style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color:rgba(0,0,0,0.5);">
+                  <div class="text-white fw-bold fs-4">
+                    +{{sub ../garage.imgUrls.length 2}}
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+        <input class='d-none' type='text' id='path_img' name='path_img' value='{{user.imgUrl}}' />
+        <div class='my-2'>
+          <input
+            onchange="uploadImage('userImageFile','path_img',showImg, 'avatar-view')"
+            class='form-control w-100'
+            type='file'
+            id='userImageFile'
+            name='image'
+          />
+        </div>
+        <button class='btn btn-primary w-100 mb-2'>Cập nhật</button>
+        <button type='button' class='btn btn-warning w-100 mb-2'>Chỉnh sửa hình ảnh</button>
+        <button type='button' class='btn btn-outline-danger w-100'>Xoá nhà xe</button>
+      </div>
+    </div>
+  </form>
+  <div class="d-flex flex-column gap-3 control-garage__section control-garage__section--hide" >
+    {{#each garage.Stations}}
+      {{> station this}}
+    {{/each}}
+  </div>
+  <div class="d-flex flex-column gap-3 control-garage__section control-garage__section--hide" >
+    {{#each garage.Routes}}
+      {{> tour this}}
+    {{/each}}
+  </div>
+  <div class="d-flex flex-column gap-3 control-garage__section control-garage__section--hide" >
+    {{#each garage.Coaches}}
+      {{> coach this}}
+    {{/each}}
+  </div>
+  <div class="d-flex flex-column gap-3 control-garage__section control-garage__section--hide" >
+    {{#each garage.Users}}
+      {{> employee this}}
+    {{/each}}
+  </div>
+  <div class="d-flex flex-column gap-3 control-garage__section control-garage__section--hide" >
+    order
+  </div>
+</div>
