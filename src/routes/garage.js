@@ -1,12 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { verifyGarage } = require('../middlewares/verifyAuth');
+const { verifyGarage, verifyAuth } = require('../middlewares/verifyAuth');
 const garageController = require('../controllers/garageController');
 
-router.get('/', verifyGarage, garageController.getGarage);
+router.get('/', verifyAuth, verifyGarage, garageController.getGarage);
 router.get('/:section/create', verifyGarage, garageController.addSection);
-router.get('/:section/edit/:id', verifyGarage, garageController.editSection);
-router.post('/:section/create', verifyGarage, garageController.handleAddSection);
+router.get('/station/edit/:id', verifyGarage, garageController.editStationSection);
+router.get('/employee/edit/:id', verifyGarage, garageController.editEmployeeSection);
+router.get('/coach/edit/:id', verifyGarage, garageController.editCoachSection);
+
+router.post('/station/create', verifyGarage, garageController.handleStation);
+router.post('/coach/create', verifyGarage, garageController.handleCoach);
+router.post('/station/edit/:id', verifyGarage, garageController.handleStation);
+// router.post('/employee/edit/id', verifyGarage, garageController.handleAddSection);
 
 router.get('/:id/rating', function (req, res, next) {
   res.render('./detail/rating', { layout: 'main' });

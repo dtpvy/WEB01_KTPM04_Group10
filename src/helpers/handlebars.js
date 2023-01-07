@@ -57,7 +57,7 @@ module.exports = {
   },
   getCoachStatus: (routes) => {
     const time = Date.now();
-    return routes.find((route) => {
+    return (routes || []).find((route) => {
       const startTime = new Date(route.startTime);
       const endTime = new Date(route.endTime);
       return startTime <= time && endTime >= time;

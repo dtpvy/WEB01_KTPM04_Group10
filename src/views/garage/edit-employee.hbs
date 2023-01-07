@@ -1,5 +1,7 @@
 <div class='bg-white py-3 px-5'>
-  <div class='shadow-sm box-header__section body__header-section d-flex justify-content-between rounded'>
+  <div
+    class='shadow-sm box-header__section body__header-section d-flex justify-content-between rounded'
+  >
     <div class='d-flex gap-2 align-items-center'>
       {{#if isEdit}}
         <div class='body__header__title'>Chỉnh sửa nhân sự</div>
@@ -9,93 +11,39 @@
     </div>
   </div>
   <form method='post' id='edit_profile_form'>
-    <div class='d-flex align-items-center justify-content-between'>
-      <div class='w-50 d-flex align-items-center'>
-        <div class='w-100'>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='fullname'><b>Họ Tên</b></label>
-            <input
-              class='form-control w-100'
-              type='text'
-              name='fullname'
-              value='{{user.fullname}}'
-              placeholder='Họ Tên'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='birthday'><b>Ngày sinh</b></label>
-            <input
-              class='form-control w-100'
-              type='date'
-              name='birthday'
-              value='{{user.dateOfBirth}}'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='email'><b>Email</b></label>
-            <input
-              class='form-control w-100'
-              type='email'
-              name='email'
-              value='{{user.email}}'
-              placeholder='Email'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='phone'><b>Số điện thoại</b></label>
-            <input
-              class='form-control w-100'
-              type='text'
-              name='phone'
-              value='{{user.phone}}'
-              placeholder='Số điện thoại'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='newpassword'><b>Mật khẩu mới</b></label>
-            <input
-              class='form-control w-100'
-              type='password'
-              name='newpassword'
-              placeholder='Mật khẩu mới'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='repassword'><b>Xác nhận mật khẩu</b></label>
-            <input
-              class='form-control w-100'
-              type='password'
-              name='repassword'
-              placeholder='Xác nhận mật khẩu'
-            />
-          </div>
-        </div>
+    <div class='d-flex align-items-center w-full gap-2'>
+      <div style='flex:1' >
+        <label for='email'><b>Email:</b></label>
+        <input
+          class='form-control w-100 my-2'
+          type='email'
+          name='email'
+          value='{{employee.email}}'
+          placeholder='Email'
+        />
       </div>
-      <input class='d-none' type='text' id='path_img' name='path_img' value='{{user.imgUrl}}' />
-      <div class='d-flex flex-column'>
-        <div>
-          <div class='avatar d-flex align-items-center justify-content-center'>
-            <img
-              id='avatar-view'
-              class='avatar-pic'
-              src='{{or user.imgUrl "/images/account/avatar.png"}}'
-              alt='avatar-user'
-            />
-          </div>
-          <div class='my-3'>
-            <input
-              onchange="uploadImage('userImageFile','path_img',showImg, 'avatar-view')"
-              class='form-control'
-              type='file'
-              id='userImageFile'
-              name='image'
-            />
-          </div>
-          <div>
-            <button id='btn-Save'>Lưu</button>
-          </div>
-        </div>
+      <div style='flex:1'>
+        <label for='role'><b>Chức vụ:</b></label>
+        <select
+          name='role'
+          class='form-select my-2'
+          aria-placeholder='Chọn chức vụ'
+          required
+        >
+          <option value=''>Chọn chức vụ</option>
+          {{#each roles}}
+            {{#if (and ../employee (equal ../employee.AccountGarages.role this))}}
+              <option value="{{this}}" selected>{{getTitle this}}</option>
+            {{else}}
+              <option value="{{this}}">{{getTitle this}}</option>
+            {{/if}}
+          {{/each}}
+        </select>
       </div>
+    </div>
+    <div class="d-flex gap-2 mt-3">
+      <button class="btn btn-primary w-100">Tạo</button>
+      <button onclick="onNavigateTo('garage')" type="button" class="btn btn-outline-primary w-100">Quay lại</button>
     </div>
   </form>
 </div>

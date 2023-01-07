@@ -37,3 +37,29 @@
 #pills-tab button.active > i {
   color: blue;
 }
+.edit-coach {
+  border-radius: 16px;
+  border: 5px solid #000;
+  background-color: #ccc;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.edit-coach__item {
+  width: 40px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-control--hide {
+  display: none;
+}
+
+.edit-control--hide {
+  display: none;
+}

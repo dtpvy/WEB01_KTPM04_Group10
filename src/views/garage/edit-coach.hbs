@@ -1,98 +1,155 @@
 <div class='bg-white py-3 px-5'>
-  <div class='shadow-sm box-header__section body__header-section d-flex justify-content-between rounded'>
+  <div class='shadow-sm box-header__section body__header-section d-flex
+    justify-content-between rounded'>
     <div class='d-flex gap-2 align-items-center'>
       {{#if isEdit}}
-        <div class='body__header__title'>Chỉnh sửa xe</div>
+      <div class='body__header__title'>Chỉnh sửa xe</div>
       {{else}}
-        <div class='body__header__title'>Thêm xe</div>
+      <div class='body__header__title'>Thêm xe</div>
       {{/if}}
     </div>
   </div>
   <form method='post' id='edit_profile_form'>
-    <div class='d-flex align-items-center justify-content-between'>
+    <div class='d-flex align-items-start justify-content-between'>
       <div class='w-50 d-flex align-items-center'>
         <div class='w-100'>
           <div style='display:flex; flex-direction:column;'>
-            <label for='fullname'><b>Họ Tên</b></label>
+            <label for='name'><b>Tên xe</b></label>
             <input
               class='form-control w-100'
               type='text'
-              name='fullname'
-              value='{{user.fullname}}'
-              placeholder='Họ Tên'
-            />
+              name='name'
+              value='{{coach.name}}'
+              required
+              placeholder='Tên xe'
+              />
           </div>
           <div style='display:flex; flex-direction:column;'>
-            <label for='birthday'><b>Ngày sinh</b></label>
-            <input
-              class='form-control w-100'
-              type='date'
-              name='birthday'
-              value='{{user.dateOfBirth}}'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='email'><b>Email</b></label>
-            <input
-              class='form-control w-100'
-              type='email'
-              name='email'
-              value='{{user.email}}'
-              placeholder='Email'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='phone'><b>Số điện thoại</b></label>
+            <label for='phone'><b>Biển số xe</b></label>
             <input
               class='form-control w-100'
               type='text'
-              name='phone'
-              value='{{user.phone}}'
-              placeholder='Số điện thoại'
-            />
+              name='code'
+              value='{{coach.code}}'
+              required
+              placeholder='Biển số xe'
+              />
           </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='newpassword'><b>Mật khẩu mới</b></label>
-            <input
-              class='form-control w-100'
-              type='password'
-              name='newpassword'
-              placeholder='Mật khẩu mới'
-            />
+          <div class="d-flex gap-3">
+            <div style='display: flex; flex-direction: column; flex: 1'>
+              <label for='phone'><b>Số tầng</b></label>
+              <input
+                onchange="onChangeFloor()"
+                class='form-control w-100'
+                type='number'
+                min="1"
+                max="3"
+                name='floor'
+                required
+                value='{{floor}}'
+                placeholder='Số tầng'
+                />
+              <input
+                class='d-none form-control w-100'
+                type='text'
+                name='floor_value'
+                required
+                value='{{map}}'
+                />
+            </div>
+            <div style='display: flex; flex-direction: column; flex: 1'>
+              <label for='phone'><b>Tổng số lượng ghế</b></label>
+              <input
+                class='form-control w-100'
+                type='number'
+                name='amount_seats'
+                min="5"
+                value="{{coach.seatAmount}}"
+                readonly
+                placeholder='Số lượng ghế'
+                />
+            </div>
           </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='repassword'><b>Xác nhận mật khẩu</b></label>
-            <input
-              class='form-control w-100'
-              type='password'
-              name='repassword'
-              placeholder='Xác nhận mật khẩu'
-            />
+          <div class="d-none edit-control__container">
+            <div class="d-flex gap-3 align-items-center">
+              <div style='display: flex; flex-direction: column; flex: 1'>
+                <label for='phone'><b>Chọn tầng</b></label>
+                <select onchange="handleChooseFloor()" id="floor_choose"
+                  class="form-select">
+                </select>
+              </div>
+              <div style='display: flex; flex-direction: column; flex: 1'>
+                <label for='phone'><b>Số lượng ghế</b></label>
+                <input
+                  class='form-control w-100'
+                  type='number'
+                  name='floor_amount_seats'
+                  min="5"
+                  disabled
+                  placeholder='Số lượng ghế'
+                  />
+              </div>
+            </div>
+            <div class="d-flex align-items-center mt-3 justify-content-center">
+              <div class="mt-2">
+                <div class="edit-coach"></div>
+                <div onclick="onAddRow()" style="width: 40px; height: 40px"
+                  class="d-flex edit-control__add-row
+                  align-items-center justify-content-center btn rounded-circle
+                  btn-primary mt-3 mx-auto">
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="edit-control__editing d-none d-flex mt-3 gap-5
+                  justify-content-center">
+                  <div onclick="onSaveRow()" style="width: 40px; height: 40px"
+                    class="d-flex
+                    align-items-center justify-content-center btn rounded-circle
+                    btn-success">
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <div onclick="onCancelRow()" style="width: 40px; height: 40px"
+                    class="d-flex
+                    align-items-center justify-content-center btn rounded-circle
+                    btn-danger">
+                    <i class="fa-solid fa-close"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <input class='d-none' type='text' id='path_img' name='path_img' value='{{user.imgUrl}}' />
+      <input class='d-none' type='text' id='path_img' name='path_img'
+        value='{{user.imgUrl}}' />
       <div class='d-flex flex-column'>
         <div>
-          <div class='avatar d-flex align-items-center justify-content-center'>
+          <div class='avatar d-flex align-items-center
+            justify-content-center'>
             <img
               id='avatar-view'
               class='avatar-pic'
               src='{{or user.imgUrl "/images/account/avatar.png"}}'
               alt='avatar-user'
-            />
+              />
           </div>
           <div class='my-3'>
             <input
-              onchange="uploadImage('userImageFile','path_img',showImg, 'avatar-view')"
+              onchange="uploadImage('userImageFile','path_img',showImg,
+              'avatar-view')"
               class='form-control'
               type='file'
               id='userImageFile'
               name='image'
-            />
+              />
           </div>
-          <div>
-            <button id='btn-Save'>Lưu</button>
+          <div class="d-flex flex-column gap-2">
+            {{#if isEdit}}
+            <button class="btn btn-primary w-100">Cập nhật</button>
+            {{else}}
+            <button class="btn btn-primary w-100">Tạo</button>
+            {{/if}}
+            <button onclick="onNavigateTo('garage')" type="button" class="btn
+              btn-outline-primary w-100">Quay lại</button>
           </div>
         </div>
       </div>
