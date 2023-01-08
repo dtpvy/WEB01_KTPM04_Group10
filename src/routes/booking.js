@@ -8,17 +8,12 @@ router.get('/', function (req, res, next) {
   controller.default(req, res);
 });
 
-// router.get('/create_order/:id', function (req, res, next) {
-//   controller.showBookingPage(req, res);
-// });
-
 router.get('/create_order/:id', verifyAuth, controller.showBookingPage);
-
+router.post('/create_order/:id', verifyAuth, controller.createOrder);
 router.get('/edit_order/:id', verifyAuth, controller.editOrderPage);
+// router.get('/edit_order/:id', verifyAuth, controller.editOrder);
 
 router.get('/booked_ticket/:id', verifyAuth, controller.showBookedTicket);
-
-// router.get('/', verifyAuth, accountController.getProfile);
 
 router.get('/cancel_ticket', function (req, res, next) {
   controller.showCancelTicket(req, res);

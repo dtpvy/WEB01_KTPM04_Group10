@@ -11,7 +11,6 @@
       {{route.endStation.street}},
       {{route.endStation.ward}},
       {{route.endStation.district}}</P>
-    <input type='text' value='{{route.id}}' id='route_id' class='d-none' />
     <P class='my-1'>Nhà xe:
       <span class='fw-semibold'>{{coach.Garage.name}}</span>
       <span class='text-info'>(5)</span><i class='fa fa-star text-warning'></i>
@@ -19,35 +18,30 @@
 
     <P class='my-1'>Loại xe:
       <span class='fw-semibold'>Limousine - {{coach.seatAmount}} chỗ</span></P>
-    <input type='text' value={{coach.seatAmount}} id='booking_seat_amount' class='d-none' />
     <P class='my-1'>Mã chuyến xe: <span class='fw-semibold'>{{coach.id}}</span></P>
-    <input type='text' value='mã chuyến xe' id='booking_coach_id' class='d-none' />
-
     <p class='my-1'><span class='fw-semibold'>{{route.startStation.city}}
         -
         {{route.endStation.city}}</span></p>
     <input type='text' value='tuyến xe' id='booking_routes' class='d-none' />
     <P class='my-1'>Ngày đi: <span class='fw-semibold'>{{time.startDay}}</span></P>
-    <input type='text' value='ngày đi' id='booking_coach_leave_day' class='d-none' />
-
     <P class='my-1'>Giờ khởi hành: <span class='fw-semibold'>{{time.startTime}}</span></P>
-    <input type='text' value='giờ đi' id='booking_coach_leave_hour' class='d-none' />
     <P class='my-1'>Giờ tới (dự kiến): <span class='fw-semibold'>{{time.endTime}}</span></P>
-    <input type='text' value='giờ đi' id='booking_coach_arrive_hour' class='d-none' />
     <P class='my-1'>Tổng thời gian (dự kiến):
       <span class='fw-semibold'>{{time.totalHours}}h</span></P>
     <p class='my-1'>
       Mô tả, Chính sách:
       <a href='#'>xem trong chi tiết xe</a>
     </p>
-    <input type='text' value='total hours' id='booking_total_hours' class='d-none' />
     <P class='mt-5 mb-0'>Đơn giá</P>
     <div class='d-flex justify-content-between border border-secondary rounded my-2'><p
         class='m-2'
       >Số ghế đặt x Giá vé</p><p class='m-2 fw-semibold'>{{seatChosen}}x{{route.fare}}</p></div>
-    <input type='text' value='total' id='booking_ticket_price' class='d-none' />
     <p class='text-end fw-semibold fs-5'>600.000 <span class='fs-6 fw-light'>VNĐ</span></p>
     <input type='text' value='total' id='booking_total_bill' class='d-none' />
-
+    <p>{Email}</p>
   </div>
+  <input type='text' name='routeId' value='{{route.id}}' id='route_id' class='d-none' />
+  <input type='text' name='coachId' value='{{coach.id}}' id='booking_coach_id' class='d-none' />
+  <input type='text' name='userId' value='{{user.id}}' id='booking_user_id' class='d-none' />
+
 </div>

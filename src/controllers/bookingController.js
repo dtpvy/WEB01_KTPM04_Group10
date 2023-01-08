@@ -1,6 +1,9 @@
 const controller = {};
 const models = require('../models');
 const sequelize = require('sequelize');
+const nodemailer = require('nodemailer');
+
+// Hàm linh tinh
 
 function diff_hours(dt2, dt1) {
   var diff = (dt2.getTime() - dt1.getTime()) / 1000;
@@ -20,7 +23,7 @@ const timeData = function (day, day2) {
     totalHours: diff_hours(day, day2),
   };
 };
-
+//
 controller.showBookingPage = async (req, res) => {
   let id = req.params.id;
   const user = await models.User.findByPk(req.userId);
@@ -76,23 +79,6 @@ controller.showBookingPage = async (req, res) => {
     ],
   });
 
-  models.Order.create({
-    routeId: route.id,
-    userId: user.id,
-  });
-  const order = await models.Order.findOne({
-    where: {
-      routeId: route.id,
-    },
-    order: [['createdAt', 'DESC']],
-    include: [
-      {
-        model: models.Route,
-        required: true,
-      },
-    ],
-  });
-
   const day = new Date(route.startTime);
   const day2 = new Date(route.endTime);
   const time = timeData(day, day2);
@@ -103,10 +89,53 @@ controller.showBookingPage = async (req, res) => {
     user,
     time,
     seatChosen: 0,
-    order,
     route,
     coach,
+    coachId: id,
   });
+};
+
+controller.createOrder = async (req, res) => {
+  const id = req.params.id;
+  const { routeId, userId, payment_method } = await req.body;
+  if (payment_method == 'booking_directly_method') {
+    const order = await models.Order.create({
+      routeId: routeId,
+      userId: userId,
+      status: 'SUCCESS',
+      method: 'trực tiếp',
+    }).catch((error) => console.log(error));
+    const user = await models.User.findOne({
+      where: {
+        id: userId,
+      },
+    });
+    //gửi mail
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.elasticemail.com',
+      port: 2525,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'webvesire@gmail.com', // ethereal user
+        pass: '0F0B3BD0156B42881021E6A855B77B27035F', // ethereal password
+      },
+    });
+
+    const msg = {
+      from: '"The Exapress App" <webvesire@gmail.com>', // sender address
+      to: `${user.email}`, // list of receivers
+      subject: 'Đặt vé của bạn đã được tạo thành công', // Subject line
+      text: `Mã đơn đặt vé của bạn: ${order.id}.\n Vui lòng truy cập http://localhost:3001/booking/booked_ticket/${order.id} để truy cập xem chi tiết vé xe đã đặt.`, // plain text body
+    };
+    // send mail with defined transport object
+    const info = await transporter.sendMail(msg);
+
+    console.log('Message sent: %s', info.messageId);
+
+    await res.redirect(`/booking/booked_ticket/${order.id}`);
+  } else {
+    console.log('chưa làm thanh toán momo');
+  }
 };
 
 controller.editOrderPage = async (req, res) => {
