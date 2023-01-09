@@ -1,0 +1,10 @@
+.body__header-section {
+  background-color: #fff;
+  padding: 12px 20px;
+  margin: 16px 0;
+}
+
+.body__header__title {
+  font-weight: 700;
+  font-size: 20px;
+}

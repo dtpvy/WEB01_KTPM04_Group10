@@ -1,0 +1,121 @@
+.login-form__layout {
+  position: relative;
+  flex: 4;
+}
+
+.login-form__name-brand {
+  position: absolute;
+  top: 25%;
+  transform: translateY(-100%);
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 60px;
+}
+
+.login-form__logo {
+  position: absolute;
+  width: 100%;
+  left: 3%;
+  bottom: 0%;
+}
+h1 {
+  color: rgb(10, 88, 201);
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#register_H1 {
+  margin-bottom: 0px;
+}
+
+#h1-register-coach {
+  margin-top: 60px;
+}
+
+.login {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 0 0 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+button {
+  background-color: rgb(7, 66, 152);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.btn-Submit-Login,
+.You-Know-To-Web {
+  display: flex;
+  justify-content: center;
+}
+
+.You-Know-To-Web > i {
+  padding-right: 5px;
+}
+
+.container {
+  padding: 16px 150px 0px;
+}
+
+#register_user {
+  padding: 0px 150px;
+}
+
+/* remember-Information */
+.remember-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-coach-block {
+  margin-top: 160px;
+  margin-bottom: 160px;
+}
+
+#register_coach {
+  margin-top: 10px;
+}
+
+.line-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.register-coach {
+  padding: 0px 20px 0px 35px;
+}
+
+.login-form__body {
+  flex: 6;
+  background: rgb(255, 255, 255);
+  border-radius: 120px 0 0 120px;
+}
+
+@media (max-width: 768px) {
+  .login-form__layout {
+    display: none;
+  }
+  .login-form__body {
+    border-radius: 120px;
+  }
+}

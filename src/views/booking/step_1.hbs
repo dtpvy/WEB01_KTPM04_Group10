@@ -1,0 +1,76 @@
+<div class='container' style='min-height: 100vh;'>
+  <div class='text-center d-flex justify-content-between mx-1'>
+    <div class='left-boxes-width ms-2 me-3'>
+      {{!-- heading chi tiết vé --}}
+      {{> booking_heading}}
+      {{!-- nội dung chính  --}}
+      <div class='bg-white text-start ps-5 pt-4 pb-3 mb-3 rounded'>
+        <h3>Chọn chỗ ngồi</h3>
+        <p>Vui lòng chọn chỗ ngồi mong muốn.</p>
+        <div class='d-flex justify-content-around my-5 pb-3 fw-semibold fs-6'>
+          <div class='position-relative'>
+            <div class='pt-5 mt-5'><img src='/images/ghế chưa đặt.png' alt='' /> Ghế trống</div>
+            <div class='pt-3'><img src='/images/ghế đã đặt.png' alt='' srcset='' /> Ghế đã đặt</div>
+          </div>
+
+          <div class='seat-container text-center'>
+            <div class='seat-contain-bg--image text-start px-1'>
+              <img src='/images/vô lăng.png' alt='' class='m-3' />
+              <div class='d-flex justify-content-around flex-wrap'>
+                {{#each busSeat}}
+                  <div class='text-center'>
+                    {{#if this.booked}}
+                      <img src='/images/ghế đã đặt.png' alt='' class='seat--padding' />
+                    {{else}}
+                      <img
+                        src='/images/ghế chưa đặt.png'
+                        alt=''
+                        class='seat--padding'
+                        onclick='chooseSeat()'
+                      />
+                    {{/if}}
+                    <p class='mb-1'>A{{this.seatNum}}</p>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+            <p class='p-3'>Tầng 1</p>
+          </div>
+          <div class='seat-container text-center'>
+            <div class='seat-contain-bg--image text-start'>
+              <img src='/images/vô lăng.png' alt='' class='m-3' />
+              <div class='d-flex justify-content-around flex-wrap'>
+                {{#each busSeat}}
+                  <div class='text-center'>
+                    {{#if this.booked}}
+                      <img src='/images/ghế đã đặt.png' alt='' class='seat--padding' />
+                    {{else}}
+                      <img
+                        src='/images/ghế chưa đặt.png'
+                        alt=''
+                        class='seat--padding'
+                        onclick='chooseSeat()'
+                      />
+                    {{/if}}
+                    <p class='mb-1'>B{{this.seatNum}}</p>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+            <p class='p-3'>Tầng 2</p>
+          </div>
+          <div class='d-flex flex-column flex-end'>
+            <div class='h-75'></div>
+            <a href='/booking/step_2' class='btn btn-primary d-inline-block px-4' value='TIẾP THEO'>
+              TIẾP THEO
+            </a>
+          </div>
+        </div>            
+      </div>
+      {{!--  --}}
+    </div>
+    {{> booking_bus_box}}
+  </div>
+
+</div>
+

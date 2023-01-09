@@ -9,18 +9,34 @@
       integrity='sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65'
       crossorigin='anonymous'
     />
+    <script src='https://kit.fontawesome.com/8d62a64fa1.js' crossorigin='anonymous'></script>
+    <link rel='stylesheet' href='/stylesheets/layouts/login.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Document</title>
   </head>
   <body>
-    <div style='display: flex; height: 100px'>
-      <div style='flex: 1; background: red'>
-        VESIRE
-        <img src='images/car.png' width='50px' height='50px' />
+    <div style='display: flex; background: rgb(7,66,152); width: 100%; height: 100%;'>
+      <div class='login-form__layout'>
+        <div class='login-form__name-brand'>VESIRE</div>
+        <img class='login-form__logo' src='/images/car.png' width='50%' />
       </div>
-      <div style='flex: 1; border-raidus: 50px'>
+      <div class='background-white d-flex align-items-center login-form__body'>
         {{{body}}}
       </div>
     </div>
+
+    <div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>
+      <div class='toast-header'>
+        <img src='...' class='rounded me-2' alt='...' />
+        <strong class='me-auto'>Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type='button' class='btn-close' data-bs-dismiss='toast' aria-label='Close'></button>
+      </div>
+      <div class='toast-body'>
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+    {{> toast}}
     <script
       src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js'
       integrity='sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3'
@@ -31,5 +47,7 @@
       integrity='sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V'
       crossorigin='anonymous'
     ></script>
+    <script src='/javascripts/navigation.js'></script>
+    <script src='/javascripts/event.js'></script>
   </body>
 </html>

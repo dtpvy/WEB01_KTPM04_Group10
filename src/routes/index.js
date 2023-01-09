@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const { checkAuth } = require('../middlewares/checkAuth');
+const indexControllers = require('../controllers/indexController');
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { layout: 'home' });
+router.get('/', checkAuth, indexControllers.homePage);
+
+router.get('/search', function (req, res, next) {
+  res.render('./home/search', { layout: 'main' });
 });
 
 module.exports = router;

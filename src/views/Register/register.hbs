@@ -1,0 +1,51 @@
+<div class='w-75 mx-auto pt-5'>
+  <h1 class='login__header fs-1'>ĐĂNG KÝ</h1>
+  <form class='Login-form' method='post'>
+    <div class='mb-3'>
+      <label for='email'><b>Email:</b></label>
+      <input
+        id='email'
+        class='form-control w-100'
+        type='email'
+        placeholder='Email'
+        value='{{email}}'
+        name='email'
+        pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+        required
+      />
+
+      <label for='password'><b>Mật khẩu:</b></label>
+      <input
+        id='password'
+        class='form-control w-100'
+        type='password'
+        placeholder='Mật khẩu'
+        value='{{password}}'
+        name='password'
+        required
+      />
+
+      <label for='repassword'><b>Xác nhận mật khẩu:</b></label>
+      <input
+        id='repassword'
+        class='form-control w-100'
+        type='password'
+        placeholder='Xác nhận mật khẩu'
+        name='repassword'
+        required
+      />
+    </div>
+    {{#if error}}
+      <div class='text-danger text-center mb-3'>
+        {{error}}
+      </div>
+    {{/if}}
+    <div class='btn-Submit-Login'>
+      <button id='login-btn' type='submit'>Đăng Ký</button>
+    </div>
+  </form>
+  <div class='You-Know-To-Web'>
+    <i>Bạn đã có tài khoản?</i>
+    <a href='login'>Đăng nhập</a>
+  </div>
+</div>

@@ -1,4 +1,49 @@
-<div style="text-align: center">
-  <h1>Đăng Nhập</h1>
-  <input />
+<div class='w-75 mx-auto pt-5'>
+  <h1 class='login__header fs-1'>ĐĂNG NHẬP</h1>
+  <form method='post'>
+    <div>
+      <label for='email'><b>Email:</b></label>
+      <input
+        id='email'
+        class='form-control w-100'
+        type='email'
+        placeholder='Email'
+        name='email'
+        value='{{email}}'
+        pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+        required
+      />
+
+      <label for='password'><b>Mật khẩu:</b></label>
+      <input
+        id='password'
+        class='form-control w-100'
+        type='password'
+        placeholder='Mật khẩu'
+        name='password'
+        required
+      />
+      <div class='remember-information mb-3'>
+        <div class='d-flex align-items-center gap-2'>
+          <input type='checkbox' name='remember' />
+          <label class='no-wrap'>
+            Lưu thông tin đăng nhập
+          </label>
+        </div>
+        <span class='no-wrap'><a href='#'>Quên mật khẩu?</a></span>
+      </div>
+      {{#if error}}
+        <div class='text-danger text-center mb-3'>
+          {{error}}
+        </div>
+      {{/if}}
+      <div class='btn-Submit-Login'>
+        <button id='login-btn' type='submit'>Đăng nhập</button>
+      </div>
+    </div>
+    <div class='You-Know-To-Web'>
+      <i>Bạn mới biết đến Vesire?</i>
+      <a href='register'>Đăng ký</a>
+    </div>
+  </form>
 </div>
