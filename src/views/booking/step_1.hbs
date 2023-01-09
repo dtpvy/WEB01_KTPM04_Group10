@@ -1,5 +1,5 @@
 <div class='container' style='min-height: 100vh;'>
-  <form class='text-center d-flex justify-content-between mx-1' id="booking_form" action ="/booking/create_order/{{coachId}}" method="POST">
+  <form class='text-center d-flex justify-content-between mx-1' id="booking_form" action ="/booking/{{params}}/{{pageId}}" method="POST">
     
     <div class='left-boxes-width ms-2 me-3'>
       {{!-- heading chi tiết vé --}}
@@ -9,7 +9,7 @@
           <button class=" active btn btn-link text-decoration-none text-dark" id="booking_choose_seat-tab" data-bs-toggle="pill" data-bs-target="#booking_choose_seat" type="button" role="tab" aria-controls="booking_choose_seat" aria-selected="true"><i class='far fa-check-circle p-1'></i>Chọn chỗ</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class=" btn btn-link text-decoration-none text-dark" id="booking_input_infor-tab" data-bs-toggle="pill" data-bs-target="#booking_input_infor" type="button" role="tab" aria-controls="booking_input_infor" aria-selected="false"><i class='far fa-check-circle p-1'></i>Thông tin chi tiết</button>
+          {{!-- <button class=" btn btn-link text-decoration-none text-dark" id="booking_input_infor-tab" data-bs-toggle="pill" data-bs-target="#booking_input_infor" type="button" role="tab" aria-controls="booking_input_infor" aria-selected="false"><i class='far fa-check-circle p-1'></i>Thông tin chi tiết</button> --}}
         </li>
         <li class="nav-item" role="presentation">
           <button class=" btn btn-link text-decoration-none text-dark" id="booking_choose_payment-tab" data-bs-toggle="pill" data-bs-target="#booking_choose_payment" type="button" role="tab" aria-controls="booking_choose_payment" aria-selected="false"><i class='far fa-check-circle p-1'></i>Thanh toán</button>

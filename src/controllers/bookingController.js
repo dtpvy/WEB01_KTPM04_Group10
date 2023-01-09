@@ -26,7 +26,7 @@ const timeData = function (day, day2) {
 //
 controller.showBookingPage = async (req, res) => {
   let id = req.params.id;
-  const user = await models.User.findByPk(req.userId);
+  let user = await models.User.findByPk(req.userId);
 
   const busSeat = [
     { booked: 1, seatNum: 1 },
@@ -92,6 +92,8 @@ controller.showBookingPage = async (req, res) => {
     route,
     coach,
     coachId: id,
+    params: 'create_order',
+    pageId: coach.id,
   });
 };
 
@@ -225,7 +227,16 @@ controller.editOrderPage = async (req, res) => {
     order,
     coach,
     time,
+    params: 'edit_order',
+    pageId: order.id,
   });
+};
+
+controller.editOrder = async (req, res) => {
+  const id = req.params.id;
+  const { routeId, userId, payment_method } = await req.body;
+
+  await res.redirect(`/booking/booked_ticket/${id}`);
 };
 
 controller.showBookedTicket = async (req, res) => {
