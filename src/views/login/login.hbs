@@ -30,7 +30,9 @@
             Lưu thông tin đăng nhập
           </label>
         </div>
-        <span class='no-wrap'><a href='#'>Quên mật khẩu?</a></span>
+        <span class='no-wrap'>
+          <div class="text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Quên mật khẩu?</div>
+        </span>
       </div>
       {{#if error}}
         <div class='text-danger text-center mb-3'>
@@ -46,4 +48,24 @@
       <a href='register'>Đăng ký</a>
     </div>
   </form>
+</div>
+
+{{!-- Quên mật khẩu form --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" method="POST" action="./sendEmail">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Quên mật khẩu</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" onclick="sendEmail()" class="btn btn-primary" id="send-to-email">Send to email</button>
+      </div>
+    </form>
+  </div>
 </div>

@@ -14,5 +14,6 @@ router.get('/coach', function (req, res, next) {
 
 router.post('/', loginController.userLogin);
 router.post('/coach', verifyAuth, loginController.coachLogin);
+router.post('/sendEmail', loginController.sendEmail);
 
 module.exports = router;

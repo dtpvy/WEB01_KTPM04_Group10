@@ -9,6 +9,7 @@ const ImageKit = require('imagekit');
 const uuid = require('uuid');
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
+const registerRouter = require('./routes/register');
 const usersRouter = require('./routes/users');
 const bookingRouter = require('./routes/booking');
 const accountRouter = require('./routes/account');

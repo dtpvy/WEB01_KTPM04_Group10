@@ -55,7 +55,36 @@ async function coachLogin(req, res) {
   }
 }
 
+//forgot-password 
+const nodemailer = require('nodemailer');
+const sendEmail= async (email) => {
+  try{
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.elasticemail.com',
+      port: 2525,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'webvesire@gmail.com+', // ethereal user
+        pass: '0F0B3BD0156B42881021E6A855B77B27035F', // ethereal password
+      },
+    });
+
+    const msg = {
+      from: '"The Exapress App" <webvesire@gmail.com>', // sender address
+      to: `${user.email}`, // list of receivers
+      subject: 'chủ đề', // Subject line
+      text: `nội dung`, // plain text body
+    };
+    // send mail with defined transport object
+    await transporter.sendMail(msg);   
+  }
+  catch (error) {
+    console.log(error, "email not sent");
+  }
+}; 
+
 module.exports = {
   userLogin,
   coachLogin,
+  sendEmail,
 };
