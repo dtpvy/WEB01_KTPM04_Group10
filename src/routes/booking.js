@@ -1,23 +1,19 @@
 var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/bookingController');
+const { verifyAuth } = require('../middlewares/verifyAuth');
 
 /* GET booking. */
 router.get('/', function (req, res, next) {
   controller.default(req, res);
 });
 
-router.get('/step_2', function (req, res, next) {
-  controller.showStep2(req, res);
-});
+router.get('/create_order/:id', verifyAuth, controller.showBookingPage);
+router.post('/create_order/:id', verifyAuth, controller.createOrder);
+router.get('/edit_order/:id', verifyAuth, controller.editOrderPage);
+// router.get('/edit_order/:id', verifyAuth, controller.editOrder);
 
-router.get('/step_3', function (req, res, next) {
-  controller.showStep3(req, res);
-});
-
-router.get('/booked_ticket', function (req, res, next) {
-  controller.showBookedTicket(req, res);
-});
+router.get('/booked_ticket/:id', verifyAuth, controller.showBookedTicket);
 
 router.get('/cancel_ticket', function (req, res, next) {
   controller.showCancelTicket(req, res);

@@ -2,29 +2,46 @@
     class='ticket-detail--header py-2 m-0'
   >Thông tin xe</h4>
   <div class='text-start px-3 fs-6'>
-    <img src='/images/car.png' class='bus-img-width' alt='' srcset='' />
-    <P class='fw-bold fs-5'>Yellow Jaguar XF 2 Bus</P>
+    <div class='text-center'>
+      <img src='{{coach.imgUrls}}' class='bus-img-width' alt='' srcset='' />
+    </div>
+    <P class='fw-bold fs-5'>{{coach.name}}</P>
+    {{!-- <input type='text' value={{name}} class='d-none' /> --}}
     <P class='fw-light'><i class='fa fa-map-marker text-info'></i>
-      780 đường San Fran Xích Long, Fu Nhuan</P>
+      {{route.endStation.street}},
+      {{route.endStation.ward}},
+      {{route.endStation.district}}</P>
     <P class='my-1'>Nhà xe:
-      <span class='fw-semibold'>ABC</span>
-      <span class='text-info'>(5)</span><i class='fa fa-star text-warning'></i><i
-        class='fa fa-star text-warning'
-      ></i><i class='fa fa-star text-warning'></i><i class='fa fa-star text-warning'></i><i
-        class='fa fa-star text-warning'
-      ></i>
+      <span class='fw-semibold'>{{coach.Garage.name}}</span>
+      <span class='text-info'>(5)</span><i class='fa fa-star text-warning'></i>
     </P>
-    <P class='my-1'>Loại xe: <span class='fw-semibold'>Limousine - 20 chỗ</span></P>
-    <P class='my-1'>Mã chuyến xe: <span class='fw-semibold'>ABC123</span></P>
-    <p class='my-1'><span class='fw-semibold'>Quảng Ninh - Ninh Bình</span></p>
-    <P class='my-1'>Ngày đi: <span class='fw-semibold'>5/11/2022</span></P>
-    <P class='my-1'>Giờ khởi hành: <span class='fw-semibold'>18:30</span></P>
-    <P class='my-1'>Giờ tới (dự kiến): <span class='fw-semibold'>05:30</span></P>
-    <P class='my-1'>Tổng thời gian (dự kiến): <span class='fw-semibold'>12h</span></P>
+
+    <P class='my-1'>Loại xe:
+      <span class='fw-semibold'>Limousine - {{coach.seatAmount}} chỗ</span></P>
+    <P class='my-1'>Mã chuyến xe: <span class='fw-semibold'>{{coach.id}}</span></P>
+    <p class='my-1'><span class='fw-semibold'>{{route.startStation.city}}
+        -
+        {{route.endStation.city}}</span></p>
+    <input type='text' value='tuyến xe' id='booking_routes' class='d-none' />
+    <P class='my-1'>Ngày đi: <span class='fw-semibold'>{{time.startDay}}</span></P>
+    <P class='my-1'>Giờ khởi hành: <span class='fw-semibold'>{{time.startTime}}</span></P>
+    <P class='my-1'>Giờ tới (dự kiến): <span class='fw-semibold'>{{time.endTime}}</span></P>
+    <P class='my-1'>Tổng thời gian (dự kiến):
+      <span class='fw-semibold'>{{time.totalHours}}h</span></P>
+    <p class='my-1'>
+      Mô tả, Chính sách:
+      <a href='#'>xem trong chi tiết xe</a>
+    </p>
     <P class='mt-5 mb-0'>Đơn giá</P>
     <div class='d-flex justify-content-between border border-secondary rounded my-2'><p
         class='m-2'
-      >Số ghế đặt x Giá vé</p><p class='m-2 fw-semibold'>2x300</p></div>
+      >Số ghế đặt x Giá vé</p><p class='m-2 fw-semibold'>{{seatChosen}}x{{route.fare}}</p></div>
     <p class='text-end fw-semibold fs-5'>600.000 <span class='fs-6 fw-light'>VNĐ</span></p>
+    <input type='text' value='total' id='booking_total_bill' class='d-none' />
+    <p>{Email}</p>
   </div>
+  <input type='text' name='routeId' value='{{route.id}}' id='route_id' class='d-none' />
+  <input type='text' name='coachId' value='{{coach.id}}' id='booking_coach_id' class='d-none' />
+  <input type='text' name='userId' value='{{user.id}}' id='booking_user_id' class='d-none' />
+
 </div>

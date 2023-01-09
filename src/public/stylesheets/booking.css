@@ -34,6 +34,9 @@
   width: 80%;
 }
 
+#pills-tab button.active > i {
+  color: blue;
+}
 .edit-coach {
   border-radius: 16px;
   border: 5px solid #000;
@@ -59,4 +62,4 @@
 
 .edit-control--hide {
   display: none;
-} 
+}
