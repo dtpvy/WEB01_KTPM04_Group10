@@ -10,6 +10,7 @@ router.get('/employee/edit/:id', verifyGarage, garageController.editEmployeeSect
 router.get('/coach/edit/:id', verifyGarage, garageController.editCoachSection);
 
 router.post('/station/create', verifyGarage, garageController.handleStation);
+router.delete('/station/delete/:id', verifyGarage, garageController.deleteStationSection);
 router.post('/coach/create', verifyGarage, garageController.handleCoach);
 router.post('/station/edit/:id', verifyGarage, garageController.handleStation);
 // router.post('/employee/edit/id', verifyGarage, garageController.handleAddSection);

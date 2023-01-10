@@ -279,3 +279,9 @@ try {
     onChangeFloor();
   }
 } catch (e) {}
+
+const onDeleteStation = (id) => {
+  fetch(`/station/delete/${id}`, {
+    method: 'DELETE',
+  });
+};

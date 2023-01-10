@@ -86,6 +86,10 @@ async function editStationSection(req, res) {
   });
 }
 
+async function deleteStationSection(req, res) {
+  console.log(req.body);
+}
+
 async function editEmployeeSection(req, res) {
   const { id } = req.params;
   const [user, employee] = await Promise.all([
@@ -222,4 +226,5 @@ module.exports = {
   editEmployeeSection,
   handleCoach,
   editCoachSection,
+  deleteStationSection,
 };
