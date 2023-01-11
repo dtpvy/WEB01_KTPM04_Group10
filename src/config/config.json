@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "vesire_user",
+    "password": "Ptu9954XXUYDTABH4oIAvr6mZXuBhieu",
+    "database": "vesire",
+    "host": "dpg-cev35mpgp3jjsh1icisg-a.oregon-postgres.render.com",
+    "dialect": "postgres"
   }
 }
