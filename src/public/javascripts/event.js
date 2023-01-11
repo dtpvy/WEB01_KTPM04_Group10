@@ -280,11 +280,11 @@ try {
   }
 } catch (e) {}
 
-const onDeleteStation = (id) => {
-  fetch(`garage/station/delete/${id}`, {
+const onDeleteStation = (type, id) => {
+  fetch(`garage/${type}/delete/${id}`, {
     method: 'DELETE',
   }).then(() => {
-    alert('Xóa nhà xe thành công!');
+    alert('Xóa thành công!');
     location.reload();
   });
 };

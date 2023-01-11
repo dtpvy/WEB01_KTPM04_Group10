@@ -18,6 +18,7 @@ router.get('/employee/edit/:id', verifyGarage, garageController.editEmployeeSect
 // router.post('/employee/edit/id', verifyGarage, garageController.handleAddSection);
 
 router.post('/tour/create', verifyGarage, garageController.handleTour);
+router.delete('/tour/delete/:id', verifyGarage, garageController.deleteTourSection);
 
 router.get('/:id/rating', function (req, res, next) {
   res.render('./detail/rating', { layout: 'main' });

@@ -69,7 +69,6 @@ async function addSection(req, res) {
 
 async function editStationSection(req, res) {
   const { id } = req.params;
-  console.log(id);
   const location = await getLocationDetail(3);
   const station = await models.Station.findOne({ where: { id, garageId: req.garageId } });
   if (!station) throw Error();
@@ -96,6 +95,12 @@ async function editStationSection(req, res) {
 async function deleteStationSection(req, res) {
   const { id } = req.params;
   await models.Station.destroy({ where: { id }, force: false });
+  res.status(200).json({ success: true });
+}
+
+async function deleteTourSection(req, res) {
+  const { id } = req.params;
+  await models.Route.destroy({ where: { id }, force: false });
   res.status(200).json({ success: true });
 }
 
@@ -263,4 +268,5 @@ module.exports = {
   editCoachSection,
   deleteStationSection,
   handleTour,
+  deleteTourSection,
 };
