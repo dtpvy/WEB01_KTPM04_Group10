@@ -12,7 +12,7 @@ async function getGarage(req, res) {
       { model: models.Coach, include: { model: models.Route } },
     ],
   });
-  garage.Routes = await (garage.Coaches || []).reduce(async (routes, coach) => {
+  garage.Routes = (garage.Coaches || []).reduce((routes, coach) => {
     const newRoutes = (coach.Routes || []).map((route) => {
       const startStation = garage.Stations.find(({ id }) => id === route.startStationId);
       const endStation = garage.Stations.find(({ id }) => id === route.endStationId);
@@ -23,10 +23,8 @@ async function getGarage(req, res) {
         endStation,
       };
     });
-    console.log(newRoutes.length, newRoutes, routes, routes.length);
     return routes.length ? [...routes, ...newRoutes] : [...newRoutes];
   }, []);
-  console.log(garage.Routes.length, garage.Routes);
   const user = garage.Users.find((user) => user.id === req.userId);
   res.render('./garage/index', { layout: 'main', garage, user });
 }
