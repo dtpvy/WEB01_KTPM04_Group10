@@ -8,30 +8,26 @@ async function getGarage(req, res) {
     include: [
       { model: models.User },
       { model: models.Station },
-      { model: models.Coach },
-      // { model: models.Route },
+      { model: models.Coach, include: { model: models.Route } },
     ],
   });
-  // garage.Routes = await garage.Coaches.reduce(async (routes, coach) => {
-  //   routes = [
-  //     ...routes,
-  //     ...(await Promise.all(
-  //       coach.Routes.map(async (route) => {
-  //         const [startStation, endStation] = await Promise.all([
-  //           await models.Station.findOne({ where: { id: route.startStationId } }),
-  //           await models.Station.findOne({ where: { id: route.endStationId } }),
-  //         ]);
-  //         return {
-  //           coach,
-  //           route,
-  //           startStation,
-  //           endStation,
-  //         };
-  //       })
-  //     )),
-  //   ];
-  //   return routes;
-  // }, []);
+  garage.Routes = await (garage.Coaches || []).reduce(async (routes, coach) => {
+    const newRoutes = await Promise.all(
+      (coach.Routes || []).map(async (route) => {
+        console.log(route.startStationId, route.endStationId);
+        const startStation = await models.Station.findOne({ where: { id: route.startStationId } });
+        const endStation = await models.Station.findOne({ where: { id: route.endStationId } });
+        return {
+          coach,
+          route,
+          startStation,
+          endStation,
+        };
+      })
+    );
+    return routes.length ? [...routes, ...newRoutes] : newRoutes;
+  }, []);
+
   const user = garage.Users.find((user) => user.id === req.userId);
   res.render('./garage/index', { layout: 'main', garage, user });
 }
