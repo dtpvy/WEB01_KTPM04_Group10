@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Route',
+      paranoid: true,
     }
   );
   return Route;
