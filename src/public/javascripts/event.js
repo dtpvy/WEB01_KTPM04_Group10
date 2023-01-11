@@ -281,7 +281,10 @@ try {
 } catch (e) {}
 
 const onDeleteStation = (id) => {
-  fetch(`/station/delete/${id}`, {
+  fetch(`garage/station/delete/${id}`, {
     method: 'DELETE',
+  }).then(() => {
+    alert('Xóa nhà xe thành công!');
+    location.reload();
   });
 };
