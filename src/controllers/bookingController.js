@@ -28,44 +28,12 @@ controller.showBookingPage = async (req, res) => {
   let id = req.params.id;
   const user = await models.User.findByPk(req.userId);
 
-  const busSeat = [
-    { booked: 1, seatNum: 1 },
-    { booked: 1, seatNum: 2 },
-    { booked: 0, seatNum: 3 },
-    { booked: 0, seatNum: 4 },
-    { booked: 1, seatNum: 5 },
-    { booked: 0, seatNum: 6 },
-    { booked: 0, seatNum: 7 },
-    { booked: 1, seatNum: 8 },
-    { booked: 0, seatNum: 9 },
-    { booked: 1, seatNum: 10 },
-  ];
-  const coach = await models.Coach.findOne({
-    where: {
-      id: id,
-    },
+  const route = await models.Route.findOne({
+    where: { id },
     include: [
       {
-        model: models.Garage,
+        model: models.Coach,
       },
-    ],
-  });
-  // res.locals.seat = await models.Seat.findOne({
-  //   where: {
-  //     coachId: id,
-  //   },
-  //   include: [
-  //     {
-  //       model: models.Coach,
-  //       required: true,
-  //     },
-  //   ],
-  // });
-  const route = await models.Route.findOne({
-    where: {
-      coachId: id,
-    },
-    include: [
       {
         model: models.Station,
         as: 'startStation',
@@ -78,6 +46,19 @@ controller.showBookingPage = async (req, res) => {
       },
     ],
   });
+  const orders = await models.Order.findAll({ where: { routeId: route.id }, include: models.Seat });
+  const seatBooked = orders.reduce((seatBooked, order) => {
+    return [...seatBooked, ...order.Seats.map((seat) => seat.id)];
+  }, []);
+  console.log(seatBooked);
+  const _seats = await models.Seat.findAll({ where: { coachId: route.Coach.id } });
+  const seats = _seats.reduce((floor, seat) => {
+    seat.status = seatBooked.find((id) => seat.id === id) ? 'booked' : seat.status;
+    floor[seat.floor] = floor[seat.floor] || [];
+    floor[seat.floor][seat.row] = floor[seat.floor][seat.row] || [];
+    floor[seat.floor][seat.row][seat.column] = { id: seat.id, status: seat.status } || {};
+    return floor;
+  }, {});
 
   const day = new Date(route.startTime);
   const day2 = new Date(route.endTime);
@@ -85,26 +66,32 @@ controller.showBookingPage = async (req, res) => {
 
   res.render('booking/step_1', {
     layout: 'main',
-    busSeat,
+    busSeat: seats,
+    floor: Object.keys(seats),
     user,
     time,
     seatChosen: 0,
     route,
-    coach,
-    coachId: id,
+    coach: route.Coach,
+    coachId: route.Coach.id,
   });
 };
 
 controller.createOrder = async (req, res) => {
   const id = req.params.id;
-  const { routeId, userId, payment_method } = await req.body;
+  const { routeId, userId, payment_method, seat_value, total } = req.body;
+  const seats = JSON.parse(seat_value);
+  console.log(seats);
   if (payment_method == 'booking_directly_method') {
     const order = await models.Order.create({
       routeId: routeId,
       userId: userId,
       status: 'SUCCESS',
       method: 'trực tiếp',
-    }).catch((error) => console.log(error));
+      total,
+    });
+    const _seats = await models.Seat.findAll({ where: { id: seats } });
+    await order.addSeats(_seats);
     const user = await models.User.findOne({
       where: {
         id: userId,
@@ -240,8 +227,14 @@ controller.showBookedTicket = async (req, res) => {
         model: models.User,
         required: true,
       },
+      {
+        model: models.Seat,
+      },
     ],
   });
+
+  const seats = order.Seats.map((seat) => `${seat.floor}${seat.row}${seat.column}`).join(', ');
+
   const route = await models.Route.findOne({
     where: {
       id: order.routeId,
@@ -287,6 +280,7 @@ controller.showBookedTicket = async (req, res) => {
     time,
     orderCreatedTime,
     garage,
+    seats,
   });
 };
 

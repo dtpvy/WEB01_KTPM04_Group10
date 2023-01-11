@@ -69,7 +69,6 @@ async function addSection(req, res) {
 
 async function editStationSection(req, res) {
   const { id } = req.params;
-  console.log(id);
   const location = await getLocationDetail(3);
   const station = await models.Station.findOne({ where: { id, garageId: req.garageId } });
   if (!station) throw Error();
@@ -96,6 +95,18 @@ async function editStationSection(req, res) {
 async function deleteStationSection(req, res) {
   const { id } = req.params;
   await models.Station.destroy({ where: { id }, force: false });
+  res.status(200).json({ success: true });
+}
+
+async function deleteTourSection(req, res) {
+  const { id } = req.params;
+  await models.Route.destroy({ where: { id }, force: false });
+  res.status(200).json({ success: true });
+}
+
+async function deleteCoachSection(req, res) {
+  const { id } = req.params;
+  await models.Coach.destroy({ where: { id }, force: false });
   res.status(200).json({ success: true });
 }
 
@@ -199,8 +210,8 @@ async function handleStation(req, res) {
 async function handleCoach(req, res) {
   const id = req.params.id;
   const { name, code, floor, floor_value, path_img, amount_seats: seatAmount } = req.body;
+  const floorValue = JSON.parse(floor_value);
   if (!id) {
-    const floorValue = JSON.parse(floor_value);
     const coach = await models.Coach.create({
       name,
       code,
@@ -218,13 +229,30 @@ async function handleCoach(req, res) {
     });
     res.redirect(`/garage/coach/create`);
   } else {
-    await models.Station.update(
-      { street, name, city, district, ward, phone },
+    const _seats = await models.Seat.findAll({ where: { coachId: id } });
+    const seats = _seats.reduce((floor, seat) => {
+      floor[seat.floor] = floor[seat.floor] || [];
+      floor[seat.floor][seat.row] = floor[seat.floor][seat.row] || [];
+      floor[seat.floor][seat.row][seat.column] = seat.status || '';
+      return floor;
+    }, {});
+    await models.Coach.update(
+      { name, code, floor, imgUrls: [path_img], seatAmount },
       {
         where: { id },
       }
     );
-    res.redirect(`/garage/station/edit/${id}`);
+    if (floor_value !== JSON.stringify(seats)) {
+      await models.Seat.destroy({ where: { coachId: id }, force: false });
+      Object.keys(floorValue).forEach((floor) => {
+        floorValue[floor].forEach((rowValue, row) => {
+          rowValue.forEach(async (status, column) => {
+            await models.Seat.create({ status, floor, column, row, coachId: id });
+          });
+        });
+      });
+    }
+    res.redirect(`/garage/coach/edit/${id}`);
   }
 }
 
@@ -263,4 +291,6 @@ module.exports = {
   editCoachSection,
   deleteStationSection,
   handleTour,
+  deleteTourSection,
+  deleteCoachSection,
 };
