@@ -63,6 +63,7 @@ async function addSection(req, res) {
 
 async function editStationSection(req, res) {
   const { id } = req.params;
+  console.log(id);
   const location = await getLocationDetail(3);
   const station = await models.Station.findOne({ where: { id, garageId: req.garageId } });
   if (!station) throw Error();
@@ -84,6 +85,12 @@ async function editStationSection(req, res) {
     wards,
     station,
   });
+}
+
+async function deleteStationSection(req, res) {
+  const { id } = req.params;
+  await models.Station.destroy({ where: { id }, force: false });
+  res.status(200).json({ success: true });
 }
 
 async function editEmployeeSection(req, res) {
@@ -124,6 +131,7 @@ async function editEmployeeSection(req, res) {
 
 async function editCoachSection(req, res) {
   const { id } = req.params;
+  console.log(id);
   const [user, coach] = await Promise.all([
     (
       await models.Garage.findOne({
@@ -222,4 +230,5 @@ module.exports = {
   editEmployeeSection,
   handleCoach,
   editCoachSection,
+  deleteStationSection,
 };
