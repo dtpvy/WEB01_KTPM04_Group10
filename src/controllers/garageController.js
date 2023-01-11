@@ -13,19 +13,18 @@ async function getGarage(req, res) {
     ],
   });
   garage.Routes = await (garage.Coaches || []).reduce(async (routes, coach) => {
-    const newRoutes = await Promise.all(
-      (coach.Routes || []).map(async (route) => {
-        const startStation = await models.Station.findOne({ where: { id: route.startStationId } });
-        const endStation = await models.Station.findOne({ where: { id: route.endStationId } });
-        return {
-          coach,
-          route,
-          startStation,
-          endStation,
-        };
-      })
-    );
-    return routes.length ? [...routes, ...newRoutes] : newRoutes;
+    const newRoutes = (coach.Routes || []).map((route) => {
+      const startStation = garage.Stations.find(({ id }) => id === route.startStationId);
+      const endStation = garage.Stations.find(({ id }) => id === route.endStationId);
+      return {
+        coach,
+        route,
+        startStation,
+        endStation,
+      };
+    });
+    console.log(newRoutes.length, newRoutes, routes, routes.length);
+    return routes.length ? [...routes, ...newRoutes] : [...newRoutes];
   }, []);
   console.log(garage.Routes.length, garage.Routes);
   const user = garage.Users.find((user) => user.id === req.userId);
