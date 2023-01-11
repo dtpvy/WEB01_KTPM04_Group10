@@ -120,7 +120,7 @@
         </div>
       </div>
       <input class='d-none' type='text' id='path_img' name='path_img'
-        value='{{user.imgUrl}}' />
+        value='{{coach.imgUrls.[0]}}' />
       <div class='d-flex flex-column'>
         <div>
           <div class='avatar d-flex align-items-center
@@ -128,7 +128,7 @@
             <img
               id='avatar-view'
               class='avatar-pic'
-              src='{{or user.imgUrl "/images/account/avatar.png"}}'
+              src='{{or coach.imgUrls.[0] "https://ik.imagekit.io/0o9nfg6a3/istockphoto-52806…-version=javascript-1.4.3&updatedAt=1671854117599"}}'
               alt='avatar-user'
               />
           </div>

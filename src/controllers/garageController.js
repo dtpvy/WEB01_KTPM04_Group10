@@ -204,8 +204,8 @@ async function handleStation(req, res) {
 async function handleCoach(req, res) {
   const id = req.params.id;
   const { name, code, floor, floor_value, path_img, amount_seats: seatAmount } = req.body;
+  const floorValue = JSON.parse(floor_value);
   if (!id) {
-    const floorValue = JSON.parse(floor_value);
     const coach = await models.Coach.create({
       name,
       code,
@@ -223,13 +223,30 @@ async function handleCoach(req, res) {
     });
     res.redirect(`/garage/coach/create`);
   } else {
-    await models.Station.update(
-      { street, name, city, district, ward, phone },
+    const _seats = await models.Seat.findAll({ where: { coachId: id } });
+    const seats = _seats.reduce((floor, seat) => {
+      floor[seat.floor] = floor[seat.floor] || [];
+      floor[seat.floor][seat.row] = floor[seat.floor][seat.row] || [];
+      floor[seat.floor][seat.row][seat.column] = seat.status || '';
+      return floor;
+    }, {});
+    await models.Coach.update(
+      { name, code, floor, imgUrls: [path_img], seatAmount },
       {
         where: { id },
       }
     );
-    res.redirect(`/garage/station/edit/${id}`);
+    if (floor_value !== JSON.stringify(seats)) {
+      await models.Seat.destroy({ where: { coachId: id }, force: false });
+      Object.keys(floorValue).forEach((floor) => {
+        floorValue[floor].forEach((rowValue, row) => {
+          rowValue.forEach(async (status, column) => {
+            await models.Seat.create({ status, floor, column, row, coachId: id });
+          });
+        });
+      });
+    }
+    res.redirect(`/garage/coach/edit/${id}`);
   }
 }
 
