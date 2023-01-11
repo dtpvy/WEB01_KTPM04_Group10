@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/create_order/:id', verifyAuth, controller.showBookingPage);
 router.post('/create_order/:id', verifyAuth, controller.createOrder);
-router.get('/edit_order/:id', verifyAuth, controller.editOrderPage);
+// router.get('/edit_order/:id', verifyAuth, controller.editOrderPage);
 // router.get('/edit_order/:id', verifyAuth, controller.editOrder);
 
 router.get('/booked_ticket/:id', verifyAuth, controller.showBookedTicket);

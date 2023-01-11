@@ -17,7 +17,9 @@
       </ul>
       <P class='fw-semibold'>Số ghế:</P>
       <ul>
-        <li class='pt-2 text-secondary'>A01, A02</li>
+        <li class='pt-2 text-secondary'>
+          {{seats}}
+        </li>
       </ul>
     </div>
     <div class='w-50 text-start pe-4'>
@@ -25,7 +27,9 @@
 
       <p></p>
       <ul>
-        <li class='pt-2 text-secondary'>Số tiền thanh toán: 600.000vnd (đã khấu trừ voucher)</li>
+        <li class='pt-2 text-secondary'>Số tiền thanh toán:
+          {{formatNumber order.total ' VNĐ'}}
+          (đã khấu trừ voucher)</li>
         <li class='pt-2 text-secondary'>Hình thức thanh toán: {{order.method}}</li>
         <li class='pt-2 text-secondary'>Trạng thái: đã thanh toán</li>
       </ul>

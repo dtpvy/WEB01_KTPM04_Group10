@@ -227,8 +227,14 @@ controller.showBookedTicket = async (req, res) => {
         model: models.User,
         required: true,
       },
+      {
+        model: models.Seat,
+      },
     ],
   });
+
+  const seats = order.Seats.map((seat) => `${seat.floor}${seat.row}${seat.column}`).join(', ');
+
   const route = await models.Route.findOne({
     where: {
       id: order.routeId,
@@ -274,6 +280,7 @@ controller.showBookedTicket = async (req, res) => {
     time,
     orderCreatedTime,
     garage,
+    seats,
   });
 };
 
