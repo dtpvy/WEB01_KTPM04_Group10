@@ -57,6 +57,19 @@ async function addSection(req, res) {
     );
     res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false, roles });
     return;
+  } else if (section === 'tour') {
+    const garage = await models.Garage.findOne({
+      where: { id: req.garageId },
+      include: [{ model: models.Station }, { model: models.Coach }],
+    });
+    console.log(garage);
+    res.render(`./garage/edit-${section}`, {
+      layout: 'main',
+      isEdit: false,
+      stations: garage.Stations,
+      coaches: garage.Coaches,
+    });
+    return;
   }
   res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false });
 }
@@ -222,6 +235,31 @@ async function handleCoach(req, res) {
   }
 }
 
+async function handleTour(req, res) {
+  const id = req.params.id;
+  const { station_start, station_end, date_end, date_start, price, coach } = req.body;
+  console.log(req.body);
+  if (!id) {
+    const route = await models.Route.create({
+      startTime: new Date(date_start),
+      endTime: new Date(date_end),
+      fare: price,
+      startStationId: station_start,
+      endStationId: station_end,
+      coachId: coach,
+    });
+    res.redirect(`/garage/tour/create`);
+  } else {
+    await models.Station.update(
+      { street, name, city, district, ward, phone },
+      {
+        where: { id },
+      }
+    );
+    res.redirect(`/garage/station/edit/${id}`);
+  }
+}
+
 module.exports = {
   getGarage,
   addSection,
@@ -231,4 +269,5 @@ module.exports = {
   handleCoach,
   editCoachSection,
   deleteStationSection,
+  handleTour,
 };
