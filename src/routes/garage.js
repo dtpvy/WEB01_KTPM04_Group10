@@ -14,6 +14,7 @@ router.post('/station/edit/:id', verifyGarage, garageController.handleStation);
 router.get('/coach/edit/:id', verifyGarage, garageController.editCoachSection);
 router.post('/coach/create', verifyGarage, garageController.handleCoach);
 router.post('/coach/edit/:id', verifyGarage, garageController.handleCoach);
+router.delete('/coach/delete/:id', verifyGarage, garageController.deleteCoachSection);
 
 router.get('/employee/edit/:id', verifyGarage, garageController.editEmployeeSection);
 // router.post('/employee/edit/id', verifyGarage, garageController.handleAddSection);

@@ -104,6 +104,12 @@ async function deleteTourSection(req, res) {
   res.status(200).json({ success: true });
 }
 
+async function deleteCoachSection(req, res) {
+  const { id } = req.params;
+  await models.Coach.destroy({ where: { id }, force: false });
+  res.status(200).json({ success: true });
+}
+
 async function editEmployeeSection(req, res) {
   const { id } = req.params;
   const [user, employee] = await Promise.all([
@@ -286,4 +292,5 @@ module.exports = {
   deleteStationSection,
   handleTour,
   deleteTourSection,
+  deleteCoachSection,
 };
