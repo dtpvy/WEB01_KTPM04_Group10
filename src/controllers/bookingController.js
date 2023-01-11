@@ -2,28 +2,8 @@ const controller = {};
 const models = require('../models');
 const sequelize = require('sequelize');
 const nodemailer = require('nodemailer');
+const { timeData } = require('../utility/utility.js');
 
-// Hàm linh tinh
-
-function diff_hours(dt2, dt1) {
-  var diff = (dt2.getTime() - dt1.getTime()) / 1000;
-  diff /= 60 * 60;
-  return Math.abs(Math.round(diff));
-}
-
-const timeData = function (day, day2) {
-  return {
-    startDay: day.toLocaleDateString('en-US'),
-    startTime: `${day.getHours() > 9 ? day.getHours() : '0' + day.getHours()}:${
-      day.getMinutes() > 9 ? day.getMinutes() : '0' + day.getMinutes()
-    }`,
-    endTime: `${day2.getHours() > 9 ? day2.getHours() : '0' + day2.getHours()}:${
-      day2.getMinutes() > 9 ? day2.getMinutes() : '0' + day2.getMinutes()
-    }`,
-    totalHours: diff_hours(day, day2),
-  };
-};
-//
 controller.showBookingPage = async (req, res) => {
   let id = req.params.id;
   let user = await models.User.findByPk(req.userId);

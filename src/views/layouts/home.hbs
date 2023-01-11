@@ -20,7 +20,9 @@
       <img src='images/bg_home.png' alt='' width='100%' height='300px' />
       <div class='home__search'>
         <h1 class='home__title'>VESIRE</h1>
-        {{> search}}
+        <form action='/search' method='GET'>
+          {{> search}}
+        </form>
       </div>
       {{#if user}}
         <div 

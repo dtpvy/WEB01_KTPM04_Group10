@@ -214,6 +214,27 @@ async function handleCoach(req, res) {
   }
 }
 
+//show detail nhà xe
+async function showGarageDetail(req, res) {
+  const id = req.params.id;
+  const garage = await models.Garage.findOne({
+    where: {
+      id: id,
+    },
+  });
+  const station = await models.Station.findAll({
+    where: {
+      garageId: id,
+    },
+  });
+  res.render('./detail/detail', { layout: 'main', id, garage, station });
+}
+//show detail rating
+async function showGarageRating(req, res) {
+  const id = req.params.id;
+  res.render('./detail/rating', { layout: 'main', id });
+}
+
 module.exports = {
   getGarage,
   addSection,
@@ -222,4 +243,6 @@ module.exports = {
   editEmployeeSection,
   handleCoach,
   editCoachSection,
+  showGarageDetail,
+  showGarageRating,
 };
