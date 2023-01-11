@@ -1,6 +1,7 @@
 const models = require('../models/index');
 const jwt = require('jsonwebtoken');
 const { getLocation, getLocationDetail } = require('../services/location');
+const { route } = require('../routes');
 
 async function getGarage(req, res) {
   const garage = await models.Garage.findOne({
@@ -14,7 +15,6 @@ async function getGarage(req, res) {
   garage.Routes = await (garage.Coaches || []).reduce(async (routes, coach) => {
     const newRoutes = await Promise.all(
       (coach.Routes || []).map(async (route) => {
-        console.log(route.startStationId, route.endStationId);
         const startStation = await models.Station.findOne({ where: { id: route.startStationId } });
         const endStation = await models.Station.findOne({ where: { id: route.endStationId } });
         return {
@@ -27,7 +27,7 @@ async function getGarage(req, res) {
     );
     return routes.length ? [...routes, ...newRoutes] : newRoutes;
   }, []);
-
+  console.log(garage.Routes.length, garage.Routes);
   const user = garage.Users.find((user) => user.id === req.userId);
   res.render('./garage/index', { layout: 'main', garage, user });
 }
