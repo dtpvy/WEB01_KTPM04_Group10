@@ -10,93 +10,86 @@
   </div>
   <form method='post' id='edit_profile_form'>
     <div class='d-flex align-items-center justify-content-between'>
-      <div class='w-50 d-flex align-items-center'>
-        <div class='w-100'>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='fullname'><b>Họ Tên</b></label>
-            <input
-              class='form-control w-100'
-              type='text'
-              name='fullname'
-              value='{{user.fullname}}'
-              placeholder='Họ Tên'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='birthday'><b>Ngày sinh</b></label>
-            <input
-              class='form-control w-100'
-              type='date'
-              name='birthday'
-              value='{{user.dateOfBirth}}'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='email'><b>Email</b></label>
-            <input
-              class='form-control w-100'
-              type='email'
-              name='email'
-              value='{{user.email}}'
-              placeholder='Email'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='phone'><b>Số điện thoại</b></label>
-            <input
-              class='form-control w-100'
-              type='text'
-              name='phone'
-              value='{{user.phone}}'
-              placeholder='Số điện thoại'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='newpassword'><b>Mật khẩu mới</b></label>
-            <input
-              class='form-control w-100'
-              type='password'
-              name='newpassword'
-              placeholder='Mật khẩu mới'
-            />
-          </div>
-          <div style='display:flex; flex-direction:column;'>
-            <label for='repassword'><b>Xác nhận mật khẩu</b></label>
-            <input
-              class='form-control w-100'
-              type='password'
-              name='repassword'
-              placeholder='Xác nhận mật khẩu'
-            />
-          </div>
+      <div class='w-100'>
+        <div style='display:flex; flex-direction:column;'>
+          <label for='station_start'><b>Bến đi:</b></label>
+          <select id="station_start" name="station_start" class="form-select"
+            aria-placeholder="Chọn bến xe đi" required>
+            <option value="">Chọn bến xe đi</option>
+            {{#each stations}}
+              {{#if (and ../station (equal ../station.city this))}}
+                <option value="{{this}}" selected>{{this}}</option>
+              {{else}}
+                <option value="{{this.id}}">{{this.name}}</option>
+              {{/if}}
+            {{/each}}
+          </select>
+        </div>
+        <div style='display:flex; flex-direction:column;'>
+          <label for='station_end'><b>Bến đến:</b></label>
+          <select id="station_end" name="station_end" class="form-select"
+            aria-placeholder="Chọn bến xe đến" required>
+            <option value="">Chọn bến xe đến</option>
+            {{#each stations}}
+              {{#if (and ../station (equal ../station.city this))}}
+                <option value="{{this}}" selected>{{this}}</option>
+              {{else}}
+                <option value="{{this.id}}">{{this.name}}</option>
+              {{/if}}
+            {{/each}}
+          </select>
+        </div>
+        <div style='display:flex; flex-direction:column;'>
+          <label for='date_start'><b>Ngày bắt đầu:</b></label>
+          <input
+            class='form-control w-100'
+            type='datetime-local'
+            name='date_start'
+            value='{{user.dateOfBirth}}'
+          />
+        </div>
+        <div style='display:flex; flex-direction:column;'>
+          <label for='date_end'><b>Ngày kết thúc:</b></label>
+          <input
+            class='form-control w-100'
+            type='datetime-local'
+            name='date_end'
+            value='{{user.dateOfBirth}}'
+          />
+        </div>
+        <div style='display:flex; flex-direction:column;'>
+          <label for='coach'><b>Xe di chuyển:</b></label>
+          <select id="coach" name="coach" class="form-select"
+            aria-placeholder="Chọn xe di chuyển" required>
+            <option value="">Chọn xe di chuyển</option>
+            {{#each coaches}}
+              {{#if (and ../station (equal ../station.city this))}}
+                <option value="{{this}}" selected>{{this}}</option>
+              {{else}}
+                <option value="{{this.id}}">{{this.name}}</option>
+              {{/if}}
+            {{/each}}
+          </select>
+        </div>
+        <div style='display:flex; flex-direction:column;'>
+          <label for='price'><b>Giá vé xe:</b></label>
+          <input
+            class='form-control w-100'
+            type='number'
+            name='price'
+            placeholder='Giá vé xe (VNĐ)'
+          />
         </div>
       </div>
-      <input class='d-none' type='text' id='path_img' name='path_img' value='{{user.imgUrl}}' />
-      <div class='d-flex flex-column'>
-        <div>
-          <div class='avatar d-flex align-items-center justify-content-center'>
-            <img
-              id='avatar-view'
-              class='avatar-pic'
-              src='{{or user.imgUrl "/images/account/avatar.png"}}'
-              alt='avatar-user'
-            />
-          </div>
-          <div class='my-3'>
-            <input
-              onchange="uploadImage('userImageFile','path_img',showImg, 'avatar-view')"
-              class='form-control'
-              type='file'
-              id='userImageFile'
-              name='image'
-            />
-          </div>
-          <div class="d-flex flex-column gap-2">
-            <button class="btn btn-primary w-100">Tạo</button>
-            <button onclick="onNavigateTo('account')" type="button" class="btn btn-outline-primary w-100">Quay lại</button>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div class="d-flex gap-2 mt-3">
+      {{#if isEdit}}
+      <button class="btn btn-primary w-100">Cập nhật</button>
+      {{else}}
+      <button class="btn btn-primary w-100">Tạo</button>
+      {{/if}}
+      <button onclick="onNavigateTo('garage')" type="button" class="btn
+        btn-outline-primary w-100">Quay lại</button>
     </div>
   </form>
 </div>
