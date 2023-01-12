@@ -10,6 +10,22 @@ const onLogout = async () => {
   }
 };
 
+const onSendPassword = async (isCoach) => {
+  const send = document.getElementsByName('send')[0];
+  try {
+    const result = await fetch(
+      `../account/${isCoach ? 'coach/forget_password' : 'forget_password'}/${send.value}`,
+      {
+        method: 'post',
+      }
+    );
+    if (result === 'fail') throw new Error('error');
+    alert('Đã gửi. Vui lòng kiểm tra mail!');
+  } catch (err) {
+    alert('Gửi thất bại. Vui lòng thử lại!');
+  }
+};
+
 const toast = document.querySelector('.toast-message');
 setTimeout(() => {
   if (toast && toast.style.display !== 'none') {

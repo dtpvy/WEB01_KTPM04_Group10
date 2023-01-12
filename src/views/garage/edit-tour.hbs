@@ -17,8 +17,8 @@
             aria-placeholder="Chọn bến xe đi" required>
             <option value="">Chọn bến xe đi</option>
             {{#each stations}}
-              {{#if (and ../station (equal ../station.city this))}}
-                <option value="{{this}}" selected>{{this}}</option>
+              {{#if (and ../tour (equal ../tour.startStationId this.id))}}
+                <option value="{{this.id}}" selected>{{this.name}}</option>
               {{else}}
                 <option value="{{this.id}}">{{this.name}}</option>
               {{/if}}
@@ -31,8 +31,8 @@
             aria-placeholder="Chọn bến xe đến" required>
             <option value="">Chọn bến xe đến</option>
             {{#each stations}}
-              {{#if (and ../station (equal ../station.city this))}}
-                <option value="{{this}}" selected>{{this}}</option>
+              {{#if (and ../tour (equal ../tour.endStationId this.id))}}
+                <option value="{{this.id}}" selected>{{this.name}}</option>
               {{else}}
                 <option value="{{this.id}}">{{this.name}}</option>
               {{/if}}
@@ -45,7 +45,7 @@
             class='form-control w-100'
             type='datetime-local'
             name='date_start'
-            value='{{user.dateOfBirth}}'
+            value='{{startTime}}'
           />
         </div>
         <div style='display:flex; flex-direction:column;'>
@@ -54,7 +54,7 @@
             class='form-control w-100'
             type='datetime-local'
             name='date_end'
-            value='{{user.dateOfBirth}}'
+            value='{{endTime}}'
           />
         </div>
         <div style='display:flex; flex-direction:column;'>
@@ -63,8 +63,8 @@
             aria-placeholder="Chọn xe di chuyển" required>
             <option value="">Chọn xe di chuyển</option>
             {{#each coaches}}
-              {{#if (and ../station (equal ../station.city this))}}
-                <option value="{{this}}" selected>{{this}}</option>
+              {{#if (and ../tour (equal ../tour.coachId this.id))}}
+                <option value="{{this.id}}" selected>{{this.name}}</option>
               {{else}}
                 <option value="{{this.id}}">{{this.name}}</option>
               {{/if}}
@@ -78,6 +78,7 @@
             type='number'
             name='price'
             placeholder='Giá vé xe (VNĐ)'
+            value='{{tour.fare}}'
           />
         </div>
       </div>

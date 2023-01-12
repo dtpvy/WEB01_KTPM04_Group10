@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         as: 'endStation',
         foreignKey: 'endStationId',
       });
+      Route.hasMany(models.Order, {
+        foreignKey: 'routeId',
+      });
     }
   }
   Route.init(

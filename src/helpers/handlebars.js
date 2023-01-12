@@ -42,7 +42,7 @@ module.exports = {
     return address.join(', ');
   },
   formatNumber: (number, suffix = ' VNĐ') => {
-    return number.toLocaleString('vi-VN') + suffix;
+    return (number || 0).toLocaleString('vi-VN') + suffix;
   },
   getLocation: (location, level, search) => {
     if (level === 1) {

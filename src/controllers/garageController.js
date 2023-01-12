@@ -1,7 +1,7 @@
 const models = require('../models/index');
 const jwt = require('jsonwebtoken');
 const { getLocation, getLocationDetail } = require('../services/location');
-const { route } = require('../routes');
+const moment = require('moment');
 
 async function getGarage(req, res) {
   const garage = await models.Garage.findOne({
@@ -9,18 +9,27 @@ async function getGarage(req, res) {
     include: [
       { model: models.User },
       { model: models.Station },
-      { model: models.Coach, include: { model: models.Route } },
+      {
+        model: models.Coach,
+        include: { model: models.Route, include: { model: models.Order, include: models.Seat } },
+      },
     ],
   });
   garage.Routes = (garage.Coaches || []).reduce((routes, coach) => {
     const newRoutes = (coach.Routes || []).map((route) => {
+      const seatBooked = route.Orders.reduce((total, order) => {
+        return (total += order.Seats.length);
+      }, 0);
       const startStation = garage.Stations.find(({ id }) => id === route.startStationId);
       const endStation = garage.Stations.find(({ id }) => id === route.endStationId);
+      const time = parseFloat((route.endTime - route.startTime) / (3600 * 1000));
       return {
         coach,
         route,
         startStation,
         endStation,
+        seatBooked,
+        time: time.toFixed(2),
       };
     });
     return routes.length ? [...routes, ...newRoutes] : [...newRoutes];
@@ -55,7 +64,7 @@ async function addSection(req, res) {
       where: { id: req.garageId },
       include: [{ model: models.Station }, { model: models.Coach }],
     });
-    console.log(garage);
+
     res.render(`./garage/edit-${section}`, {
       layout: 'main',
       isEdit: false,
@@ -89,6 +98,27 @@ async function editStationSection(req, res) {
     districts,
     wards,
     station,
+  });
+}
+
+async function editTourSection(req, res) {
+  const { id } = req.params;
+  const tour = await models.Route.findOne({ where: { id } });
+  const garage = await models.Garage.findOne({
+    where: { id: req.garageId },
+    include: [{ model: models.Station }, { model: models.Coach }],
+  });
+  const startTime = moment(tour.startTime).format('YYYY-MM-DDThh:mm');
+  const endTime = moment(tour.endTime).format('YYYY-MM-DDThh:mm');
+  console.log(startTime, endTime);
+  res.render(`./garage/edit-tour`, {
+    layout: 'main',
+    isEdit: true,
+    tour,
+    stations: garage.Stations,
+    coaches: garage.Coaches,
+    startTime,
+    endTime,
   });
 }
 
@@ -271,13 +301,20 @@ async function handleTour(req, res) {
     });
     res.redirect(`/garage/tour/create`);
   } else {
-    await models.Station.update(
-      { street, name, city, district, ward, phone },
+    await models.Route.update(
+      {
+        startTime: new Date(date_start),
+        endTime: new Date(date_end),
+        fare: price,
+        startStationId: station_start,
+        endStationId: station_end,
+        coachId: coach,
+      },
       {
         where: { id },
       }
     );
-    res.redirect(`/garage/station/edit/${id}`);
+    res.redirect(`/garage/tour/edit/${id}`);
   }
 }
 
@@ -387,4 +424,5 @@ module.exports = {
   showGarageDetail,
   showGarageRating,
   rateGarage,
+  editTourSection,
 };
