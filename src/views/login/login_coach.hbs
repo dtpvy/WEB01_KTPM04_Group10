@@ -29,7 +29,11 @@
             Lưu thông tin đăng nhập
           </label>
         </div>
-        <span class='no-wrap'><a href='#'>Quên mật khẩu?</a></span>
+        <span class='no-wrap'><div
+            class='text-primary'
+            data-bs-toggle='modal'
+            data-bs-target='#forget_password'
+          >Quên mật khẩu?</div></span>
       </div>
       {{#if error}}
         <div class='text-danger text-center mb-3'>
@@ -45,4 +49,28 @@
       <a href='../register/coach'>Đăng ký</a>
     </div>
   </form>
+</div>
+
+<div
+  class='modal fade'
+  id='forget_password'
+  tabindex='-1'
+  aria-labelledby='forget_password_label'
+  aria-hidden='true'
+>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h1 class='modal-title fs-5' id='exampleModalLabel'>Quên mật khẩu</h1>
+        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+      </div>
+      <div class='modal-body'>
+        <input class='form-control w-100' type='text' name='send' placeholder='Mã nhà xe' />
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Hủy</button>
+        <button onclick='onSendPassword(true)' type='button' class='btn btn-primary'>Gửi mail</button>
+      </div>
+    </div>
+  </div>
 </div>

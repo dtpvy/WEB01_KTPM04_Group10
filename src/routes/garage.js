@@ -20,7 +20,9 @@ router.delete('/coach/delete/:id', verifyGarage, garageController.deleteCoachSec
 router.get('/employee/edit/:id', verifyGarage, garageController.editEmployeeSection);
 // router.post('/employee/edit/id', verifyGarage, garageController.handleAddSection);
 
+router.get('/tour/edit/:id', verifyGarage, garageController.editTourSection);
 router.post('/tour/create', verifyGarage, garageController.handleTour);
+router.post('/tour/edit/:id', verifyGarage, garageController.handleTour);
 router.delete('/tour/delete/:id', verifyGarage, garageController.deleteTourSection);
 
 router.get('/:id/rating', checkAuth, garageController.showGarageRating);

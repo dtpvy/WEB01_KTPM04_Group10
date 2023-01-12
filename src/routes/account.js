@@ -16,4 +16,7 @@ router.post('/edit', verifyAuth, accountController.updateProfile);
 
 router.post('/logout', accountController.logout);
 
+router.post('/forget_password/:email', accountController.forgetPassword);
+router.post('/coach/forget_password/:code', verifyAuth, accountController.forgetCoachPassword);
+
 module.exports = router;
