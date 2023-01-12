@@ -10,12 +10,15 @@
   <div class='py-2 d-flex justify-content-between'>
     <div class='d-flex align-items-center gap-2'>
       <img src='/images/logo nhà xe.png' width='50px' alt='' class='rounded-pill shadow' />
-      <div class='fw-bold fs-6'>ABC</div>
+      <div class='fw-bold fs-6'>{{Coach.Garage.name}}</div>
     </div>
     <div class='d-flex align-items-center justify-content-between text-center w-50'>
       <div>
-        <div class='fw-bold fs-5'>12:10</div>
-        <div class='fw-bold fs-6 text-secondary'>Quảng Ninh</div>
+        <div class='fw-bold fs-5'>{{time.startTime}}</div>
+        <p>
+          {{time.startDay}}
+        </p>
+        <div class='fw-bold fs-6 text-secondary'>{{startStation.city}}</div>
       </div>
       <div style='position: relative; width: 30%'>
         <div style='width: 100%; border-top: 2px dashed #000'></div>
@@ -25,13 +28,14 @@
         ></i>
       </div>
       <div>
-        <div class='fw-bold fs-5'>18:30</div>
-        <div class='fw-bold fs-6 text-secondary'>Ninh Bình</div>
+        <div class='fw-bold fs-5'>{{time.endTime}}</div>
+        <div class='fw-bold fs-6 text-secondary'>{{endStation.city}}</div>
       </div>
     </div>
     <button
-      onclick="onNavigateTo('garage/123')"
+      onclick="onNavigateTo('garage/{{Coach.Garage.id}}/info')"
       class='btn btn-secondary rounded-pill align-self-center'
+      type='button'
     >Chi tiết</button>
   </div>
 </div>

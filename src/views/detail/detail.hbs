@@ -1,36 +1,32 @@
-<div class='container' style='min-height: 100vh;'>
-  <div class='detail'>
-    <div class='detail-header'>
-      <h3>Thông tin nhà xe</h3>
-      <div class='detail-header-button'>
-        <button onclick="onNavigateTo('garage/123')" class='detail-header-button-info'>Thông tin và
-          giá</button>
-        <button onclick="onNavigateTo('garage/123/rating')" class='detail-header-button-rating'>Đánh
-          giá</button>
-      </div>
+<div class='container'>
+
+  <div class='bg-white rounded px-5 py-2 mt-3 d-flex justify-content-between rounded'>
+    <h3>Thông tin nhà xe</h3>
+    <div class='detail-header-button'>
+      <button onclick="onNavigateTo('garage/{{id}}/info')" class='btn btn-primary'>Thông tin và giá</button>
+      <button onclick="onNavigateTo('garage/{{id}}/rating')" class='btn btn-secondary'>Đánh giá</button>
     </div>
   </div>
-  <div class='detail-body'>
-    <div class='detail-body-img'>
-      <img src='/images/details/mailinh.jpeg' alt='' />
+
+  <div class='bg-white rounded d-flex p-4 my-3'>
+    <div class='w-50'>
+      <img src='/images/details/mailinh.jpeg' alt='' class='w-100' />
     </div>
-    <div class='detail-body-info'>
-      <h2>Mai Linh</h2>
+    <div class='ms-4'>
+      <h2>{{garage.name}}</h2>
       <p>Đường dây nóng: 0985 29 29 29 29</p>
-      <p>Tổng đài: 08. 39 39 39 39</p>
+      <div class='d-flex align-items-center m-2'>
+        <i class='fa-solid fa-clock d-block pe-2'></i>
+        Giờ làm việc:
+        <span class='ps-2'> 5:00 - 23:00</span>
+      </div>
       <div class='detail-body-info-rating'>
-        <div class='star-rating'>
-          <p>4.8</p>
+        <p class='star-rating'>
+          {{avgRate}}
           <i class='fa-solid fa-star'></i>
-        </div>
-        <p id='totalrating'>67 đánh giá</p>
-        <div id='totalstar'>
-          <i class='fa-solid fa-star'></i>
-          <i class='fa-solid fa-star'></i>
-          <i class='fa-solid fa-star'></i>
-          <i class='fa-solid fa-star'></i>
-          <i class='fa-solid fa-star'></i>
-        </div>
+        </p>
+        <p>{{numOfRate}} đánh giá</p>
+
       </div>
       <div class='detail-body-service'>
         <h2>Dịch vụ</h2>
@@ -50,31 +46,37 @@
         </div>
       </div>
     </div>
-
   </div>
-  <div class='detail-body-footer'>
-    <h3>Chi tiết công ty</h3>
-    <div id='all'>
-      <div id='at'>
-        <div id='address'>
-          <i class='fa-solid fa-location-dot'></i>
-          <div>
-            <p id='title'>Địa chỉ</p>
-            <p id='detailed'>349 Lê Hồng Phong,P2,Quận 10,TP. Hồ Chí Minh</p>
-          </div>
-        </div>
-        <div id='time'>
-          <i class='fa-solid fa-clock'></i>
-          <div>
-            <p id='time'>Giờ làm việc</p>
-            <p>Thứ 2 - Chủ Nhật</p>
-            <p>6:00 - 23:00</p>
-          </div>
-        </div>
-      </div>
-      <div id='map'>
-        <img src='/images/details/map.jpeg' alt='' />
+
+  <div class='bg-white p-4 rounded mb-3'>
+    <p class='fs-2 fw-bold m-0'>Chi tiết công ty</p>
+    <div class='d-flex align-items-start ms-2'>
+      {{! <i class='fa-solid fa-location-dot fs-1 px-2 d-block'></i> }}
+      <div class=''>
+        <p class='fs-3 text-dark fw-semibold py-0 my-0'>Địa chỉ và số điện thoại trạm</p>
+        <ul class='ms-2 py-0 my-0'>
+          {{#each station}}
+
+            <li>{{street}},
+              {{district}},
+              {{ward}},
+              {{city}}
+              -
+              <span class='fs-6 text-secondary'>{{phone}}</span>
+            </li>
+          {{/each}}
+        </ul>
       </div>
     </div>
+    <div class='d-flex align-items-start ms-2'>
+      <p class='fs-3 text-dark fw-semibold'>Chính sách/Mô tả</p>
+      <ul class='ms-2 py-0 my-0'>
+        {{#each policy}}
+          <li>{{desciption}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+
   </div>
 </div>
