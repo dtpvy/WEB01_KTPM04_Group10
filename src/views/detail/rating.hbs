@@ -1,142 +1,80 @@
-<div class='container' style='min-height: 100vh;'>
-  <div class='rating'>
-    <div class='rating-header'>
-      <h3>Thông tin nhà xe</h3>
-      <div class='rating-header-button'>
-        <button onclick="onNavigateTo('garage/123')" class='detail-header-button-info'>Thông tin và
-          giá</button>
-        <button onclick="onNavigateTo('garage/123/rating')" class='detail-header-button-rating'>Đánh
-          giá</button>
-      </div>
-    </div>
-    <div class='rating-body'>
-      <div class='rating-body-img'>
-        <img src='/images/details/mailinh.jpeg' alt='' />
-      </div>
-      <div class='rating-body-sideimg'>
-
-        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
-        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
-        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
-        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
-        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
-        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
-
-      </div>
-      <div class='rating-summary'>
-        <div class='frame-div'>
-          <div class='frame-div1'>
-            <div class='div'>4.8</div>
-            <i class='fa-solid fa-star' id='big'></i>
-            <div class='nh-gi-div'>67 đánh giá</div>
-          </div>
-          <div class='frame-div2'>
-            <div class='app-4-div'>
-              <b class='b'>5</b><i class='fa-solid fa-star'></i>
-              <div class='progress-div'>
-                <div class='bg-div'></div>
-
-              </div>
-              <b class='b1'>20</b>
-            </div>
-            <div class='app-4-div'>
-              <b class='b'>4</b><i class='fa-solid fa-star'></i>
-              <div class='progress-div'>
-                <div class='bg-div'></div>
-                <div class='selected-div'></div>
-              </div>
-              <b class='b1'>25</b>
-            </div>
-            <div class='app-6-div'>
-              <b class='b'>3</b><i class='fa-solid fa-star'></i>
-              <div class='progress-div'>
-                <div class='bg-div'></div>
-                <div class='selected-div1'></div>
-              </div>
-              <b class='b1'>12</b>
-            </div>
-            <div class='app-4-div'>
-              <b class='b'>2</b><i class='fa-solid fa-star'></i>
-              <div class='progress-div'>
-                <div class='bg-div'></div>
-                <div class='selected-div2'></div>
-              </div>
-              <b class='b1'>7</b>
-            </div>
-            <div class='app-8-div'>
-              <b class='b'>1</b><i class='fa-solid fa-star'></i>
-              <div class='progress-div'>
-                <div class='bg-div'></div>
-                <div class='selected-div3'></div>
-              </div>
-              <b class='b1'>3</b>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div class='rating-comment'>
-      <div class='rating-comment-button'>
-        <button>Tất cả</button>
-        <button>5*</button>
-        <button>4*</button>
-        <button>3*</button>
-        <button>2*</button>
-        <button>1*</button>
-      </div>
-      <div class='rating-comment-detail'>
-        <div class='rating-comment-detail-img'>
-          <img src='/images/details/avt.png' alt='' />
-        </div>
-        <div class='rating-comment-detail-text'>
-          <div id='name'>Nguyễn Văn A</div>
-          <div id='rating'>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-          </div>
-          <div id='detail'>Xe thơm đó,tuy nhiên tài xế chạy hơi nhanh và sóc khiến mình buồn nôn</div>
-        </div>
-
-      </div>
-      <div class='rating-comment-detail'>
-        <div class='rating-comment-detail-img'>
-          <img src='/images/details/avt.png' alt='' />
-        </div>
-        <div class='rating-comment-detail-text'>
-          <div id='name'>Nguyễn Văn A</div>
-          <div id='rating'>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-          </div>
-          <div id='detail'>Xe thơm đó,tuy nhiên tài xế chạy hơi nhanh và sóc khiến mình buồn nôn</div>
-        </div>
-
-      </div>
-      <div class='rating-comment-detail'>
-        <div class='rating-comment-detail-img'>
-          <img src='/images/details/avt.png' alt='' />
-        </div>
-        <div class='rating-comment-detail-text'>
-          <div id='name'>Nguyễn Văn A</div>
-          <div id='rating'>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-            <i class='fa-solid fa-star'></i>
-          </div>
-          <div id='detail'>Xe thơm đó,tuy nhiên tài xế chạy hơi nhanh và sóc khiến mình buồn nôn</div>
-        </div>
-
-      </div>
+<div class='rating'>
+  <div class='bg-white rounded px-5 py-2 mt-3 d-flex justify-content-between rounded'>
+    <h3>Đánh giá nhà xe</h3>
+    <div class='detail-header-button'>
+      <button onclick="onNavigateTo('garage/{{id}}/info')" class='btn btn-primary'>Thông tin</button>
+      <button onclick="onNavigateTo('garage/{{id}}/rating')" class='btn btn-secondary'>Đánh giá</button>
     </div>
   </div>
+  <div class='bg-white rounded px-3 py-5 d-flex'>
+    <div class='w-50 d-flex ms-4'>
+      <div class='w-75'>
+        <p class='fs-4 fw-bold'>{{garage.name}}</p>
+        <img src='/images/details/mailinh.jpeg' alt='' class='w-100' />
+      </div>
+      <div class='rating-body-sideimg'>
+        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
+        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
+        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
+        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
+        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
+        <tr><img src='/images/details/mailinh.jpeg' alt='' /></tr>
+      </div>
+    </div>
 
+    <div class='w-50'>
+      <div class='fw-semibold'>
+        <span class='fs-6 text-primary'>{{avgRate}}</span>
+        <i class='fa-solid fa-star ps-1 fs-5 text-warning'></i>
+        <span class='fs-6'>{{numOfRate}} đánh giá</span>
+      </div>
+      <div class=''>
+        <form action='/garage/{{id}}/rating' id='rating_form' method='post'>
+          <input type='radio' id='1star' name='star' value='1' required />
+          <label for='1star'>1<i class='fa-solid fa-star ps-1 fs-6 text-warning'></i></label>
+          <input type='radio' id='2star' name='star' value='2' />
+          <label for='2star'>2<i class='fa-solid fa-star ps-1 fs-6 text-warning'></i></label>
+          <input type='radio' id='3star' name='star' value='3' />
+          <label for='3star'>3<i class='fa-solid fa-star ps-1 fs-6 text-warning'></i></label>
+          <input type='radio' id='4star' name='star' value='4' />
+          <label for='4star'>4<i class='fa-solid fa-star ps-1 fs-6 text-warning'></i></label>
+          <input type='radio' id='5star' name='star' value='5' />
+          <label for='5star'>5<i class='fa-solid fa-star ps-1 fs-6 text-warning'></i></label>
+          <div>
+            <textarea name='content' form='rating_form' class='w-75 h-50 my-2 rounded'>
+              Nhập đánh giá của bạn về nhà xe...</textarea>
+            <input
+              type='submit'
+              value='Đánh giá'
+              class='d-block btn btn-primary bg-primary text-white p-3'
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class='rating-comment'>
+    <div class='rating-comment-button'>
+      <button>Tất cả</button>
+      <button>5*</button>
+      <button>4*</button>
+      <button>3*</button>
+      <button>2*</button>
+      <button>1*</button>
+    </div>
+    {{#each comment}}
+      <div class='rating-comment-detail'>
+        <div class='rating-comment-detail-img'>
+          <img src='/images/details/avt.png' alt='' />
+        </div>
+        <div class='rating-comment-detail-text'>
+          <div id='name'>{{User.fullname}}</div>
+          <div>
+            <i class='fa-solid fa-star text-warning'></i><span>{{rate}}</span>
+          </div>
+          <div id='detail'>{{content}}</div>
+        </div>
+      </div>
+    {{/each}}
 </div>

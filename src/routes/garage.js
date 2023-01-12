@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { verifyGarage, verifyAuth } = require('../middlewares/verifyAuth');
+const { checkAuth } = require('../middlewares/checkAuth');
 const garageController = require('../controllers/garageController');
 
 router.get('/', verifyAuth, verifyGarage, garageController.getGarage);
@@ -22,12 +23,8 @@ router.get('/employee/edit/:id', verifyGarage, garageController.editEmployeeSect
 router.post('/tour/create', verifyGarage, garageController.handleTour);
 router.delete('/tour/delete/:id', verifyGarage, garageController.deleteTourSection);
 
-router.get('/:id/rating', function (req, res, next) {
-  res.render('./detail/rating', { layout: 'main' });
-});
-
-router.get('/:id/info', function (req, res, next) {
-  res.render('./detail/detail', { layout: 'main' });
-});
+router.get('/:id/rating', checkAuth, garageController.showGarageRating);
+router.get('/:id/rating', verifyAuth, garageController.rateGarage);
+router.get('/:id/info', checkAuth, garageController.showGarageDetail);
 
 module.exports = router;
