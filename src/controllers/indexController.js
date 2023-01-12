@@ -29,8 +29,13 @@ async function homePage(req, res) {
     const day2 = new Date(i.endTime);
     i.time = timeData(day, day2);
   }
+  let newRoute = [];
+  for (let i = 0; i < 6; i++) {
+    newRoute.push(route[i + 1]);
+  }
+
   console.log(location);
-  res.render('home/index', { layout: 'home', city: location, route: route });
+  res.render('home/index', { layout: 'home', city: location, route: newRoute });
 }
 
 async function searchRoute(req, res) {
@@ -46,7 +51,6 @@ async function searchRoute(req, res) {
   };
   let date = req.query.day;
 
-  //format lại ngày\
   let options = {
     include: [
       {
@@ -77,6 +81,9 @@ async function searchRoute(req, res) {
             model: models.Garage,
             require: true,
             where: {},
+            include: {
+              model: models.Comment,
+            },
           },
         ],
         where: {},
@@ -87,8 +94,6 @@ async function searchRoute(req, res) {
   };
   options.order.push(orders[priceSort]);
   let route = await models.Route.findAll(options);
-
-  //format day
 
   let typeToSort = route.map((item, ind) => item.Coach.seatAmount);
   typeToSort = [...new Set(typeToSort)];
