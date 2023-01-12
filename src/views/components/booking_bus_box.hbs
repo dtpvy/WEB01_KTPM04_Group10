@@ -35,8 +35,11 @@
     <P class='mt-5 mb-0'>Đơn giá</P>
     <div class='d-flex justify-content-between border border-secondary rounded my-2'><p
         class='m-2'
-      >Số ghế đặt x Giá vé</p><p class='m-2 fw-semibold'>{{seatChosen}}x{{route.fare}}</p></div>
-    <p class='text-end fw-semibold fs-5'>600.000 <span class='fs-6 fw-light'>VNĐ</span></p>
+      >Số ghế đặt x Giá vé</p><p
+        class='m-2 fw-semibold booking_details_fare'
+      >0x{{route.fare}}</p></div>
+    <p class='text-end fw-semibold fs-5'><span class='booking_details_total'>0</span>
+      <span class='fs-6 fw-light'>VNĐ</span></p>
     <input type='text' value='total' id='booking_total_bill' class='d-none' />
   </div>
   <input type='text' name='routeId' value='{{route.id}}' id='route_id' class='d-none' />

@@ -14,12 +14,30 @@
       </div>
     </div>
     <div class='d-flex gap-2 align-items-center ml-auto'>
-      <button class='btn btn-danger'>
+      <button data-bs-toggle="modal" data-bs-target="#deleteGarage{{id}}" class='btn btn-danger'>
         Xoá
       </button>
       <button onclick="onNavigateTo('garage/station/edit/{{id}}')" class='btn btn-secondary'>
         Sửa
       </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteGarage{{id}}" tabindex="-1" aria-labelledby="deleteGarage{{id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa nhà xe</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn muốn xóa nhà xe? Nhà xe này sẽ không được sử dụng trong tương lai.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button onclick="onDeleteStation('station', '{{id}}')" type="button" class="btn btn-danger">Đồng ý xóa</button>
+      </div>
     </div>
   </div>
 </div>

@@ -279,3 +279,34 @@ try {
     onChangeFloor();
   }
 } catch (e) {}
+
+const onDeleteStation = (type, id) => {
+  fetch(`garage/${type}/delete/${id}`, {
+    method: 'DELETE',
+  }).then(() => {
+    alert('Xóa thành công!');
+    location.reload();
+  });
+};
+
+const onBook = (e, id, price) => {
+  console.log(id, price);
+  e.classList.toggle('seat_booking');
+  const total = document.querySelector('.booking_details_total');
+  const fare = document.querySelector('.booking_details_fare');
+  const seatValue = document.getElementsByName('seat_value')[0];
+  const totalValue = document.getElementsByName('total')[0];
+  let seat = seatValue.value ? JSON.parse(seatValue.value) : [];
+  if (e.classList.contains('seat_booking')) {
+    e.innerHTML = `<img src='/images/ghế đang đặt.png' alt="">`;
+    seat.push(id);
+  } else {
+    e.innerHTML = `<img src='/images/ghế chưa đặt.png' alt="">`;
+    seat = seat.filter((item) => item != id);
+  }
+  seatValue.value = JSON.stringify(seat);
+  const seats = document.getElementsByClassName('seat_booking');
+  total.innerHTML = seats.length * price;
+  fare.innerHTML = seats.length + 'x' + price;
+  totalValue.value = seats.length * price;
+};

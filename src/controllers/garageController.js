@@ -1,6 +1,7 @@
 const models = require('../models/index');
 const jwt = require('jsonwebtoken');
 const { getLocation, getLocationDetail } = require('../services/location');
+const { route } = require('../routes');
 
 async function getGarage(req, res) {
   const garage = await models.Garage.findOne({
@@ -8,30 +9,22 @@ async function getGarage(req, res) {
     include: [
       { model: models.User },
       { model: models.Station },
-      { model: models.Coach },
-      // { model: models.Route },
+      { model: models.Coach, include: { model: models.Route } },
     ],
   });
-  // garage.Routes = await garage.Coaches.reduce(async (routes, coach) => {
-  //   routes = [
-  //     ...routes,
-  //     ...(await Promise.all(
-  //       coach.Routes.map(async (route) => {
-  //         const [startStation, endStation] = await Promise.all([
-  //           await models.Station.findOne({ where: { id: route.startStationId } }),
-  //           await models.Station.findOne({ where: { id: route.endStationId } }),
-  //         ]);
-  //         return {
-  //           coach,
-  //           route,
-  //           startStation,
-  //           endStation,
-  //         };
-  //       })
-  //     )),
-  //   ];
-  //   return routes;
-  // }, []);
+  garage.Routes = (garage.Coaches || []).reduce((routes, coach) => {
+    const newRoutes = (coach.Routes || []).map((route) => {
+      const startStation = garage.Stations.find(({ id }) => id === route.startStationId);
+      const endStation = garage.Stations.find(({ id }) => id === route.endStationId);
+      return {
+        coach,
+        route,
+        startStation,
+        endStation,
+      };
+    });
+    return routes.length ? [...routes, ...newRoutes] : [...newRoutes];
+  }, []);
   const user = garage.Users.find((user) => user.id === req.userId);
   res.render('./garage/index', { layout: 'main', garage, user });
 }
@@ -56,6 +49,19 @@ async function addSection(req, res) {
       ROLE.findIndex((item) => item === role)
     );
     res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false, roles });
+    return;
+  } else if (section === 'tour') {
+    const garage = await models.Garage.findOne({
+      where: { id: req.garageId },
+      include: [{ model: models.Station }, { model: models.Coach }],
+    });
+    console.log(garage);
+    res.render(`./garage/edit-${section}`, {
+      layout: 'main',
+      isEdit: false,
+      stations: garage.Stations,
+      coaches: garage.Coaches,
+    });
     return;
   }
   res.render(`./garage/edit-${section}`, { layout: 'main', isEdit: false });
@@ -84,6 +90,24 @@ async function editStationSection(req, res) {
     wards,
     station,
   });
+}
+
+async function deleteStationSection(req, res) {
+  const { id } = req.params;
+  await models.Station.destroy({ where: { id }, force: false });
+  res.status(200).json({ success: true });
+}
+
+async function deleteTourSection(req, res) {
+  const { id } = req.params;
+  await models.Route.destroy({ where: { id }, force: false });
+  res.status(200).json({ success: true });
+}
+
+async function deleteCoachSection(req, res) {
+  const { id } = req.params;
+  await models.Coach.destroy({ where: { id }, force: false });
+  res.status(200).json({ success: true });
 }
 
 async function editEmployeeSection(req, res) {
@@ -124,6 +148,7 @@ async function editEmployeeSection(req, res) {
 
 async function editCoachSection(req, res) {
   const { id } = req.params;
+  console.log(id);
   const [user, coach] = await Promise.all([
     (
       await models.Garage.findOne({
@@ -185,8 +210,8 @@ async function handleStation(req, res) {
 async function handleCoach(req, res) {
   const id = req.params.id;
   const { name, code, floor, floor_value, path_img, amount_seats: seatAmount } = req.body;
+  const floorValue = JSON.parse(floor_value);
   if (!id) {
-    const floorValue = JSON.parse(floor_value);
     const coach = await models.Coach.create({
       name,
       code,
@@ -203,6 +228,48 @@ async function handleCoach(req, res) {
       });
     });
     res.redirect(`/garage/coach/create`);
+  } else {
+    const _seats = await models.Seat.findAll({ where: { coachId: id } });
+    const seats = _seats.reduce((floor, seat) => {
+      floor[seat.floor] = floor[seat.floor] || [];
+      floor[seat.floor][seat.row] = floor[seat.floor][seat.row] || [];
+      floor[seat.floor][seat.row][seat.column] = seat.status || '';
+      return floor;
+    }, {});
+    await models.Coach.update(
+      { name, code, floor, imgUrls: [path_img], seatAmount },
+      {
+        where: { id },
+      }
+    );
+    if (floor_value !== JSON.stringify(seats)) {
+      await models.Seat.destroy({ where: { coachId: id }, force: false });
+      Object.keys(floorValue).forEach((floor) => {
+        floorValue[floor].forEach((rowValue, row) => {
+          rowValue.forEach(async (status, column) => {
+            await models.Seat.create({ status, floor, column, row, coachId: id });
+          });
+        });
+      });
+    }
+    res.redirect(`/garage/coach/edit/${id}`);
+  }
+}
+
+async function handleTour(req, res) {
+  const id = req.params.id;
+  const { station_start, station_end, date_end, date_start, price, coach } = req.body;
+  console.log(req.body);
+  if (!id) {
+    const route = await models.Route.create({
+      startTime: new Date(date_start),
+      endTime: new Date(date_end),
+      fare: price,
+      startStationId: station_start,
+      endStationId: station_end,
+      coachId: coach,
+    });
+    res.redirect(`/garage/tour/create`);
   } else {
     await models.Station.update(
       { street, name, city, district, ward, phone },
@@ -313,6 +380,10 @@ module.exports = {
   editEmployeeSection,
   handleCoach,
   editCoachSection,
+  deleteStationSection,
+  handleTour,
+  deleteTourSection,
+  deleteCoachSection,
   showGarageDetail,
   showGarageRating,
   rateGarage,
