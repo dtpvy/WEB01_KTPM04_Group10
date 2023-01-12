@@ -24,7 +24,7 @@ router.post('/tour/create', verifyGarage, garageController.handleTour);
 router.delete('/tour/delete/:id', verifyGarage, garageController.deleteTourSection);
 
 router.get('/:id/rating', checkAuth, garageController.showGarageRating);
-router.get('/:id/rating', verifyAuth, garageController.rateGarage);
+router.post('/:id/rating', verifyAuth, garageController.rateGarage);
 router.get('/:id/info', checkAuth, garageController.showGarageDetail);
 
 module.exports = router;

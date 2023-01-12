@@ -13,6 +13,11 @@ controller.showBookingPage = async (req, res) => {
     include: [
       {
         model: models.Coach,
+        required: true,
+        include: {
+          model: models.Garage,
+          required: true,
+        },
       },
       {
         model: models.Station,
@@ -43,7 +48,7 @@ controller.showBookingPage = async (req, res) => {
   const day = new Date(route.startTime);
   const day2 = new Date(route.endTime);
   const time = timeData(day, day2);
-
+  let policy = await models.Policy.findAll({});
   res.render('booking/step_1', {
     layout: 'main',
     busSeat: seats,
@@ -52,8 +57,8 @@ controller.showBookingPage = async (req, res) => {
     time,
     seatChosen: 0,
     route,
-    coach: route.Coach,
-    coachId: route.Coach.id,
+    coachId: id,
+    policy,
   });
 };
 
