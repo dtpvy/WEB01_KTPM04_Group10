@@ -8,10 +8,7 @@ async function homePage(req, res) {
   const location = (await getLocation()).sort();
 
   const route = await models.Route.findAll({
-    attribute: [
-      [sequelize.fn('DISTINCT', sequelize.col('startStationId')), 'startStationId'],
-      [sequelize.fn('DISTINCT', sequelize.col('endStationId')), 'endStationId'],
-    ],
+    attribute: [[sequelize.fn('MIN', sequelize.col('fare')), 'fare']],
     include: [
       {
         model: models.Station,
@@ -27,6 +24,11 @@ async function homePage(req, res) {
       },
     ],
   });
+  for (let i of route) {
+    const day = new Date(i.startTime);
+    const day2 = new Date(i.endTime);
+    i.time = timeData(day, day2);
+  }
   console.log(location);
   res.render('home/index', { layout: 'home', city: location, route: route });
 }

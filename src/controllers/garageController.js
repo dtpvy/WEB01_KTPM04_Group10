@@ -227,12 +227,82 @@ async function showGarageDetail(req, res) {
       garageId: id,
     },
   });
-  res.render('./detail/detail', { layout: 'main', id, garage, station });
+  const comment = await models.Comment.findAll({
+    where: {
+      garageId: id,
+    },
+  });
+  let avgRate = 0;
+  let numOfRate = 0;
+  let temp = comment.map((item, ind) => {
+    if (item.rate) {
+      numOfRate++;
+      avgRate += item.rate;
+    }
+  });
+  avgRate = avgRate / numOfRate;
+  avgRate = Math.round(avgRate * 10) / 10;
+  const policy = await models.Policy.findAll();
+  res.render('./detail/detail', {
+    layout: 'main',
+    id,
+    garage,
+    station,
+    policy,
+    avgRate,
+    numOfRate,
+  });
 }
 //show detail rating
 async function showGarageRating(req, res) {
   const id = req.params.id;
-  res.render('./detail/rating', { layout: 'main', id });
+
+  const garage = await models.Garage.findOne({
+    where: {
+      id: id,
+    },
+  });
+  const comment = await models.Comment.findAll({
+    where: {
+      garageId: id,
+    },
+    include: [
+      {
+        model: models.User,
+        require: true,
+      },
+    ],
+  });
+  let avgRate = 0;
+  let numOfRate = 0;
+  let temp = comment.map((item, ind) => {
+    if (item.rate) {
+      numOfRate++;
+      avgRate += item.rate;
+    }
+  });
+  avgRate = avgRate / numOfRate;
+  avgRate = Math.round(avgRate * 10) / 10;
+  res.render('./detail/rating', { layout: 'main', id, garage, comment, avgRate, numOfRate });
+}
+//rate garage
+async function rateGarage(req, res) {
+  const id = req.params.id;
+  let user = await models.User.findByPk(req.userId);
+  const { content, star } = req.body;
+  const garage = await models.Garage.findOne({
+    where: {
+      id: id,
+    },
+  });
+  const commentCreate = await models.Comment.create({
+    rate: star,
+    content: content,
+    garageId: id,
+    userId: user.id,
+  }).catch((error) => console.log(error));
+
+  res.redirect(`/garage/${id}/rating`);
 }
 
 module.exports = {
@@ -245,4 +315,5 @@ module.exports = {
   editCoachSection,
   showGarageDetail,
   showGarageRating,
+  rateGarage,
 };

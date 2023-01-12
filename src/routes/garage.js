@@ -16,7 +16,7 @@ router.post('/station/edit/:id', verifyGarage, garageController.handleStation);
 // router.post('/employee/edit/id', verifyGarage, garageController.handleAddSection);
 
 router.get('/:id/rating', checkAuth, garageController.showGarageRating);
-
+router.post('/:id/rating', verifyAuth, garageController.rateGarage);
 router.get('/:id/info', checkAuth, garageController.showGarageDetail);
 
 module.exports = router;

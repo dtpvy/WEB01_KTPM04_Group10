@@ -15,7 +15,7 @@
       />
       <div class='flex-grow-1 mx-3'>{{startStation.city}} - {{endStation.city}}</div>
       <div class='flex-grow-1'>Từ {{fare}}đ</div>
-      <div class='flex-grow-1'>11/7 đến 20/7</div>
+      <div class='flex-grow-1'>Từ ngày {{time.startDay}}</div>
       {{#if (mod this 2)}}
         <button
           onclick="onNavigateTo('search?startCity={{startStation.city}}&arriveCity={{endStation.city}}')"
