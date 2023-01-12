@@ -6,23 +6,23 @@
         <div class='bg-secondary' style='width: 1px; height: 100%'></div>
         <div>
           Hiển thị
-          <span class='text-primary'>126 kết quả</span>
+          <span class='text-primary'>{{orders.length}} kết quả</span>
         </div>
       </div>
     </div>
     <div class='w-100 d-flex flex-column gap-3 px-3'>
-      {{#for 1 6 1}}
+      {{#each orders}}
         <div class='rounded d-flex border' style='overflow: hidden;'>
           <div class='w-75'>
-            {{> ticket}}
+            {{> ticket this.Route}}
           </div>
           <div
             class='w-25 bg-secondary bg-opacity-10 d-flex flex-column justify-content-center align-items-center'
           >
-            <div class='fw-bold fs-5 mb-2'>300K VND</div>
+            <div class='fw-bold fs-5 mb-2'>{{formatNumber this.total ' VNĐ'}}</div>
           </div>
         </div>
-      {{/for}}
+      {{/each}}
     </div>
     <div class="my-3 text-center">
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
