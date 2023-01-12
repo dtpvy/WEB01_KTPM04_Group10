@@ -1,5 +1,6 @@
 const models = require('../models/index');
 const nodemailer = require('nodemailer');
+const { timeData } = require('../utility/utility.js');
 
 async function logout(req, res) {
   res.clearCookie('access-token');
@@ -32,7 +33,7 @@ async function editProfile(req, res) {
 
 async function getProfile(req, res) {
   const user = await models.User.findByPk(req.userId);
-  const orders = await models.Order.findAll({
+  let orders = await models.Order.findAll({
     where: { userId: req.userId },
     include: {
       model: models.Route,
@@ -54,6 +55,16 @@ async function getProfile(req, res) {
       ],
     },
   });
+
+  orders = orders.map((order) => ({
+    ...order,
+    total: order.total,
+    Route: {
+      ...order.Route,
+      time: timeData(new Date(order.Route.startTime), new Date(order.Route.endTime)),
+    },
+  }));
+  console.log(orders);
   res.render('./account/index', { layout: 'main', user, orders });
 }
 

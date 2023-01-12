@@ -12,11 +12,13 @@ const formatDate = function (date) {
 };
 const timeData = function (day1, day2) {
   const formattedDate = formatDate(day1);
+  const eFormattedDate = formatDate(day2);
   return {
     startDay: formattedDate,
     startTime: `${day1.getHours() > 9 ? day1.getHours() : '0' + day1.getHours()}:${
       day1.getMinutes() > 9 ? day1.getMinutes() : '0' + day1.getMinutes()
     }`,
+    endDate: eFormattedDate,
     endTime: `${day2.getHours() > 9 ? day2.getHours() : '0' + day2.getHours()}:${
       day2.getMinutes() > 9 ? day2.getMinutes() : '0' + day2.getMinutes()
     }`,

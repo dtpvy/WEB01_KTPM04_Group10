@@ -1,5 +1,5 @@
 <div class='account-body'>
-  <div class='bus-trips-is-booked'>
+  <div class='bus-trips-is-booked mb-4'>
     <div class='shadow-sm box-header__section body__header-section d-flex justify-content-between rounded mx-3'>
       <div class='d-flex gap-2 align-items-center'>
         <div class='body__header__title'>Các chuyến đã đặt</div>
@@ -24,18 +24,6 @@
         </div>
       {{/each}}
     </div>
-    <div class="my-3 text-center">
-      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-        <label class="btn btn-outline-primary" for="btnradio1">1</label>
-
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-        <label class="btn btn-outline-primary" for="btnradio2">2</label>
-
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-        <label class="btn btn-outline-primary" for="btnradio3">3</label>
-      </div>
-    </div>
   </div>
   <div class='profile-user'>
     <div>
@@ -48,7 +36,7 @@
         <div class='Email-User'><p>{{user.phone}}</p></div>
         <div class='Email-User'><p>{{user.dateOfBirth}}</p></div>
       </div>
-      <div class='btn'>
+      <div>
         <button onclick="onNavigateTo('account/edit')" id='btn-X'>Chỉnh sửa trang cá nhân</button>
         <button onclick="onNavigateTo('login/coach')" id='btn-X'>Đăng nhập nhà xe</button>
       </div>
