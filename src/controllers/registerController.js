@@ -46,7 +46,13 @@ async function coachRegister(req, res) {
       error: 'Mã xe đã được đăng ký. Vui lòng thử lại.',
     });
   } else {
-    garage = await models.Garage.create({ code, name });
+    garage = await models.Garage.create({
+      code,
+      name,
+      imgUrls: [
+        'https://ik.imagekit.io/0o9nfg6a3/istockphoto-528066116-612x612.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1671854117599',
+      ],
+    });
     const user = await models.User.findOne({ where: { id: req.userId } });
     await garage.addUser(user, { through: { password, role: 'owner' } });
     res.render('./register/register_coach', {
