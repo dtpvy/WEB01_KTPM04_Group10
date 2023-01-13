@@ -1,5 +1,5 @@
 <div class='container' style='min-height: 100vh;'>
-  <form class='text-center d-flex justify-content-between mx-1' id="booking_form" action ="/booking/{{params}}/{{pageId}}" method="POST">
+  <form class='text-center d-flex justify-content-between mx-1' id="booking_form" action ="/booking/create_order/{{route.id}}" method="POST">
     
     <div class='left-boxes-width ms-2 me-3'>
       {{!-- heading chi tiết vé --}}
@@ -180,7 +180,7 @@
     </div>
     {{> booking_bus_box}}
     <!-- value seat booking -->
-    <input
+    {{!-- <input
       class='d-none form-control w-100'
       type='text'
       name='seat_value'
@@ -191,7 +191,7 @@
       type='number'
       name='total'
       required
-      />
+      /> --}}
   </form>
 
 </div>

@@ -1,0 +1,2 @@
+production đang dùng render trên url(external): 
+   jdbc:postgresql://dpg-cev35mpgp3jjsh1icisg-a.oregon-postgres.render.com:5432/vesire

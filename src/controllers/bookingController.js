@@ -88,13 +88,13 @@ controller.createOrder = async (req, res) => {
       port: 2525,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: 'webvesire@gmail.com', // ethereal user
-        pass: '0F0B3BD0156B42881021E6A855B77B27035F', // ethereal password
+        user: '20127606@student.hcmus.edu.vn', // ethereal user
+        pass: '34E35537CEB82069CB90C8A17A66F5E2E978', // ethereal password
       },
     });
 
     const msg = {
-      from: '"The Exapress App" <webvesire@gmail.com>', // sender address
+      from: '"The Exapress App" <20127606@student.hcmus.edu.vn>', // sender address
       to: `${user.email}`, // list of receivers
       subject: 'Đặt vé của bạn đã được tạo thành công', // Subject line
       text: `Mã đơn đặt vé của bạn: ${order.id}.\n Vui lòng truy cập http://localhost:3001/booking/booked_ticket/${order.id} để truy cập xem chi tiết vé xe đã đặt.`, // plain text body
